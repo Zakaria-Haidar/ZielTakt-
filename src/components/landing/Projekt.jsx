@@ -16,7 +16,7 @@ const projects = [
     description:
       'Premium-Fahrzeugaufbereitung aus Konstanz. Eine moderne Website, die Handwerk und Liebe zum Detail zeigt, von der Markenwelt über das Design bis zur direkten Buchungsanfrage.',
     facts: ['Individuelles Design', 'Logo & Farbwelt', 'Mobile-First', 'Direkte Buchungsanfrage'],
-    logo: '/logo-swissline.svg',
+    logo: '/logo-swissline.webp',
     logoAlt: 'Auto Kosmetik Swissline Logo',
     url: 'https://autokosmetik-swissline.de',
   },
