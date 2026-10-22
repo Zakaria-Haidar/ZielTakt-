@@ -1,20 +1,22 @@
 import { motion } from 'framer-motion';
+import { Car, Sparkles } from 'lucide-react';
 import SectionDivider from './SectionDivider';
 
 // Referenzen / Case Studies. Jeder Eintrag kann eine Website sein,
 // aber auch ein anderer Service (Automatisierung, AI-Assistent, ...) -
-// deshalb "type" statt es auf Websites zu beschränken.
+// deshalb "type" statt es auf Websites zu beschränken. Visuell: Icon
+// statt Screenshot, damit nichts veraltet, wenn ein Kunde sein Design
+// später ändert, und jedes neue Projekt sofort konsistent aussieht.
 const projects = [
   {
     id: 'swissline',
     type: 'Website',
     tag: 'Konstanz · Fahrzeugaufbereitung',
     title: 'Auto Kosmetik Swissline',
-    heading: 'Auto Kosmetik Swissline.',
     description:
       'Premium-Fahrzeugaufbereitung aus Konstanz. Eine moderne Website, die Handwerk und Liebe zum Detail zeigt, von der Markenwelt über das Design bis zur direkten Buchungsanfrage.',
     facts: ['Individuelles Design', 'Logo & Farbwelt', 'Mobile-First', 'Direkte Buchungsanfrage'],
-    image: '/case-study-swissline.jpg',
+    icon: Car,
     url: 'https://autokosmetik-swissline.de',
   },
   {
@@ -22,11 +24,10 @@ const projects = [
     type: 'Website',
     tag: 'Kosmetikstudio · Zweisprachig (DE/AR)',
     title: 'Abeer Beauty Center',
-    heading: 'Abeer Beauty Center.',
     description:
       'Kosmetikstudio mit zweisprachiger Website (Deutsch & Arabisch). Klare Leistungsübersicht, funktionierendes Kontaktformular mit direkter Anfrage per E-Mail, ausgelegt für beide Sprachgruppen der Kundschaft.',
     facts: ['Zweisprachig DE/AR', 'Individuelles Design', 'Kontaktformular inkl. E-Mail-Zustellung', 'Mobile-First'],
-    image: '/case-study-abeer.jpg',
+    icon: Sparkles,
     url: 'https://abeerbeauty-center.de',
   },
 ];
@@ -61,30 +62,36 @@ export default function Projekt() {
         <div className="space-y-20">
           {projects.map((project, idx) => {
             const reverse = idx % 2 === 1;
+            const Icon = project.icon;
             return (
               <div
                 key={project.id}
                 className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
               >
-                {/* Screenshot */}
+                {/* Icon-Tile statt Screenshot */}
                 <motion.div
                   initial={{ opacity: 0, x: reverse ? 30 : -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8 }}
-                  className={`relative aspect-[4/3] rounded-2xl overflow-hidden glass-strong ${
+                  className={`relative aspect-[4/3] rounded-2xl overflow-hidden glass-strong flex items-center justify-center ${
                     reverse ? 'lg:order-2' : ''
                   }`}
                 >
-                  <img
-                    src={project.image}
-                    alt={`${project.title} – Website-Screenshot`}
-                    loading="lazy"
-                    width="1280"
-                    height="720"
-                    className="absolute inset-0 w-full h-full object-cover object-top"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-void/50 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-neon/10 blur-3xl pointer-events-none" />
+                  <div className="relative flex flex-col items-center gap-5 text-center px-8">
+                    <div className="flex items-center justify-center w-20 h-20 rounded-2xl glass border border-neon/20">
+                      <Icon className="w-9 h-9 text-neon" strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <div className="font-heading font-bold text-titanium text-xl tracking-tight">
+                        {project.title}
+                      </div>
+                      <div className="text-datagrey text-xs tracking-widest uppercase mt-2">
+                        {project.type}
+                      </div>
+                    </div>
+                  </div>
                 </motion.div>
 
                 {/* Text */}
