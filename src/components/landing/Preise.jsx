@@ -7,6 +7,7 @@ const packages = [
   {
     name: 'Starter Site',
     price: '1.590 €',
+    chf: 'CHF 1.790',
     time: '5–7 Tage',
     features: ['1–3 Seiten', 'Individuelles Design', 'Kontaktformular & Click-to-Call', 'SSL & technische SEO-Basis'],
     popular: false,
@@ -14,6 +15,7 @@ const packages = [
   {
     name: 'Growth Website',
     price: '2.990 €',
+    chf: 'CHF 3.390',
     time: '7–14 Werktage',
     features: ['Bis 7 Seiten', 'Conversion-optimiertes Design', 'Booking- & Anfragefunktion', 'Google- & Local-SEO-Setup'],
     popular: true,
@@ -21,6 +23,7 @@ const packages = [
   {
     name: 'Growth Pro',
     price: '4.990 €',
+    chf: 'CHF 5.590',
     time: '2–4 Wochen',
     features: ['10+ Seiten möglich', 'Vollständige Conversion-Struktur', 'Branding & Visual Identity inklusive', 'Persönliche Betreuung & Priorität'],
     popular: false,
@@ -28,16 +31,16 @@ const packages = [
 ];
 
 const automations = [
-  { name: 'Lead-Automatisierung', price: 'ab 250 €', note: 'Neue Anfrage → sofortige Weiterleitung per WhatsApp/E-Mail' },
-  { name: 'Bewertungs-Automatisierung', price: 'ab 300 €', note: 'Nach Auftragsabschluss automatisch um eine Google-Bewertung bitten' },
-  { name: 'Follow-up-Automatisierung', price: 'ab 400 €', note: 'Keine Antwort? Automatische Erinnerung, damit keine Anfrage verloren geht' },
-  { name: 'AI-Assistent', price: 'ab 750 €', note: 'Beantwortet häufige Fragen automatisch & erfasst neue Leads' },
+  { name: 'Lead-Automatisierung', price: 'ab 250 €', chf: 'ab CHF 290', note: 'Neue Anfrage → sofortige Weiterleitung per WhatsApp/E-Mail' },
+  { name: 'Bewertungs-Automatisierung', price: 'ab 300 €', chf: 'ab CHF 340', note: 'Nach Auftragsabschluss automatisch um eine Google-Bewertung bitten' },
+  { name: 'Follow-up-Automatisierung', price: 'ab 400 €', chf: 'ab CHF 450', note: 'Keine Antwort? Automatische Erinnerung, damit keine Anfrage verloren geht' },
+  { name: 'AI-Assistent', price: 'ab 750 €', chf: 'ab CHF 850', note: 'Beantwortet häufige Fragen automatisch & erfasst neue Leads' },
 ];
 
 const care = [
-  { name: 'Care', price: '99 €', note: 'Updates, Backups & technischer Support', popular: false },
-  { name: 'Growth', price: '299 €', note: 'Care + SEO-Checks, Google-Business-Pflege & Reporting', popular: true },
-  { name: 'Growth Pro', price: '599 €', note: 'Local SEO, Tracking & strategische Weiterentwicklung', popular: false },
+  { name: 'Care', price: '99 €', chf: 'CHF 115', note: 'Updates, Backups & technischer Support', popular: false },
+  { name: 'Growth', price: '299 €', chf: 'CHF 340', note: 'Care + SEO-Checks, Google-Business-Pflege & Reporting', popular: true },
+  { name: 'Growth Pro', price: '599 €', chf: 'CHF 680', note: 'Local SEO, Tracking & strategische Weiterentwicklung', popular: false },
 ];
 
 export default function Preise() {
@@ -114,6 +117,9 @@ export default function Preise() {
                 <div className="font-heading font-bold text-titanium text-4xl leading-none mt-1">
                   {pkg.price}
                 </div>
+                <div className="text-datagrey text-sm mt-1.5">
+                  Schweiz: ab {pkg.chf}
+                </div>
                 <div className="text-datagrey text-sm mt-2">{pkg.time} Umsetzung</div>
               </div>
               <ul className="space-y-2.5 pt-2 border-t border-border">
@@ -166,7 +172,10 @@ export default function Preise() {
                   <div className="text-titanium text-sm font-semibold">{a.name}</div>
                   <div className="text-datagrey text-xs leading-relaxed mt-1">{a.note}</div>
                 </div>
-                <span className="font-heading font-bold text-neon text-sm whitespace-nowrap">{a.price}</span>
+                <div className="text-right whitespace-nowrap">
+                  <div className="font-heading font-bold text-neon text-sm">{a.price}</div>
+                  <div className="text-datagrey text-[11px] mt-0.5">{a.chf}</div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -212,6 +221,7 @@ export default function Preise() {
                   <span className="font-heading font-bold text-neon text-2xl">{c.price}</span>
                   <span className="text-datagrey text-sm">/Monat</span>
                 </div>
+                <div className="text-datagrey text-xs">Schweiz: {c.chf}/Monat</div>
                 <div className="text-datagrey text-sm leading-relaxed">{c.note}</div>
               </motion.div>
             ))}
