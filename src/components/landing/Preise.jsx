@@ -86,7 +86,7 @@ export default function Preise() {
           >
             <Check className="w-3.5 h-3.5 text-neon" strokeWidth={2.5} />
             <span className="text-datagrey text-xs font-medium tracking-widest uppercase">
-              Transparente Preise · Keine versteckten Kosten
+              Transparente Preise · Festangebot vor Projektstart
             </span>
           </motion.div>
         </div>
@@ -106,7 +106,7 @@ export default function Preise() {
             >
               {pkg.popular && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] font-semibold tracking-widest uppercase text-void bg-neon rounded-full px-3 py-1">
-                  Beliebt
+                  Empfohlen
                 </span>
               )}
               <h3 className="font-heading font-semibold text-titanium text-xl tracking-tight">

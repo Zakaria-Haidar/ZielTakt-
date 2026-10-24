@@ -10,7 +10,7 @@ const faqs = [
   },
   {
     q: 'Was kostet es wirklich am Ende?',
-    a: 'Die Startpreise stehen bei Preisen: ab 1.590 € (Starter Site), ab 2.990 € (Growth Website), ab 4.990 € (Growth Pro). Automatisierungen sind separat buchbar, laufendes Wachstum beginnt ab 99 € pro Monat. Nach dem Erstgespräch erhalten Sie ein Festangebot, damit gibt es keine versteckten Kosten.',
+    a: 'Die Startpreise stehen bei Preisen: ab 1.590 € (Starter Site), ab 2.990 € (Growth Website), ab 4.990 € (Growth Pro). Automatisierungen sind separat buchbar, laufendes Wachstum beginnt ab 99 € pro Monat. Nach dem Erstgespräch erhalten Sie ein schriftliches Festangebot, in dem alle Kosten aufgeführt sind, auch eventuelle laufende Kosten für Tools oder Software.',
   },
   {
     q: 'Kann ich meine Website später selbst bearbeiten?',

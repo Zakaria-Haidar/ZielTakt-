@@ -52,7 +52,7 @@ export default function About() {
             className="space-y-8"
           >
             <p className="text-datagrey text-lg leading-relaxed" style={{ lineHeight: '1.7' }}>
-              ZielTakt ist ein digitales Growth-Studio aus Konstanz. Wir bauen für lokale Unternehmen mehr als nur Websites – wir verbinden Design, Sichtbarkeit und Automatisierung zu einem System, das wirklich neue Kunden bringt.
+              ZielTakt ist ein digitales Growth-Studio aus Konstanz. Wir bauen für lokale Unternehmen mehr als nur Websites – wir verbinden Design, Sichtbarkeit und Automatisierung zu einem System, das darauf ausgelegt ist, neue Kunden zu gewinnen.
             </p>
             <p className="text-datagrey text-lg leading-relaxed" style={{ lineHeight: '1.7' }}>
               Für uns ist jede Website Maßarbeit: kein Baukasten, keine Standard-Vorlagen, sondern durchdachtes Design, das zu Ihrem Unternehmen und Ihren Kunden passt. Wir verstehen die Bodensee-Region, weil wir hier arbeiten und leben.

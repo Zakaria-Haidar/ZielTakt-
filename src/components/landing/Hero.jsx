@@ -132,7 +132,7 @@ export default function Hero() {
                     </div>
                     <div>
                       <div className="text-titanium text-sm font-semibold leading-tight">ZielTakt Studio</div>
-                      <div className="text-datagrey text-[10px]">Lokale Sichtbarkeit</div>
+                      <div className="text-datagrey text-[10px]">Beispiel-Dashboard</div>
                     </div>
                   </div>
                   <span className="flex items-center gap-1.5 text-[10px] text-neon bg-neon/10 border border-neon/20 rounded-full px-2.5 py-1">
@@ -169,14 +169,14 @@ export default function Hero() {
                         />
                       ))}
                     </div>
-                    <div className="text-neon text-[10px] font-medium">+24% diese Woche</div>
+                    <div className="text-neon text-[10px] font-medium">Beispielansicht</div>
                   </div>
                 </div>
 
                 {/* Bottom stat tiles */}
                 <div className="grid grid-cols-3 gap-3">
                   {[
-                    { v: '#1', l: 'Google lokal' },
+                    { v: 'SEO', l: 'Lokal optimiert' },
                     { v: 'A+', l: 'SSL-Sicherheit' },
                     { v: '<1s', l: 'Ladezeit' },
                   ].map((t) => (

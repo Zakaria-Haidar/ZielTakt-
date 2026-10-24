@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Handshake } from 'lucide-react';
 import SectionDivider from './SectionDivider';
 
-// Editierbarer Platzhalterwert: Provision in Prozent.
+// Provision in Prozent des Projektwerts.
 const COMMISSION_PCT = '10';
 
 export default function PartnerProgramm() {

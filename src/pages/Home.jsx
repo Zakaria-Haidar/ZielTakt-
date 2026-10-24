@@ -22,7 +22,7 @@ export default function Home() {
   usePageMeta({
     title: 'ZielTakt – Digitales Wachstumssystem für lokale Unternehmen in Konstanz',
     description:
-    'ZielTakt aus Konstanz: ein digitales Wachstumssystem aus Website, Google-Sichtbarkeit, Online-Buchung und Automatisierung. Mehr Anfragen, mehr Buchungen, weniger verpasste Kunden – für lokale Unternehmen in der DACH-Region.',
+    'ZielTakt aus Konstanz: ein digitales Wachstumssystem aus Website, Google-Sichtbarkeit, Online-Buchung und Automatisierung. Damit lokale Kunden Sie finden und einfach Kontakt aufnehmen – für Unternehmen in der DACH-Region.',
   });
 
   return (
