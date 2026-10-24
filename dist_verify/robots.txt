@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://zieltakt.info-velodigital.workers.dev/sitemap.xml

@@ -3,9 +3,7 @@ import { motion } from 'framer-motion';
 import { Send, Mail, Phone, MapPin } from 'lucide-react';
 import SectionDivider from './SectionDivider';
 import GlassButton from './GlassButton';
-
-const CONTACT_EMAIL = 'info@zieltakt.de';
-const CONTACT_PHONE = '+41 77 277 41 49';
+import { CONTACT_EMAIL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_DISPLAY, WHATSAPP_HREF } from '@/lib/contact';
 const WEB3FORMS_ACCESS_KEY = 'b120e0f3-17e8-4071-b046-227eda749ae6';
  
 // TikTok wird wieder ergänzt, sobald der Account-Link feststeht.
@@ -183,6 +181,10 @@ export default function Contact() {
                   </span>
                 </GlassButton>
               )}
+              <p className="mt-4 text-datagrey text-xs leading-relaxed">
+                Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben zur Bearbeitung Ihrer Anfrage zu. Mehr in der{' '}
+                <a href="/datenschutz" className="text-neon hover:underline">Datenschutzerklärung</a>.
+              </p>
               {error && (
                 <p role="alert" className="mt-4 text-sm text-red-400 leading-relaxed">
                   Die Nachricht konnte leider nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt an{' '}
@@ -219,7 +221,7 @@ export default function Contact() {
               </a>
 
               
-                <a href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`}
+                <a href={PHONE_HREF}
                 className="flex items-center gap-4 group"
               >
                 <div className="w-11 h-11 rounded-xl glass flex items-center justify-center group-hover:glow-blue transition-all duration-500">
@@ -227,12 +229,12 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="text-datagrey text-xs tracking-widest uppercase">Telefon</div>
-                  <div className="text-titanium text-base font-medium group-hover:text-neon transition-colors">{CONTACT_PHONE}</div>
+                  <div className="text-titanium text-base font-medium group-hover:text-neon transition-colors">{PHONE_DISPLAY}</div>
                 </div>
               </a>
 
 
-              <a href={`https://wa.me/${CONTACT_PHONE.replace(/[^0-9]/g, '')}`}
+              <a href={WHATSAPP_HREF}
   target="_blank"
   rel="noopener noreferrer"
   className="flex items-center gap-4 group"
@@ -244,7 +246,7 @@ export default function Contact() {
   </div>
   <div>
     <div className="text-datagrey text-xs tracking-widest uppercase">WhatsApp</div>
-    <div className="text-titanium text-base font-medium group-hover:text-neon transition-colors">{CONTACT_PHONE}</div>
+    <div className="text-titanium text-base font-medium group-hover:text-neon transition-colors">{WHATSAPP_DISPLAY}</div>
   </div>
 </a>
 
@@ -283,4 +285,4 @@ export default function Contact() {
       </div>
     </section>
   );
-}// updated
+}

@@ -237,7 +237,7 @@ export default function Preise() {
           className="mt-14 text-center space-y-4"
         >
           <GlassButton href="#contact">Individuelles Angebot auf Anfrage</GlassButton>
-          <p className="text-datagrey text-xs">Alle Preise netto. Ggf. Umsatzsteuer (Kleinunternehmerregelung möglich).</p>
+          <p className="text-datagrey text-xs">Alle Preise sind Endpreise. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>
         </motion.div>
       </div>
     </section>

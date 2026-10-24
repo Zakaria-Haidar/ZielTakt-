@@ -1,1 +1,0 @@
-import{j as i,m as e}from"./index-sxyiFRXC.js";function t(){return i.jsx("div",{className:"relative py-4",children:i.jsx(e.div,{initial:{scaleX:0},whileInView:{scaleX:1},viewport:{once:!0,margin:"-50px"},transition:{duration:1.2,ease:[.22,1,.36,1]},className:"line-glow w-full origin-left"})})}export{t as S};

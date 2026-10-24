@@ -11,7 +11,6 @@ import ServiceArea from '../components/landing/ServiceArea';
 import FAQ from '../components/landing/FAQ';
 import Contact from '../components/landing/Contact';
 import Footer from '../components/landing/Footer';
-import CookieConsent from '../components/landing/CookieConsent';
 import FloatingContact from '../components/landing/FloatingContact';
 
 export default function BelowFold() {
@@ -27,7 +26,6 @@ export default function BelowFold() {
       <FAQ />
       <Contact />
       <Footer />
-      <CookieConsent />
       <FloatingContact />
     </>
   );

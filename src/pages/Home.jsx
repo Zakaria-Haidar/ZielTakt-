@@ -16,7 +16,6 @@ const ServiceArea = lazy(() => import('../components/landing/ServiceArea'));
 const FAQ = lazy(() => import('../components/landing/FAQ'));
 const Contact = lazy(() => import('../components/landing/Contact'));
 const Footer = lazy(() => import('../components/landing/Footer'));
-const CookieConsent = lazy(() => import('../components/landing/CookieConsent'));
 const FloatingContact = lazy(() => import('../components/landing/FloatingContact'));
 
 export default function Home() {
@@ -48,7 +47,6 @@ export default function Home() {
       </main>
       <Suspense fallback={null}>
         <ErrorBoundary><Footer /></ErrorBoundary>
-        <ErrorBoundary><CookieConsent /></ErrorBoundary>
         <ErrorBoundary><FloatingContact /></ErrorBoundary>
       </Suspense>
     </div>

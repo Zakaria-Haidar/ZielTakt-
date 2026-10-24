@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
+import { CONTACT_EMAIL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_DISPLAY, WHATSAPP_HREF } from '@/lib/contact';
 
-const CONTACT_EMAIL = 'info@zieltakt.de';
-const CONTACT_PHONE = '+41 77 277 41 49';
-
+// Absolute ("/#...") so the links also work from /impressum, /datenschutz and the 404 page.
 const navLinks = [
-  { label: 'Leistungen', href: '#services' },
-  { label: 'Über uns', href: '#about' },
-  { label: 'Einzugsgebiet', href: '#area' },
-  { label: 'Kontakt', href: '#contact' },
+  { label: 'Leistungen', href: '/#services' },
+  { label: 'Über uns', href: '/#about' },
+  { label: 'Einzugsgebiet', href: '/#area' },
+  { label: 'Kontakt', href: '/#contact' },
 ];
 
 const INSTAGRAM_URL = 'https://www.instagram.com/zieltakt';
@@ -59,7 +58,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1 space-y-4">
             <div className="flex items-center gap-2">
-              <img src="/zieltakt-logo.png" alt="ZielTakt" width="1082" height="229" className="h-7 w-auto" />
+              <a href="/"><img src="/zieltakt-logo.png" alt="ZielTakt" width="1082" height="229" className="h-7 w-auto" /></a>
             </div>
             <p className="text-datagrey text-sm leading-relaxed max-w-xs">
               Digitale Growth-Systeme für lokale Unternehmen am Bodensee: Website, Sichtbarkeit, Anfragen und Wachstum aus einer Hand.
@@ -89,8 +88,11 @@ export default function Footer() {
               <a href={`mailto:${CONTACT_EMAIL}`} className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300 break-all">
                 {CONTACT_EMAIL}
               </a>
-              <a href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`} className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300">
-                {CONTACT_PHONE}
+              <a href={PHONE_HREF} className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300">
+                Tel. {PHONE_DISPLAY}
+              </a>
+              <a href={WHATSAPP_HREF} target="_blank" rel="noopener noreferrer" className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300">
+                WhatsApp {WHATSAPP_DISPLAY}
               </a>
               <span className="text-titanium/70 text-sm">Konstanz, Bodensee</span>
             </div>
@@ -124,8 +126,8 @@ export default function Footer() {
             © {new Date().getFullYear()} ZielTakt. Alle Rechte vorbehalten.
           </span>
           <div className="flex gap-6">
-            <a href="/datenschutz" className="text-datagrey text-xs hover:text-neon transition-colors">Datenschutz</a>
-            <a href="/impressum" className="text-datagrey text-xs hover:text-neon transition-colors">Impressum</a>
+            <a href="/impressum" className="text-titanium/80 text-sm hover:text-neon transition-colors">Impressum</a>
+            <a href="/datenschutz" className="text-titanium/80 text-sm hover:text-neon transition-colors">Datenschutz</a>
           </div>
         </div>
       </div>

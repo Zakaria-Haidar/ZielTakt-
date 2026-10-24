@@ -1,9 +1,7 @@
 import { motion } from 'framer-motion';
 import { Phone, Mail } from 'lucide-react';
 
-const PHONE_DIGITS = '41772774149'; // +41 77 277 41 49 for wa.me — no leading + there
-const PHONE_TEL = '+41772774149'; // for tel: links — needs the + for correct international dialing
-const EMAIL = 'info@zieltakt.de';
+import { CONTACT_EMAIL as EMAIL, PHONE_HREF, WHATSAPP_HREF } from '@/lib/contact';
 
 const WhatsAppIcon = ({ className = 'w-5 h-5' }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -17,7 +15,7 @@ export default function FloatingContact() {
       {/* Desktop: floating circular buttons */}
       <div className="hidden md:flex fixed bottom-6 right-6 z-[90] flex-col gap-3">
         <motion.a
-          href={`https://wa.me/${PHONE_DIGITS}`}
+          href={WHATSAPP_HREF}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="WhatsApp schreiben"
@@ -47,14 +45,14 @@ export default function FloatingContact() {
       >
         <div className="grid grid-cols-3">
           <a
-            href={`tel:${PHONE_TEL}`}
+            href={PHONE_HREF}
             className="flex flex-col items-center justify-center gap-1 py-3 text-datagrey hover:text-neon transition-colors"
           >
             <Phone className="w-5 h-5" />
             <span className="text-[11px] font-medium">Anrufen</span>
           </a>
           <a
-            href={`https://wa.me/${PHONE_DIGITS}`}
+            href={WHATSAPP_HREF}
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center justify-center gap-1 py-3 text-datagrey hover:text-neon transition-colors border-x border-border"

@@ -134,6 +134,21 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ===== Impressum / Datenschutz: typography for plain legal HTML ===== */
+.legal-content { color: hsl(var(--muted-foreground)); font-size: 0.95rem; line-height: 1.7; overflow-wrap: anywhere; }
+.legal-content h1 { font-family: var(--font-heading); font-weight: 700; font-size: 2.25rem; letter-spacing: -0.02em; color: hsl(var(--foreground)); margin-bottom: 2rem; }
+.legal-content h2 { font-family: var(--font-heading); font-weight: 600; font-size: 1.15rem; color: hsl(var(--foreground)); margin: 2.25rem 0 0.75rem; }
+.legal-content h3 { font-family: var(--font-heading); font-weight: 600; font-size: 1rem; color: hsl(var(--foreground)); margin: 1.5rem 0 0.5rem; }
+.legal-content h4 { font-weight: 600; color: hsl(var(--foreground)); margin: 1.25rem 0 0.5rem; }
+.legal-content p { margin: 0 0 1rem; }
+.legal-content ul, .legal-content ol { margin: 0 0 1rem 1.25rem; }
+.legal-content ul { list-style: disc; }
+.legal-content ol { list-style: decimal; }
+.legal-content li { margin-bottom: 0.35rem; }
+.legal-content strong { color: hsl(var(--foreground)); font-weight: 600; }
+.legal-content a { color: hsl(var(--primary)); }
+.legal-content a:hover { text-decoration: underline; }
+
 ::-webkit-scrollbar {
   width: 6px;
 }
