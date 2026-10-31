@@ -14,11 +14,11 @@
   "send_email": [
     {
       "name": "CONTACT_EMAIL",
-      "destination_address": "DEINE-ZIELADRESSE"
+      "destination_address": "info.velodigital@gmail.com"
     }
   ],
   "vars": {
     // Same address as destination_address above (the Worker needs it for the To header).
-    "CONTACT_TO": "DEINE-ZIELADRESSE"
+    "CONTACT_TO": "info.velodigital@gmail.com"
   }
 }
