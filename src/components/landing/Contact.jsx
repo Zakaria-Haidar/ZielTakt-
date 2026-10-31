@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Mail, Phone, MapPin } from 'lucide-react';
 import SectionDivider from './SectionDivider';
 import GlassButton from './GlassButton';
 import { CONTACT_EMAIL, GOOGLE_PROFILE_URL, INSTAGRAM_URL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_DISPLAY, WHATSAPP_HREF } from '@/lib/contact';
-const WEB3FORMS_ACCESS_KEY = 'b120e0f3-17e8-4071-b046-227eda749ae6';
- 
+
 // TikTok wird wieder ergänzt, sobald der Account-Link feststeht.
 const socialLinks = [
   { label: 'Instagram', icon: 'instagram', href: INSTAGRAM_URL },
@@ -37,14 +36,13 @@ export default function Contact() {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [subject, setSubject] = useState('');
+  const honeypotRef = useRef(null);
 
   // "Partner werden" (PartnerProgramm) presets the request type.
   useEffect(() => {
     const onPreset = (e) => {
       const presetSubject = e.detail?.subject;
       if (!presetSubject) return;
-      setSubject(presetSubject);
       setFormData((prev) =>
         prev.message ? prev : { ...prev, message: `${presetSubject}: ` }
       );
@@ -59,25 +57,22 @@ export default function Contact() {
     setLoading(true);
     setError(false);
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: `${subject || 'Neue Anfrage'} von ${formData.name}`,
-          from_name: 'ZielTakt – Kontaktformular',
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
           message: formData.message,
+          website: honeypotRef.current?.value ?? '',
         }),
       });
-      const result = await response.json();
-      if (result.success) {
+      const result = await response.json().catch(() => ({}));
+      if (response.ok && result.ok) {
         setSent(true);
         setTimeout(() => setSent(false), 4000);
         setFormData({ name: '', email: '', phone: '', message: '' });
-        setSubject('');
       } else {
         setError(true);
       }
@@ -147,6 +142,12 @@ export default function Contact() {
                 />
               </div>
             ))}
+
+            {/* Honeypot: invisible to people, bots fill it in. */}
+            <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: '1px', height: '1px', overflow: 'hidden' }}>
+              <label htmlFor="contact-website">Website</label>
+              <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" ref={honeypotRef} defaultValue="" />
+            </div>
 
             <div className="group">
               <label htmlFor="contact-message" className="text-datagrey text-xs tracking-widest uppercase block mb-3">

@@ -1,9 +1,24 @@
 {
-  // Static-assets-only Worker: every real route is prerendered to dist/<route>/index.html.
+  // Every real route is prerendered to dist/<route>.html and served as a static asset.
+  // Only /api/* runs Worker code (worker/index.js): the contact form endpoint.
   "name": "zieltakt",
+  "main": "worker/index.js",
   "compatibility_date": "2025-01-01",
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+  // Contact form mails go out via Cloudflare Email Routing. The address must be a
+  // verified destination address in Email Routing for zieltakt.de.
+  "send_email": [
+    {
+      "name": "CONTACT_EMAIL",
+      "destination_address": "DEINE-ZIELADRESSE"
+    }
+  ],
+  "vars": {
+    // Same address as destination_address above (the Worker needs it for the To header).
+    "CONTACT_TO": "DEINE-ZIELADRESSE"
   }
 }

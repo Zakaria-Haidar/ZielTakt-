@@ -148,6 +148,7 @@ html {
 .legal-content strong { color: hsl(var(--foreground)); font-weight: 600; }
 .legal-content a { color: hsl(var(--primary)); }
 .legal-content a:hover { text-decoration: underline; }
+.legal-content .legal-source { margin-top: 2.5rem; font-size: 0.8rem; }
 
 ::-webkit-scrollbar {
   width: 6px;
