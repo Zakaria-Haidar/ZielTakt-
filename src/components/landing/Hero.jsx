@@ -153,6 +153,7 @@ export default function Hero() {
                     <div className="h-1.5 w-full rounded-full bg-neon/10 overflow-hidden">
                       <div className="h-full w-[98%] rounded-full bg-gradient-to-r from-neon-dark to-neon" />
                     </div>
+                    <div className="text-neon text-[10px] font-medium">Beispielansicht</div>
                   </div>
 
                   {/* Chart panel */}
@@ -178,7 +179,7 @@ export default function Hero() {
                   {[
                     { v: 'SEO', l: 'Lokal optimiert' },
                     { v: 'A+', l: 'SSL-Sicherheit' },
-                    { v: '<1s', l: 'Ladezeit' },
+                    { v: 'Schnell', l: 'auf dem Handy' },
                   ].map((t) => (
                     <div key={t.l} className="glass rounded-xl p-3 text-center">
                       <div className="font-heading font-bold text-neon text-lg leading-none">{t.v}</div>
