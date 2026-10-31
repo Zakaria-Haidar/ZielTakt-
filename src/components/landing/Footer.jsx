@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { CONTACT_EMAIL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_DISPLAY, WHATSAPP_HREF } from '@/lib/contact';
+import { CONTACT_EMAIL, GOOGLE_PROFILE_URL, INSTAGRAM_URL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_DISPLAY, WHATSAPP_HREF } from '@/lib/contact';
 import { staedte } from '@/data/staedte';
 
 // Absolute ("/#...") so the links also work from /impressum, /datenschutz and the 404 page.
@@ -9,8 +9,6 @@ const navLinks = [
   { label: 'Einzugsgebiet', href: '/#area' },
   { label: 'Kontakt', href: '/#contact' },
 ];
-
-const INSTAGRAM_URL = 'https://www.instagram.com/zieltakt';
 
 const instagramIcon = (
   <svg viewBox="0 0 24 24" className="w-7 h-7">
@@ -112,6 +110,9 @@ export default function Footer() {
                 WhatsApp {WHATSAPP_DISPLAY}
               </a>
               <span className="text-titanium/70 text-sm">Konstanz, Bodensee</span>
+              <a href={GOOGLE_PROFILE_URL} target="_blank" rel="noopener noreferrer" className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300">
+                Google-Bewertungen ansehen
+              </a>
             </div>
           </div>
 

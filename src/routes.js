@@ -1,7 +1,7 @@
 // Single source of truth for per-route <head> data. Read by usePageMeta (client)
 // and by scripts/prerender.js (build), so both always produce the same tags.
 import { staedte } from '@/data/staedte';
-import { PHONE_DISPLAY } from '@/lib/contact';
+import { GOOGLE_PROFILE_URL, INSTAGRAM_URL, PHONE_DISPLAY } from '@/lib/contact';
 
 export const SITE_URL = 'https://www.zieltakt.de';
 export const OG_IMAGE = `${SITE_URL}/zieltakt-logo.png`;
@@ -23,6 +23,7 @@ const homeJsonLd = {
   ].map((name) => ({ '@type': 'City', name })),
   description:
     'Professionelle Websites, lokale Google-Sichtbarkeit, Online-Buchung und Automatisierung für lokale Unternehmen in Konstanz und der Bodensee-Region.',
+  sameAs: [GOOGLE_PROFILE_URL, INSTAGRAM_URL],
 };
 
 function townJsonLd(stadt) {

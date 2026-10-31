@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 import { Send, Mail, Phone, MapPin } from 'lucide-react';
 import SectionDivider from './SectionDivider';
 import GlassButton from './GlassButton';
-import { CONTACT_EMAIL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_DISPLAY, WHATSAPP_HREF } from '@/lib/contact';
+import { CONTACT_EMAIL, GOOGLE_PROFILE_URL, INSTAGRAM_URL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_DISPLAY, WHATSAPP_HREF } from '@/lib/contact';
 const WEB3FORMS_ACCESS_KEY = 'b120e0f3-17e8-4071-b046-227eda749ae6';
  
 // TikTok wird wieder ergänzt, sobald der Account-Link feststeht.
 const socialLinks = [
-  { label: 'Instagram', icon: 'instagram', href: 'https://www.instagram.com/zieltakt' },
+  { label: 'Instagram', icon: 'instagram', href: INSTAGRAM_URL },
 ];
 
 
@@ -279,6 +279,15 @@ export default function Contact() {
                   </a>
                 ))}
               </div>
+              <a
+                href={GOOGLE_PROFILE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 pt-2 text-neon text-sm font-medium hover:underline group"
+              >
+                Google-Bewertungen ansehen
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </a>
             </div>
           </motion.div>
         </div>
