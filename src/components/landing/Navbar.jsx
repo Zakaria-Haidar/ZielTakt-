@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
-  { label: 'Leistungen', href: '#services' },
-  { label: 'Über uns', href: '#about' },
-  { label: 'Einzugsgebiet', href: '#area' },
-  { label: 'Kontakt', href: '#contact' },
+  { label: 'Leistungen', href: '/#services' },
+  { label: 'Über uns', href: '/#about' },
+  { label: 'Einzugsgebiet', href: '/#area' },
+  { label: 'Kontakt', href: '/#contact' },
 ];
 
 export default function Navbar() {
@@ -33,7 +33,7 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <a href="#" className="flex items-center gap-2 group">
+          <a href="/" className="flex items-center gap-2 group">
             <img src="/zieltakt-logo.png" alt="ZielTakt" width="1082" height="229" className="h-7 md:h-8 w-auto group-hover:opacity-90 transition-opacity duration-300" />
           </a>
 
@@ -52,7 +52,7 @@ export default function Navbar() {
 
           <div className="hidden md:block">
             <a
-              href="#contact"
+              href="/#contact"
               className="glass rounded-full px-6 py-2.5 text-sm font-medium text-neon hover:glow-blue transition-all duration-500 border border-neon/20 hover:border-neon/50"
             >
               Projekt starten
@@ -99,7 +99,7 @@ export default function Navbar() {
                 </motion.a>
               ))}
               <motion.a
-                href="#contact"
+                href="/#contact"
                 onClick={() => setOpen(false)}
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}

@@ -3,11 +3,7 @@ import LegalPage from '@/components/landing/LegalPage';
 import { CONTACT_EMAIL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_DISPLAY, WHATSAPP_HREF } from '@/lib/contact';
 
 export default function Impressum() {
-  usePageMeta({
-    title: 'Impressum – ZielTakt',
-    description: 'Impressum und Anbieterkennzeichnung von ZielTakt, Webdesign Studio in Konstanz.',
-    path: '/impressum',
-  });
+  usePageMeta('/impressum');
 
   return (
     <LegalPage>

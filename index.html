@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="de">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       /* Critical inline styles: paint something meaningful immediately,
          before the JS bundle finishes downloading on slow connections. */
@@ -23,62 +25,23 @@
          main.jsx after mount). */
       #root:not(:empty) + #boot-loader { display: none; }
     </style>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />
     <link rel="apple-touch-icon" href="/favicon-180.png" />
-    <link rel="canonical" href="https://zieltakt.de/" />
-
-    <title>ZielTakt – Webdesign Studio Konstanz</title>
-    <meta name="description" content="ZielTakt aus Konstanz: professionelle Websites, Google-Sichtbarkeit, Online-Buchung und Automatisierung für lokale Unternehmen am Bodensee. Kostenloses Erstgespräch." />
-
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ZielTakt" />
-    <meta property="og:title" content="ZielTakt – Webdesign Studio Konstanz" />
-    <meta property="og:description" content="Professionelle Websites für Unternehmen am Bodensee: modernes Design, lokale Google-Sichtbarkeit und Online-Buchung aus einer Hand." />
-    <meta property="og:image" content="https://zieltakt.de/zieltakt-logo.png" />
-    <meta property="og:url" content="https://zieltakt.de/" />
-    <meta property="og:locale" content="de_DE" />
-
+    <meta property="og:image" content="https://www.zieltakt.de/zieltakt-logo.png" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="ZielTakt – Webdesign Studio Konstanz" />
-    <meta name="twitter:description" content="Professionelle Websites für Unternehmen am Bodensee: modernes Design, lokale Google-Sichtbarkeit und Online-Buchung aus einer Hand." />
-    <meta name="twitter:image" content="https://zieltakt.de/zieltakt-logo.png" />
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "ZielTakt",
-      "url": "https://zieltakt.de/",
-      "image": "https://zieltakt.de/zieltakt-logo.png",
-      "email": "info@zieltakt.de",
-      "telephone": "+49 151 50104908",
-      "priceRange": "1590€–4990€",
-      "areaServed": [
-        { "@type": "City", "name": "Konstanz" },
-        { "@type": "City", "name": "Friedrichshafen" },
-        { "@type": "City", "name": "Meersburg" },
-        { "@type": "City", "name": "Überlingen" },
-        { "@type": "City", "name": "Radolfzell" },
-        { "@type": "City", "name": "Singen" },
-        { "@type": "City", "name": "Stockach" },
-        { "@type": "City", "name": "Kreuzlingen" },
-        { "@type": "City", "name": "Frauenfeld" },
-        { "@type": "City", "name": "Schaffhausen" },
-        { "@type": "City", "name": "St. Gallen" },
-        { "@type": "City", "name": "Winterthur" },
-        { "@type": "City", "name": "Zürich" }
-      ],
-      "description": "Professionelle Websites, lokale Google-Sichtbarkeit, Online-Buchung und Automatisierung für lokale Unternehmen in Konstanz und der Bodensee-Region."
-    }
-    </script>
+    <meta name="twitter:image" content="https://www.zieltakt.de/zieltakt-logo.png" />
+    <!-- Per-route title, description, canonical, og/twitter text and JSON-LD come from
+         src/routes.js: injected at build time by scripts/prerender.js, kept in sync
+         on the client by usePageMeta. -->
+    <!--app-head-->
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!--app-html--></div>
     <div id="boot-loader" aria-hidden="true">
       <img src="/zieltakt-logo.png" alt="" width="140" height="30" />
       <div class="spinner"></div>

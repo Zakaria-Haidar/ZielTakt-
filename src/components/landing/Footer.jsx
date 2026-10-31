@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { CONTACT_EMAIL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_DISPLAY, WHATSAPP_HREF } from '@/lib/contact';
+import { staedte } from '@/data/staedte';
 
 // Absolute ("/#...") so the links also work from /impressum, /datenschutz and the 404 page.
 const navLinks = [
@@ -54,9 +55,9 @@ export default function Footer() {
     <footer className="relative bg-charcoal border-t border-border">
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-16">
         {/* Top section */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 pb-12 border-b border-border">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-12 pb-12 border-b border-border">
           {/* Brand */}
-          <div className="md:col-span-1 space-y-4">
+          <div className="col-span-2 md:col-span-3 lg:col-span-1 space-y-4">
             <div className="flex items-center gap-2">
               <a href="/"><img src="/zieltakt-logo.png" alt="ZielTakt" width="1082" height="229" className="h-7 w-auto" /></a>
             </div>
@@ -81,8 +82,24 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Kontakt */}
+          {/* Einsatzgebiet: town landing pages */}
           <div className="space-y-4">
+            <span className="text-datagrey text-xs tracking-widest uppercase">Einsatzgebiet</span>
+            <div className="flex flex-col gap-2">
+              {staedte.map((stadt) => (
+                <a
+                  key={stadt.slug}
+                  href={`/${stadt.slug}`}
+                  className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300"
+                >
+                  Webdesign {stadt.stadt}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Kontakt */}
+          <div className="col-span-2 md:col-span-1 space-y-4">
             <span className="text-datagrey text-xs tracking-widest uppercase">Kontakt</span>
             <div className="flex flex-col gap-2">
               <a href={`mailto:${CONTACT_EMAIL}`} className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300 break-all">
@@ -99,7 +116,7 @@ export default function Footer() {
           </div>
 
           {/* Social — TikTok folgt, sobald der Account-Link feststeht */}
-          <div className="space-y-4">
+          <div className="col-span-2 md:col-span-1 space-y-4">
             <span className="text-datagrey text-xs tracking-widest uppercase">Social Media</span>
             <div className="flex gap-3">
               <a

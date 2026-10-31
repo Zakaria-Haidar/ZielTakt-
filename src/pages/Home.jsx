@@ -13,17 +13,14 @@ const Projekt = lazy(() => import('../components/landing/Projekt'));
 const Ablauf = lazy(() => import('../components/landing/Ablauf'));
 const PartnerProgramm = lazy(() => import('../components/landing/PartnerProgramm'));
 const ServiceArea = lazy(() => import('../components/landing/ServiceArea'));
+const RegionLinks = lazy(() => import('../components/landing/RegionLinks'));
 const FAQ = lazy(() => import('../components/landing/FAQ'));
 const Contact = lazy(() => import('../components/landing/Contact'));
 const Footer = lazy(() => import('../components/landing/Footer'));
 const FloatingContact = lazy(() => import('../components/landing/FloatingContact'));
 
 export default function Home() {
-  usePageMeta({
-    title: 'ZielTakt – Digitales Wachstumssystem für lokale Unternehmen in Konstanz',
-    description:
-    'ZielTakt aus Konstanz: ein digitales Wachstumssystem aus Website, Google-Sichtbarkeit, Online-Buchung und Automatisierung. Damit lokale Kunden Sie finden und einfach Kontakt aufnehmen – für Unternehmen in der DACH-Region.',
-  });
+  usePageMeta('/');
 
   return (
     <div className="bg-void min-h-screen pb-16 md:pb-0 overflow-x-clip">
@@ -41,6 +38,7 @@ export default function Home() {
           <ErrorBoundary><Ablauf /></ErrorBoundary>
           <ErrorBoundary><PartnerProgramm /></ErrorBoundary>
           <ErrorBoundary><ServiceArea /></ErrorBoundary>
+          <ErrorBoundary><RegionLinks /></ErrorBoundary>
           <ErrorBoundary><FAQ /></ErrorBoundary>
           <ErrorBoundary><Contact /></ErrorBoundary>
         </Suspense>

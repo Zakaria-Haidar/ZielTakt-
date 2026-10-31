@@ -1,9 +1,15 @@
-import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import Footer from '@/components/landing/Footer';
+import usePageMeta from '@/hooks/usePageMeta';
 
 export default function PageNotFound() {
-  const location = useLocation();
-  const pageName = location.pathname.substring(1);
+  usePageMeta('/404');
+  // dist/404.html is prerendered once and served for every unknown URL, so the
+  // real path is only known in the browser. Read it after hydration to avoid a mismatch.
+  const [pageName, setPageName] = useState('');
+  useEffect(() => {
+    setPageName(window.location.pathname.substring(1));
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col bg-void">
@@ -18,16 +24,20 @@ export default function PageNotFound() {
               Seite nicht gefunden
             </h2>
             <p className="text-datagrey leading-relaxed">
-              Die Seite <span className="font-medium text-titanium">"{pageName}"</span> konnte nicht gefunden werden.
+              {pageName ? (
+                <>Die Seite <span className="font-medium text-titanium">"{pageName}"</span> konnte nicht gefunden werden.</>
+              ) : (
+                'Die Seite konnte nicht gefunden werden.'
+              )}
             </p>
           </div>
           <div className="pt-6">
-            <button
-              onClick={() => window.location.href = '/'}
+            <a
+              href="/"
               className="inline-flex items-center px-6 py-3 text-sm font-medium text-titanium glass rounded-full hover:glow-blue transition-all duration-500"
             >
               Zurück zur Startseite
-            </button>
+            </a>
           </div>
         </div>
       </div>

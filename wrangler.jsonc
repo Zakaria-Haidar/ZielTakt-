@@ -1,0 +1,9 @@
+{
+  // Static-assets-only Worker: every real route is prerendered to dist/<route>/index.html.
+  "name": "zieltakt",
+  "compatibility_date": "2025-01-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}
