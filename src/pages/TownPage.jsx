@@ -73,14 +73,11 @@ export default function TownPage({ stadt }) {
           </div>
         </section>
 
-        {stadt.abschnitte.map((abschnitt, i) => (
+        {stadt.abschnitte.map((abschnitt) => (
           <section key={abschnitt.h2} className="relative py-10 md:py-14">
             <div className="max-w-4xl mx-auto px-6 md:px-12">
               <SectionDivider />
               <div className="pt-10 md:pt-14 space-y-6">
-                <motion.span {...reveal} className="block text-neon text-xs font-medium tracking-[0.3em] uppercase">
-                  {String(i + 1).padStart(2, '0')}
-                </motion.span>
                 <motion.h2 {...reveal} className={h2Class} style={h2Style}>
                   {abschnitt.h2}
                 </motion.h2>

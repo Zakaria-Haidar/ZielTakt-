@@ -8,21 +8,15 @@ export const OG_IMAGE = `${SITE_URL}/zieltakt-logo.png`;
 
 const COUNTRY_NAMES = { DE: 'Deutschland', CH: 'Schweiz' };
 
+// Service-area business: Organization without a street address.
 const homeJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
+  '@type': 'Organization',
   name: 'ZielTakt',
   url: `${SITE_URL}/`,
-  image: OG_IMAGE,
-  email: 'info@zieltakt.de',
+  logo: OG_IMAGE,
   telephone: PHONE_DISPLAY,
-  priceRange: '1590€–4990€',
-  areaServed: [
-    'Konstanz', 'Friedrichshafen', 'Meersburg', 'Überlingen', 'Radolfzell', 'Singen', 'Stockach',
-    'Kreuzlingen', 'Frauenfeld', 'Schaffhausen', 'St. Gallen', 'Winterthur', 'Zürich',
-  ].map((name) => ({ '@type': 'City', name })),
-  description:
-    'Professionelle Websites, lokale Google-Sichtbarkeit, Online-Buchung und Automatisierung für lokale Unternehmen in Konstanz und der Bodensee-Region.',
+  areaServed: staedte.map((stadt) => ({ '@type': 'City', name: stadt.stadt })),
   sameAs: [GOOGLE_PROFILE_URL, INSTAGRAM_URL],
 };
 
