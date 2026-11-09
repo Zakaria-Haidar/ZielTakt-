@@ -1,34 +1,11 @@
 import { motion } from 'framer-motion';
 import SectionDivider from './SectionDivider';
-
-const steps = [
-  {
-    n: '01',
-    title: 'Kennenlernen',
-    time: 'Tag 1',
-    desc: 'Kostenloses Erstgespräch. Wir klären Ihre Ziele, Ihre Kunden und was die Website leisten soll.',
-  },
-  {
-    n: '02',
-    title: 'Konzept & Design',
-    time: '3–5 Tage',
-    desc: 'Layout, Farben, Schriften und Inhalte werden entworfen. Sie sehen alles vorab und geben Feedback.',
-  },
-  {
-    n: '03',
-    title: 'Entwicklung',
-    time: '5–10 Tage',
-    desc: 'Wir setzen die Website um: responsive, schnell, sicher und pflegeleicht.',
-  },
-  {
-    n: '04',
-    title: 'Launch & Übergabe',
-    time: '1–2 Tage',
-    desc: 'Website geht live, Google-Sichtbarkeit wird eingerichtet, Sie bekommen eine kurze Einführung.',
-  },
-];
+import useLang from '@/i18n/useLang';
 
 export default function Ablauf() {
+  const { t } = useLang();
+  const steps = t('process.steps', { returnObjects: true });
+
   return (
     <section id="ablauf" className="relative bg-void py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -41,7 +18,7 @@ export default function Ablauf() {
             viewport={{ once: true }}
             className="text-neon text-xs font-medium tracking-[0.3em] uppercase"
           >
-            Ablauf
+            {t('process.eyebrow')}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -51,14 +28,14 @@ export default function Ablauf() {
             className="font-heading font-bold text-titanium tracking-[-0.04em]"
             style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
           >
-            In vier Schritten zur fertigen Website.
+            {t('process.title')}
           </motion.h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {steps.map((step, i) => (
             <motion.div
-              key={step.n}
+              key={step.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
@@ -67,7 +44,7 @@ export default function Ablauf() {
             >
               <div className="flex items-center justify-between">
                 <span aria-hidden="true" className="font-heading font-bold text-titanium/15 text-3xl tracking-tight">
-                  {step.n}
+                  {String(i + 1).padStart(2, '0')}
                 </span>
                 <span className="text-neon text-xs font-medium tracking-widest uppercase bg-neon/10 border border-neon/20 rounded-full px-3 py-1">
                   {step.time}

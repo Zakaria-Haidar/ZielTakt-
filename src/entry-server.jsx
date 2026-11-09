@@ -2,6 +2,8 @@
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom/server'
 import App from '@/App.jsx'
+import i18n from '@/i18n'
+import { langFromPath } from '@/i18n/languages'
 
 export { routes, notFoundRoute, getHead } from '@/routes'
 
@@ -10,10 +12,12 @@ export { routes, notFoundRoute, getHead } from '@/routes'
 const PENDING = '<!--$!-->'
 
 // renderToString instead of renderToPipeableStream: React 18's stream writer can
-// emit stray NUL bytes next to multi-byte characters (ä, ß, …). renderToString
+// emit stray NUL bytes next to multi-byte characters (ä, ß, Arabic …). renderToString
 // doesn't wait for lazy() chunks, so render repeatedly: each pass starts the
 // pending imports, and once they resolve the next pass renders them inline.
 export async function render(url) {
+  // The URL decides the language: "/ar" -> Arabic, everything else -> German.
+  await i18n.changeLanguage(langFromPath(url))
   const app = (
     <StaticRouter location={url}>
       <App />

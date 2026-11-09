@@ -26,6 +26,7 @@ export default function usePageMeta(path) {
   useEffect(() => {
     const head = getHead(getRoute(path));
     document.documentElement.lang = head.lang;
+    document.documentElement.dir = head.dir;
     document.title = head.title;
     setTag('meta[name="description"]', meta('name', 'description'), 'content', head.description);
     setTag('meta[name="robots"]', meta('name', 'robots'), 'content', head.robots);
@@ -40,6 +41,16 @@ export default function usePageMeta(path) {
     setTag('meta[property="og:locale"]', meta('property', 'og:locale'), 'content', head.ogLocale);
     setTag('meta[name="twitter:title"]', meta('name', 'twitter:title'), 'content', head.ogTitle);
     setTag('meta[name="twitter:description"]', meta('name', 'twitter:description'), 'content', head.ogDescription);
+
+    // hreflang alternates: replace the whole set.
+    document.head.querySelectorAll('link[rel="alternate"][hreflang]').forEach((l) => l.remove());
+    head.alternates.forEach(({ hreflang, href }) => {
+      const l = document.createElement('link');
+      l.rel = 'alternate';
+      l.hreflang = hreflang;
+      l.href = href;
+      document.head.appendChild(l);
+    });
 
     document.head.querySelectorAll('script[data-route-jsonld]').forEach((s) => s.remove());
     head.jsonLd.forEach((data) => {

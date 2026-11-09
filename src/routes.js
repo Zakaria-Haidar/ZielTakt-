@@ -2,11 +2,21 @@
 // and by scripts/prerender.js (build), so both always produce the same tags.
 import { staedte } from '@/data/staedte';
 import { GOOGLE_PROFILE_URL, INSTAGRAM_URL, PHONE_DISPLAY } from '@/lib/contact';
+import { LANGUAGES } from '@/i18n/languages';
 
 export const SITE_URL = 'https://www.zieltakt.de';
 export const OG_IMAGE = `${SITE_URL}/zieltakt-logo.png`;
 
 const COUNTRY_NAMES = { DE: 'Deutschland', CH: 'Schweiz' };
+
+const absolute = (path) => `${SITE_URL}${path}`;
+
+// hreflang set for the home page: one entry per language plus x-default (German).
+// Adding a language in src/i18n/languages.js adds it here automatically.
+const HOME_ALTERNATES = [
+  ...Object.values(LANGUAGES).map((l) => ({ hreflang: l.hreflang, href: absolute(l.path) })),
+  { hreflang: 'x-default', href: absolute(LANGUAGES.de.path) },
+];
 
 // Service-area business: Organization without a street address.
 const homeJsonLd = {
@@ -63,8 +73,24 @@ export const routes = [
     ogTitle: 'ZielTakt – Webdesign Studio Konstanz',
     ogDescription:
       'Professionelle Websites für Unternehmen am Bodensee: modernes Design, lokale Google-Sichtbarkeit und Online-Buchung aus einer Hand.',
+    alternates: HOME_ALTERNATES,
     jsonLd: [homeJsonLd],
     sitemap: { changefreq: 'monthly', priority: '1.0' },
+  },
+  {
+    path: '/ar',
+    lang: 'ar',
+    dir: 'rtl',
+    ogLocale: 'ar_AR',
+    title: 'ZielTakt – مواقع إلكترونية وظهور على Google للشركات في ألمانيا',
+    description:
+      'ZielTakt من كونستانس: موقع احترافي، وظهور على Google وخرائط Google، وتقييمات، وتواصل عبر واتساب وحجز مواعيد عبر الإنترنت. لتجد شركتك عملاء جدداً وموظفين. استشارة بالعربية أو الألمانية.',
+    ogTitle: 'ZielTakt – عملاء جدد لمشروعك عبر Google',
+    ogDescription:
+      'مواقع عصرية، وظهور محلي على Google، وتقييمات، وواتساب وحجز مواعيد، من مصدر واحد. استشارة مجانية بالعربية.',
+    alternates: HOME_ALTERNATES,
+    jsonLd: [homeJsonLd],
+    sitemap: { changefreq: 'monthly', priority: '0.9' },
   },
   {
     path: '/impressum',
@@ -109,14 +135,16 @@ export function getHead(route) {
   const url = route.noindex ? null : `${SITE_URL}${route.path === '/' ? '/' : route.path}`;
   return {
     lang: route.lang,
+    dir: route.dir ?? 'ltr',
     title: route.title,
     description: route.description,
     canonical: url,
     ogTitle: route.ogTitle ?? route.title,
     ogDescription: route.ogDescription ?? route.description,
     ogUrl: url,
-    ogLocale: route.lang.replace('-', '_'),
+    ogLocale: route.ogLocale ?? route.lang.replace('-', '_'),
     robots: route.noindex ? 'noindex' : null,
+    alternates: route.alternates ?? [],
     jsonLd: route.jsonLd ?? [],
   };
 }

@@ -1,15 +1,25 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Mail, Phone, MapPin } from 'lucide-react';
+import { Send, Mail, Phone, MapPin, CalendarCheck } from 'lucide-react';
 import SectionDivider from './SectionDivider';
 import GlassButton from './GlassButton';
-import { CONTACT_EMAIL, GOOGLE_PROFILE_URL, INSTAGRAM_URL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_DISPLAY, WHATSAPP_HREF } from '@/lib/contact';
+import { WhatsAppIcon, Arrow } from './icons';
+import useLang from '@/i18n/useLang';
+import {
+  CAL_URL,
+  CONTACT_EMAIL,
+  GOOGLE_PROFILE_URL,
+  INSTAGRAM_URL,
+  PHONE_DISPLAY,
+  PHONE_HREF,
+  WHATSAPP_DISPLAY,
+  whatsappHref,
+} from '@/lib/contact';
 
 // TikTok wird wieder ergänzt, sobald der Account-Link feststeht.
 const socialLinks = [
   { label: 'Instagram', icon: 'instagram', href: INSTAGRAM_URL },
 ];
-
 
 const socialIcons = {
   instagram: (
@@ -31,7 +41,41 @@ const socialIcons = {
   ),
 };
 
+// Field config; labels/placeholders come from contact.fields.<name> in the translation files.
+// Email and phone are always typed left-to-right, also on the Arabic page.
+const fields = [
+  { name: 'name', type: 'text', autoComplete: 'name', required: true },
+  { name: 'email', type: 'email', autoComplete: 'email', required: true, ltr: true },
+  { name: 'phone', type: 'tel', autoComplete: 'tel', required: false, ltr: true },
+];
+
+// One row in the contact list: icon tile + small label + value.
+function ContactRow({ icon, label, value, href, external }) {
+  const body = (
+    <>
+      <div className="w-11 h-11 rounded-xl glass flex items-center justify-center group-hover:glow-blue transition-all duration-500 flex-shrink-0">
+        {icon}
+      </div>
+      <div>
+        <div className="text-datagrey text-xs tracking-widest uppercase">{label}</div>
+        <div className="text-titanium text-base font-medium group-hover:text-neon transition-colors">{value}</div>
+      </div>
+    </>
+  );
+  if (!href) return <div className="flex items-center gap-4">{body}</div>;
+  return (
+    <a
+      href={href}
+      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      className="flex items-center gap-4 group"
+    >
+      {body}
+    </a>
+  );
+}
+
 export default function Contact() {
+  const { t, lang } = useLang();
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -64,7 +108,8 @@ export default function Contact() {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          message: formData.message,
+          // Tag Arabic-page enquiries so you know which language to answer in.
+          message: lang === 'de' ? formData.message : `[${lang.toUpperCase()}] ${formData.message}`,
           website: honeypotRef.current?.value ?? '',
         }),
       });
@@ -84,6 +129,9 @@ export default function Contact() {
     }
   };
 
+  const inputClass =
+    'w-full bg-transparent border-0 border-b border-border pb-3 text-titanium text-lg placeholder:text-datagrey focus:outline-none focus:border-neon transition-colors duration-500';
+
   return (
     <section id="contact" className="relative bg-void py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -96,7 +144,7 @@ export default function Contact() {
             viewport={{ once: true }}
             className="text-neon text-xs font-medium tracking-[0.3em] uppercase"
           >
-            Kontakt
+            {t('contact.eyebrow')}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -106,7 +154,7 @@ export default function Contact() {
             className="font-heading font-bold text-titanium tracking-[-0.04em]"
             style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
           >
-            Lassen Sie uns sprechen.
+            {t('contact.title')}
           </motion.h2>
         </div>
 
@@ -120,14 +168,10 @@ export default function Contact() {
             transition={{ duration: 0.7 }}
             className="space-y-8"
           >
-            {[
-              { name: 'name', label: 'Name', type: 'text', placeholder: 'Ihr Name', autoComplete: 'name', required: true },
-              { name: 'email', label: 'E-Mail', type: 'email', placeholder: 'ihre@email.de', autoComplete: 'email', required: true },
-              { name: 'phone', label: 'Telefon (optional)', type: 'tel', placeholder: '+49 151 ...', autoComplete: 'tel', required: false },
-            ].map((field) => (
+            {fields.map((field) => (
               <div key={field.name} className="group">
                 <label htmlFor={`contact-${field.name}`} className="text-datagrey text-xs tracking-widest uppercase block mb-3">
-                  {field.label}
+                  {t(`contact.fields.${field.name}.label`)}
                 </label>
                 <input
                   id={`contact-${field.name}`}
@@ -135,23 +179,24 @@ export default function Contact() {
                   type={field.type}
                   autoComplete={field.autoComplete}
                   required={field.required}
+                  dir={field.ltr ? 'ltr' : undefined}
                   value={formData[field.name]}
                   onChange={(e) => setFormData({ ...formData, [field.name]: e.target.value })}
-                  placeholder={field.placeholder}
-                  className="w-full bg-transparent border-0 border-b border-border pb-3 text-titanium text-lg placeholder:text-datagrey focus:outline-none focus:border-neon transition-colors duration-500"
+                  placeholder={t(`contact.fields.${field.name}.placeholder`)}
+                  className={`${inputClass} ${field.ltr ? 'rtl:text-right' : ''}`}
                 />
               </div>
             ))}
 
             {/* Honeypot: invisible to people, bots fill it in. */}
             <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: '1px', height: '1px', overflow: 'hidden' }}>
-              <label htmlFor="contact-website">Website</label>
+              <label htmlFor="contact-website">{t('contact.honeypot')}</label>
               <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" ref={honeypotRef} defaultValue="" />
             </div>
 
             <div className="group">
               <label htmlFor="contact-message" className="text-datagrey text-xs tracking-widest uppercase block mb-3">
-                Nachricht
+                {t('contact.fields.message.label')}
               </label>
               <textarea
                 id="contact-message"
@@ -159,9 +204,9 @@ export default function Contact() {
                 required
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                placeholder="Erzählen Sie uns von Ihrem Projekt..."
+                placeholder={t('contact.fields.message.placeholder')}
                 rows={4}
-                className="w-full bg-transparent border-0 border-b border-border pb-3 text-titanium text-lg placeholder:text-datagrey focus:outline-none focus:border-neon transition-colors duration-500 resize-none"
+                className={`${inputClass} resize-none`}
               />
             </div>
 
@@ -170,32 +215,31 @@ export default function Contact() {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
+                  role="status"
                   className="glass rounded-full px-8 py-4 text-neon text-center font-medium glow-blue"
                 >
-                  ✓ Nachricht gesendet
+                  {t('contact.sent')}
                 </motion.div>
               ) : (
                 <GlassButton type="submit" disabled={loading}>
-                  <span className="flex items-center gap-2">
-                    {loading ? 'Wird gesendet…' : 'Nachricht senden'}
-                    <Send className="w-4 h-4" />
-                  </span>
+                  {loading ? t('contact.sending') : t('contact.send')}
+                  <Send className="w-4 h-4 rtl:-scale-x-100" />
                 </GlassButton>
               )}
               <p className="mt-4 text-datagrey text-xs leading-relaxed">
-                Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben zur Bearbeitung Ihrer Anfrage zu. Mehr in der{' '}
-                <a href="/datenschutz" className="text-neon hover:underline">Datenschutzerklärung</a>.
+                {t('contact.consent')}{' '}
+                <a href="/datenschutz" hrefLang="de" className="text-neon hover:underline">{t('contact.consentLink')}</a>.
               </p>
               {error && (
                 <p role="alert" className="mt-4 text-sm text-red-400 leading-relaxed">
-                  Die Nachricht konnte leider nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt an{' '}
-                  <a href={`mailto:${CONTACT_EMAIL}`} className="text-neon hover:underline">{CONTACT_EMAIL}</a>.
+                  {t('contact.error')}{' '}
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="text-neon hover:underline"><bdi dir="ltr">{CONTACT_EMAIL}</bdi></a>.
                 </p>
               )}
             </div>
           </motion.form>
 
-          {/* Contact info & socials */}
+          {/* Booking, contact info & socials */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -204,71 +248,62 @@ export default function Contact() {
             className="space-y-10"
           >
             <p className="text-datagrey text-lg leading-relaxed" style={{ lineHeight: '1.6' }}>
-              Bereit für den nächsten Schritt? Kontaktieren Sie uns für eine kostenlose Erstberatung – wir melden uns in der Regel am selben Tag bei Ihnen.
+              {t('contact.intro')}
             </p>
 
+            {/* Cal.com booking card: only rendered once CAL_URL is set in src/lib/contact.js */}
+            {CAL_URL && (
+              <a
+                href={CAL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass-strong rounded-2xl p-5 flex items-center gap-4 border border-neon/30 hover:border-neon/60 hover:glow-blue transition-all duration-500 group"
+              >
+                <div className="w-12 h-12 rounded-xl bg-neon/10 border border-neon/20 flex items-center justify-center flex-shrink-0">
+                  <CalendarCheck className="w-6 h-6 text-neon" />
+                </div>
+                <div className="flex-1">
+                  <div className="text-titanium text-base font-semibold">{t('contact.bookTitle')}</div>
+                  <div className="text-datagrey text-sm mt-0.5">{t('contact.bookSub')}</div>
+                </div>
+                <span className="text-neon text-lg"><Arrow /></span>
+              </a>
+            )}
+
             <div className="space-y-5">
-              
-                <a href={`mailto:${CONTACT_EMAIL}`}
-                className="flex items-center gap-4 group"
-              >
-                <div className="w-11 h-11 rounded-xl glass flex items-center justify-center group-hover:glow-blue transition-all duration-500">
-                  <Mail className="w-5 h-5 text-neon" />
-                </div>
-                <div>
-                  <div className="text-datagrey text-xs tracking-widest uppercase">E-Mail</div>
-                  <div className="text-titanium text-base font-medium group-hover:text-neon transition-colors">{CONTACT_EMAIL}</div>
-                </div>
-              </a>
-
-              
-                <a href={PHONE_HREF}
-                className="flex items-center gap-4 group"
-              >
-                <div className="w-11 h-11 rounded-xl glass flex items-center justify-center group-hover:glow-blue transition-all duration-500">
-                  <Phone className="w-5 h-5 text-neon" />
-                </div>
-                <div>
-                  <div className="text-datagrey text-xs tracking-widest uppercase">Telefon</div>
-                  <div className="text-titanium text-base font-medium group-hover:text-neon transition-colors">{PHONE_DISPLAY}</div>
-                </div>
-              </a>
-
-
-              <a href={WHATSAPP_HREF}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="flex items-center gap-4 group"
->
-  <div className="w-11 h-11 rounded-xl glass flex items-center justify-center group-hover:glow-blue transition-all duration-500">
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-neon">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.254-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.222 1.36.19 1.871.115.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.075-.124-.272-.198-.57-.347M12.02 22.09h-.005a10.03 10.03 0 01-4.988-1.343l-.358-.213-3.71.973.99-3.617-.233-.372a9.99 9.99 0 01-1.531-5.316c0-5.52 4.494-10.014 10.019-10.014 2.674 0 5.187 1.043 7.078 2.934a9.94 9.94 0 012.93 7.083c-.003 5.52-4.496 10.014-10.02 10.014m8.53-18.55A11.94 11.94 0 0012.021 0C5.4 0 .001 5.4 0 12.037c0 2.122.554 4.194 1.606 6.02L0 24l6.096-1.601a11.97 11.97 0 005.925 1.51h.005c6.62 0 12.02-5.4 12.023-12.037a11.96 11.96 0 00-3.5-8.478" />
-    </svg>
-  </div>
-  <div>
-    <div className="text-datagrey text-xs tracking-widest uppercase">WhatsApp</div>
-    <div className="text-titanium text-base font-medium group-hover:text-neon transition-colors">{WHATSAPP_DISPLAY}</div>
-  </div>
-</a>
-
-              <div className="flex items-center gap-4">
-                <div className="w-11 h-11 rounded-xl glass flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-neon" />
-                </div>
-                <div>
-                  <div className="text-datagrey text-xs tracking-widest uppercase">Standort</div>
-                  <div className="text-titanium text-base font-medium">Konstanz, Bodensee</div>
-                </div>
-              </div>
+              <ContactRow
+                icon={<WhatsAppIcon className="w-5 h-5 text-neon" />}
+                label={t('contact.labels.whatsapp')}
+                value={<bdi dir="ltr">{WHATSAPP_DISPLAY}</bdi>}
+                href={whatsappHref(t('whatsapp.message'))}
+                external
+              />
+              <ContactRow
+                icon={<Phone className="w-5 h-5 text-neon" />}
+                label={t('contact.labels.phone')}
+                value={<bdi dir="ltr">{PHONE_DISPLAY}</bdi>}
+                href={PHONE_HREF}
+              />
+              <ContactRow
+                icon={<Mail className="w-5 h-5 text-neon" />}
+                label={t('contact.labels.email')}
+                value={<bdi dir="ltr">{CONTACT_EMAIL}</bdi>}
+                href={`mailto:${CONTACT_EMAIL}`}
+              />
+              <ContactRow
+                icon={<MapPin className="w-5 h-5 text-neon" />}
+                label={t('contact.labels.location')}
+                value={t('contact.locationValue')}
+              />
             </div>
 
             {/* Social */}
             <div className="space-y-3">
-              <span className="text-datagrey text-xs tracking-widest uppercase">Folgen Sie uns</span>
+              <span className="text-datagrey text-xs tracking-widest uppercase">{t('contact.follow')}</span>
               <div className="flex gap-3">
                 {socialLinks.map((link) => (
-                  
-                    <a key={link.label}
+                  <a
+                    key={link.label}
                     href={link.href}
                     title={link.label}
                     aria-label={link.label}
@@ -286,8 +321,8 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 pt-2 text-neon text-sm font-medium hover:underline group"
               >
-                Google-Bewertungen ansehen
-                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                {t('contact.reviews')}
+                <Arrow />
               </a>
             </div>
           </motion.div>

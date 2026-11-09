@@ -1,14 +1,17 @@
 import { motion } from 'framer-motion';
 import { Handshake } from 'lucide-react';
 import SectionDivider from './SectionDivider';
+import useLang from '@/i18n/useLang';
 
 // Provision in Prozent des Projektwerts.
 const COMMISSION_PCT = '10';
 
 export default function PartnerProgramm() {
+  const { t } = useLang();
+
   const handlePartner = () => {
     window.dispatchEvent(
-      new CustomEvent('preset-contact', { detail: { subject: 'Partner-Anfrage' } })
+      new CustomEvent('preset-contact', { detail: { subject: t('partner.presetSubject') } })
     );
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -39,7 +42,7 @@ export default function PartnerProgramm() {
             >
               <Handshake className="w-3.5 h-3.5 text-neon" />
               <span className="text-datagrey text-xs font-medium tracking-widest uppercase">
-                Partner-Programm
+                {t('partner.badge')}
               </span>
             </motion.div>
 
@@ -51,7 +54,7 @@ export default function PartnerProgramm() {
               className="font-heading font-bold text-titanium tracking-[-0.03em]"
               style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)' }}
             >
-              Kennst du ein Unternehmen, das eine neue Website braucht?
+              {t('partner.title')}
             </motion.h2>
 
             <motion.p
@@ -62,9 +65,7 @@ export default function PartnerProgramm() {
               className="text-datagrey text-lg leading-relaxed max-w-2xl mx-auto"
               style={{ lineHeight: '1.6' }}
             >
-              Fotografen, Druckereien, Berater oder einfach gute Kontakte: Wer uns einen Kunden
-              vermittelt, der abschließt, bekommt {COMMISSION_PCT} % des Projektwerts als
-              Dankeschön. Keine Vertragsbindung, keine Bedingungen im Kleingedruckten.
+              {t('partner.text', { pct: COMMISSION_PCT })}
             </motion.p>
 
             <motion.button
@@ -77,7 +78,7 @@ export default function PartnerProgramm() {
               transition={{ duration: 0.7, delay: 0.3 }}
               className="glass rounded-full px-8 py-4 text-neon font-medium border border-neon/20 hover:border-neon/60 hover:glow-blue-strong transition-all duration-500"
             >
-              Partner werden
+              {t('partner.cta')}
             </motion.button>
           </div>
         </motion.div>

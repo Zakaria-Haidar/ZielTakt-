@@ -223,3 +223,35 @@ html {
     scroll-behavior: auto !important;
   }
 }
+
+/* ===== Hero entrance: CSS instead of JS =====
+   The hero text is the Largest Contentful Paint. Animating it with CSS lets it
+   appear as soon as the prerendered HTML arrives, without waiting for the JS bundle.
+   --rise = start offset (set inline per element), animation-delay set inline. */
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(var(--rise, 20px)); }
+  to { opacity: 1; transform: none; }
+}
+.hero-rise { animation: hero-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes hero-slide {
+  from { transform: translateY(var(--rise, 20px)); }
+  to { transform: none; }
+}
+.hero-slide { animation: hero-slide 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* ===== Arabic (RTL) typography — applies only when <html lang="ar" dir="rtl"> ===== */
+/* Font pairing: IBM Plex Sans Arabic for Arabic script, Inter for Latin words/numbers
+   (ZielTakt, Google, prices). Plex's Arabic files have no Latin glyphs, so the browser
+   falls back to Inter per character automatically. */
+:root:lang(ar) {
+  --font-heading: 'IBM Plex Sans Arabic', 'Inter Tight Variable', 'Inter Tight', sans-serif;
+  --font-body: 'IBM Plex Sans Arabic', 'Inter Variable', 'Inter', sans-serif;
+}
+/* Arabic letters connect: any letter-spacing breaks the joins. Reset all tracking utilities. */
+html:lang(ar) body * { letter-spacing: 0 !important; }
+/* Taller script with dots above/below: open up the tight Latin line-heights. */
+html:lang(ar) h1, html:lang(ar) h2, html:lang(ar) h3 { line-height: 1.35 !important; }
+html:lang(ar) p, html:lang(ar) li { line-height: 1.8 !important; }
+/* The tiny uppercase micro-labels (9–11px) are unreadable in Arabic: raise to 12px. */
+html:lang(ar) .text-\[9px\], html:lang(ar) .text-\[10px\], html:lang(ar) .text-\[11px\] { font-size: 12px; }
+html:lang(ar) .text-xs { font-size: 0.8125rem; line-height: 1.6; }

@@ -1,63 +1,16 @@
 import { motion } from 'framer-motion';
 import { Globe, MapPin, CalendarCheck, BarChart3 } from 'lucide-react';
 import SectionDivider from './SectionDivider';
+import { Arrow } from './icons';
+import useLang from '@/i18n/useLang';
 
-const phases = [
-  {
-    number: '01',
-    icon: Globe,
-    title: 'Website & Conversion',
-    tagline: 'Damit Besucher zu Kunden werden.',
-    description: 'Wir bauen Websites, die nicht nur gut aussehen, sondern Anfragen und Buchungen erzeugen.',
-    features: [
-      'Individuelles, mobile-optimiertes Webdesign',
-      'Conversion-optimierte Seitenstruktur',
-      'Klare Call-to-Actions & Vertrauenselemente',
-      'Schnelle Ladezeiten & technische SEO-Basis',
-    ],
-  },
-  {
-    number: '02',
-    icon: MapPin,
-    title: 'Google & Local SEO',
-    tagline: 'Damit Kunden Sie finden.',
-    description: 'Wir optimieren Ihren digitalen Auftritt für Google, Maps und lokale Suchanfragen.',
-    features: [
-      'Google-Unternehmensprofil Setup & Pflege',
-      'Lokale SEO & Keyword-Ausrichtung',
-      'Google Search Console & Indexierung',
-      'Strukturierte Daten für bessere Auffindbarkeit',
-    ],
-  },
-  {
-    number: '03',
-    icon: CalendarCheck,
-    title: 'Leads & Buchungen',
-    tagline: 'Damit aus Interesse echte Anfragen werden.',
-    description: 'Wir machen es Ihren Kunden einfach, Kontakt aufzunehmen, einen Termin zu buchen oder eine Anfrage zu senden.',
-    features: [
-      '24/7 Online-Terminbuchung',
-      'Kontakt- & Anfrageformulare',
-      'WhatsApp-Kontakt & Click-to-Call',
-      'Automatische Bestätigungen & Erinnerungen',
-    ],
-  },
-  {
-    number: '04',
-    icon: BarChart3,
-    title: 'Tracking & Growth',
-    tagline: 'Damit Sie wissen, was wirklich funktioniert.',
-    description: 'Wir machen sichtbar, woher Ihre Kunden kommen und welche Maßnahmen tatsächlich Anfragen bringen.',
-    features: [
-      'Google Analytics & Search Console',
-      'Conversion- & Formular-Tracking',
-      'Performance Monitoring',
-      'Reporting je nach Betreuungspaket',
-    ],
-  },
-];
+// Icons stay in code; texts come from the translation files (same order).
+const phaseIcons = [Globe, MapPin, CalendarCheck, BarChart3];
 
 export default function Services() {
+  const { t, href } = useLang();
+  const phases = t('services.items', { returnObjects: true });
+
   return (
     <section id="services" className="relative bg-void py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -70,7 +23,7 @@ export default function Services() {
             viewport={{ once: true }}
             className="text-neon text-xs font-medium tracking-[0.3em] uppercase"
           >
-            Leistungen
+            {t('services.eyebrow')}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -80,7 +33,7 @@ export default function Services() {
             className="font-heading font-bold text-titanium tracking-[-0.04em]"
             style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
           >
-            Mehr als eine Website: <span className="text-gradient-blue">Ein System für mehr Kunden.</span>
+            {t('services.titleStart')} <span className="text-gradient-blue">{t('services.titleHighlight')}</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -89,13 +42,13 @@ export default function Services() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-datagrey text-lg max-w-2xl leading-relaxed"
           >
-            Wir verbinden Website, Google-Sichtbarkeit, Leads, Buchungen und Tracking zu einem System, das Ihr Unternehmen digital wachsen lässt.
+            {t('services.text')}
           </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {phases.map((phase, i) => {
-            const Icon = phase.icon;
+            const Icon = phaseIcons[i % phaseIcons.length];
             return (
               <motion.div
                 key={phase.title}
@@ -110,7 +63,7 @@ export default function Services() {
                     <Icon className="w-6 h-6 text-neon" />
                   </div>
                   <span aria-hidden="true" className="font-heading font-bold text-titanium/15 text-3xl tracking-tight">
-                    {phase.number}
+                    {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
                 <div className="space-y-3">
@@ -127,7 +80,7 @@ export default function Services() {
                 <ul className="space-y-2 pt-2 border-t border-border">
                   {phase.features.map((f) => (
                     <li key={f} className="flex items-center gap-2 text-datagrey text-xs">
-                      <span className="w-1 h-1 rounded-full bg-neon" />
+                      <span className="w-1 h-1 rounded-full bg-neon flex-shrink-0" />
                       {f}
                     </li>
                   ))}
@@ -145,9 +98,9 @@ export default function Services() {
           className="mt-14 text-center"
         >
           <p className="text-datagrey text-sm">
-            Nicht sicher, was Sie brauchen?{' '}
-            <a href="#contact" className="text-neon hover:underline font-medium">
-              Lassen Sie uns persönlich sprechen →
+            {t('services.unsure')}{' '}
+            <a href={href('contact')} className="text-neon hover:underline font-medium group inline-flex items-center gap-1">
+              {t('services.unsureLink')} <Arrow />
             </a>
           </p>
         </motion.div>

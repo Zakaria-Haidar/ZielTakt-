@@ -1,0 +1,349 @@
+{
+  "nav": {
+    "links": [
+      { "label": "Leistungen", "id": "services" },
+      { "label": "Über uns", "id": "about" },
+      { "label": "Einzugsgebiet", "id": "area" },
+      { "label": "Kontakt", "id": "contact" }
+    ],
+    "cta": "Projekt starten",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "languageLabel": "Sprache"
+  },
+  "hero": {
+    "badge": "Growth Systems · Konstanz",
+    "titleStart": "Professionelle Websites für Unternehmen",
+    "titleHighlight": "am Bodensee.",
+    "text": "Wir gestalten moderne, vertrauenswürdige Websites und digitale Lösungen, damit lokale Kunden Ihr Unternehmen bei Google finden und sofort verstehen.",
+    "ctaPrimary": "Kostenloses Erstgespräch sichern",
+    "ctaWhatsApp": "WhatsApp schreiben",
+    "trustLine": "Unverbindlich · Persönliche Beratung · Lokal am Bodensee",
+    "stats": [
+      { "value": "Lokal", "label": "Bodensee" },
+      { "value": "Persönlich", "label": "Beratung" },
+      { "value": "Schnell", "label": "Umsetzung" }
+    ],
+    "dashboard": {
+      "name": "ZielTakt Studio",
+      "sub": "Beispiel-Dashboard",
+      "active": "Aktiv",
+      "visibility": "Sichtbarkeit",
+      "example": "Beispielansicht",
+      "tiles": [
+        { "v": "SEO", "l": "Lokal optimiert" },
+        { "v": "A+", "l": "SSL-Sicherheit" },
+        { "v": "Schnell", "l": "auf dem Handy" }
+      ]
+    }
+  },
+  "problems": {
+    "eyebrow": "Kennen Sie das?",
+    "title": "Gute Arbeit allein bringt keine neuen Kunden.",
+    "items": [
+      {
+        "title": "Bei Google nicht zu finden",
+        "text": "Kunden suchen nach Ihrer Leistung in Ihrer Stadt und finden zuerst die Konkurrenz."
+      },
+      {
+        "title": "Zu wenige Bewertungen",
+        "text": "Zufriedene Kunden haben Sie genug, aber kaum jemand hinterlässt eine Bewertung. Neue Kunden vertrauen deshalb lieber anderen."
+      },
+      {
+        "title": "Anfragen gehen verloren",
+        "text": "Anrufe während der Arbeit, unbeantwortete WhatsApp-Nachrichten, keine Online-Buchung: Jede verpasste Anfrage ist ein verlorener Kunde."
+      },
+      {
+        "title": "Keine Bewerbungen",
+        "text": "Sie suchen Mitarbeiter, aber ohne guten Online-Auftritt bewirbt sich kaum jemand."
+      }
+    ],
+    "footer": "ZielTakt löst genau das: mit einem System statt mit Einzelteilen.",
+    "footerLink": "Zur Lösung"
+  },
+  "about": {
+    "eyebrow": "Über uns",
+    "titleStart": "Ihr lokaler Partner für",
+    "titleHighlight": "digitales Handwerk.",
+    "p1": "ZielTakt ist ein digitales Growth-Studio aus Konstanz. Wir bauen für lokale Unternehmen mehr als nur Websites – wir verbinden Design, Sichtbarkeit und Automatisierung zu einem System, das darauf ausgelegt ist, neue Kunden zu gewinnen.",
+    "p2": "Für uns ist jede Website Maßarbeit: kein Baukasten, keine Standard-Vorlagen, sondern durchdachtes Design, das zu Ihrem Unternehmen und Ihren Kunden passt. Wir verstehen die Bodensee-Region, weil wir hier arbeiten und leben.",
+    "stats": [
+      { "value": "100%", "label": "Maßarbeit" },
+      { "value": "Bodensee", "label": "Region" },
+      { "value": "1:1", "label": "Betreuung" }
+    ],
+    "values": [
+      { "label": "Persönlich", "sub": "Direkter Kontakt, kein Callcenter" },
+      { "label": "Echtes Design", "sub": "Handgemacht, kein Baukasten" },
+      { "label": "Verlässlich", "sub": "Was wir versprechen, halten wir" },
+      { "label": "Schnell", "sub": "Von Idee bis Launch" }
+    ]
+  },
+  "services": {
+    "eyebrow": "Leistungen",
+    "titleStart": "Mehr als eine Website:",
+    "titleHighlight": "Ein System für mehr Kunden.",
+    "text": "Wir verbinden Website, Google-Sichtbarkeit, Leads, Buchungen und Tracking zu einem System, das Ihr Unternehmen digital wachsen lässt.",
+    "items": [
+      {
+        "title": "Website & Conversion",
+        "tagline": "Damit Besucher zu Kunden werden.",
+        "description": "Wir bauen Websites, die nicht nur gut aussehen, sondern Anfragen und Buchungen erzeugen.",
+        "features": [
+          "Individuelles, mobile-optimiertes Webdesign",
+          "Conversion-optimierte Seitenstruktur",
+          "Klare Call-to-Actions & Vertrauenselemente",
+          "Schnelle Ladezeiten & technische SEO-Basis"
+        ]
+      },
+      {
+        "title": "Google & Local SEO",
+        "tagline": "Damit Kunden Sie finden.",
+        "description": "Wir optimieren Ihren digitalen Auftritt für Google, Maps und lokale Suchanfragen.",
+        "features": [
+          "Google-Unternehmensprofil Setup & Pflege",
+          "Lokale SEO & Keyword-Ausrichtung",
+          "Google Search Console & Indexierung",
+          "Strukturierte Daten für bessere Auffindbarkeit"
+        ]
+      },
+      {
+        "title": "Leads & Buchungen",
+        "tagline": "Damit aus Interesse echte Anfragen werden.",
+        "description": "Wir machen es Ihren Kunden einfach, Kontakt aufzunehmen, einen Termin zu buchen oder eine Anfrage zu senden.",
+        "features": [
+          "24/7 Online-Terminbuchung",
+          "Kontakt- & Anfrageformulare",
+          "WhatsApp-Kontakt & Click-to-Call",
+          "Automatische Bestätigungen & Erinnerungen"
+        ]
+      },
+      {
+        "title": "Tracking & Growth",
+        "tagline": "Damit Sie wissen, was wirklich funktioniert.",
+        "description": "Wir machen sichtbar, woher Ihre Kunden kommen und welche Maßnahmen tatsächlich Anfragen bringen.",
+        "features": [
+          "Google Analytics & Search Console",
+          "Conversion- & Formular-Tracking",
+          "Performance Monitoring",
+          "Reporting je nach Paket"
+        ]
+      }
+    ],
+    "unsure": "Nicht sicher, was Sie brauchen?",
+    "unsureLink": "Lassen Sie uns persönlich sprechen"
+  },
+  "pricing": {
+    "eyebrow": "Preise",
+    "title": "ZielTakt Komplett.",
+    "text": "Website, Google-Sichtbarkeit und laufende Betreuung in einem Paket: einmalige Einrichtung plus fester Monatsbetrag. Keine versteckten Kosten.",
+    "badge": "Transparente Preise · Festangebot vor Projektstart",
+    "recommended": "Empfohlen",
+    "oneTime": "einmalig",
+    "perMonth": "/Monat",
+    "switzerland": "Schweiz",
+    "delivery": "Umsetzung",
+    "packages": [
+      {
+        "name": "Start",
+        "setup": "490 €",
+        "monthly": "149 €",
+        "chfSetup": "CHF 550",
+        "chfMonthly": "CHF 169",
+        "time": "ca. 7 Tage",
+        "for": "Für Betriebe, die endlich professionell online sein wollen.",
+        "features": [
+          "Website mit bis zu 3 Seiten, optimiert fürs Handy",
+          "Google-Unternehmensprofil einrichten",
+          "WhatsApp- & Anruf-Button",
+          "Hosting, SSL & Sicherheits-Updates",
+          "Kleine Änderungen jeden Monat inklusive"
+        ],
+        "popular": false
+      },
+      {
+        "name": "Pro",
+        "setup": "1.490 €",
+        "monthly": "299 €",
+        "chfSetup": "CHF 1.690",
+        "chfMonthly": "CHF 339",
+        "time": "2–3 Wochen",
+        "for": "Für Betriebe, die bei Google gefunden und gebucht werden wollen.",
+        "features": [
+          "Alles aus Start",
+          "Website mit bis zu 7 Seiten",
+          "Online-Terminbuchung",
+          "Local SEO & laufende Google-Profil-Pflege",
+          "Automatische Bitte um Google-Bewertungen",
+          "Monatlicher Bericht"
+        ],
+        "popular": true
+      },
+      {
+        "name": "Partner",
+        "setup": "2.900 €",
+        "monthly": "590–790 €",
+        "chfSetup": "CHF 3.290",
+        "chfMonthly": "CHF 670–890",
+        "extra": "+ Werbebudget",
+        "time": "3–4 Wochen",
+        "for": "Für Betriebe, die aktiv wachsen und Mitarbeiter finden wollen.",
+        "features": [
+          "Alles aus Pro",
+          "Google- & Meta-Anzeigen: Einrichtung & Betreuung",
+          "Lead-Automatisierung & Follow-ups",
+          "Karriereseite für Ihre Stellenangebote",
+          "Monatliches Strategiegespräch"
+        ],
+        "popular": false
+      }
+    ],
+    "notes": "Zeiträume gelten ab Freigabe aller Inhalte durch den Kunden. Das Werbebudget im Partner-Paket zahlen Sie direkt an Google bzw. Meta. Laufzeit, Leistungsumfang und alle Kosten stehen vorab im schriftlichen Festangebot.",
+    "automationTitle": "Automation & AI",
+    "automationText": "Weniger manuelle Arbeit, mehr Zeit für Ihr Geschäft. Einzeln buchbar, ob als Teil eines Projekts oder später ergänzt.",
+    "automations": [
+      { "name": "Lead-Automatisierung", "price": "ab 250 €", "chf": "ab CHF 290", "note": "Neue Anfrage → sofortige Weiterleitung per WhatsApp/E-Mail" },
+      { "name": "Bewertungs-Automatisierung", "price": "ab 300 €", "chf": "ab CHF 340", "note": "Nach Auftragsabschluss automatisch um eine Google-Bewertung bitten" },
+      { "name": "Follow-up-Automatisierung", "price": "ab 400 €", "chf": "ab CHF 450", "note": "Keine Antwort? Automatische Erinnerung, damit keine Anfrage verloren geht" },
+      { "name": "AI-Assistent", "price": "ab 750 €", "chf": "ab CHF 850", "note": "Beantwortet häufige Fragen automatisch & erfasst neue Leads" }
+    ],
+    "automationNote": "Laufende Betriebskosten für eingesetzte Tools/Software separat, je nach Umfang. Weitere Automationen (CRM-Anbindung, komplette Workflow-Systeme) auf Anfrage.",
+    "cta": "Individuelles Angebot auf Anfrage",
+    "vatNote": "Alle Preise sind Endpreise. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.",
+    "vatNoteOriginal": ""
+  },
+  "projects": {
+    "eyebrow": "Projekte",
+    "title": "Aus der Praxis.",
+    "viewSite": "Website ansehen",
+    "items": {
+      "swissline": {
+        "tag": "Konstanz · Fahrzeugaufbereitung",
+        "description": "Premium-Fahrzeugaufbereitung aus Konstanz. Eine moderne Website, die Handwerk und Liebe zum Detail zeigt, von der Markenwelt über das Design bis zur direkten Buchungsanfrage.",
+        "facts": ["Individuelles Design", "Logo & Farbwelt", "Mobile-First", "Direkte Buchungsanfrage"],
+        "logoAlt": "Auto Kosmetik Swissline Logo"
+      },
+      "abeer": {
+        "tag": "Kosmetikstudio · Zweisprachig (DE/AR)",
+        "description": "Kosmetikstudio mit zweisprachiger Website (Deutsch & Arabisch). Klare Leistungsübersicht, funktionierendes Kontaktformular mit direkter Anfrage per E-Mail, ausgelegt für beide Sprachgruppen der Kundschaft.",
+        "facts": ["Zweisprachig DE/AR", "Individuelles Design", "Kontaktformular inkl. E-Mail-Zustellung", "Mobile-First"],
+        "logoAlt": "Abeer Beauty Center Logo"
+      }
+    }
+  },
+  "process": {
+    "eyebrow": "Ablauf",
+    "title": "In vier Schritten zur fertigen Website.",
+    "steps": [
+      { "title": "Kennenlernen", "time": "Tag 1", "desc": "Kostenloses Erstgespräch. Wir klären Ihre Ziele, Ihre Kunden und was die Website leisten soll." },
+      { "title": "Konzept & Design", "time": "3–5 Tage", "desc": "Layout, Farben, Schriften und Inhalte werden entworfen. Sie sehen alles vorab und geben Feedback." },
+      { "title": "Entwicklung", "time": "5–10 Tage", "desc": "Wir setzen die Website um: responsive, schnell, sicher und pflegeleicht." },
+      { "title": "Launch & Übergabe", "time": "1–2 Tage", "desc": "Website geht live, Google-Sichtbarkeit wird eingerichtet, Sie bekommen eine kurze Einführung." }
+    ]
+  },
+  "partner": {
+    "badge": "Partner-Programm",
+    "title": "Kennst du ein Unternehmen, das eine neue Website braucht?",
+    "text": "Fotografen, Druckereien, Berater oder einfach gute Kontakte: Wer uns einen Kunden vermittelt, der abschließt, bekommt {{pct}} % des Projektwerts als Dankeschön. Keine Vertragsbindung, keine Bedingungen im Kleingedruckten.",
+    "cta": "Partner werden",
+    "presetSubject": "Partner-Anfrage"
+  },
+  "area": {
+    "eyebrow": "Einzugsgebiet",
+    "title": "Konstanz und die gesamte Region.",
+    "mapLabel": "Karte des Einzugsgebiets rund um den Bodensee",
+    "germany": "Deutschland",
+    "switzerland": "Schweiz",
+    "text": "Wir betreuen Unternehmen in Konstanz und der gesamten Region – persönlich, schnell und zuverlässig. Ob Praxis, Handwerk, Gastronomie oder Einzelhandel: Wir kennen die Region und Ihre Kunden.",
+    "remote": "",
+    "studio": "Studio-Standort",
+    "studioPlace": "Konstanz, Baden-Württemberg",
+    "studioNote": "Virtuelles Büro · persönliche Beratung nach Vereinbarung"
+  },
+  "region": {
+    "title": "Für Betriebe in der Region"
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Häufige Fragen.",
+    "items": [
+      {
+        "q": "Wie lange dauert eine Website?",
+        "a": "Je nach Paket: Start ist nach etwa 7 Tagen live, Pro nach 2–3 Wochen, Partner nach 3–4 Wochen. Die einzelnen Schritte stehen weiter oben im Ablauf-Abschnitt, vom Erstgespräch bis zum Launch."
+      },
+      {
+        "q": "Was kostet es wirklich am Ende?",
+        "a": "ZielTakt Komplett besteht aus einer einmaligen Einrichtung und einem festen Monatsbetrag: Start 490 € + 149 €/Monat, Pro 1.490 € + 299 €/Monat, Partner 2.900 € + 590–790 €/Monat zuzüglich Werbebudget. Nach dem Erstgespräch erhalten Sie ein schriftliches Festangebot, in dem alle Kosten aufgeführt sind, auch eventuelle laufende Kosten für Tools oder Software."
+      },
+      {
+        "q": "Kann ich meine Website später selbst bearbeiten?",
+        "a": "Ja. Wir bauen auf einem pflegeleichten System, damit Sie Texte, Bilder und Termine selbst ändern können. Wer es lieber abgeben möchte: Kleine Änderungen sind in jedem Monatspaket enthalten, die übernehmen wir für Sie."
+      },
+      {
+        "q": "Was passiert nach dem Launch?",
+        "a": "Nach dem Launch übergeben wir die Website, zeigen Ihnen die wichtigsten Funktionen und richten die Google-Sichtbarkeit ein (Google-Unternehmensprofil, Search Console). Danach kümmern wir uns im Rahmen Ihres Monatspakets um Technik, Sicherheit und Sichtbarkeit."
+      },
+      {
+        "q": "Arbeitet ihr auch mit Kunden in der Schweiz?",
+        "a": "Ja. Wir sitzen in Konstanz direkt an der Grenze und betreuen Kunden in der gesamten Region, auch auf der Schweizer Seite. Persönliche Termine nach Vereinbarung."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Kontakt",
+    "title": "Lassen Sie uns sprechen.",
+    "fields": {
+      "name": { "label": "Name", "placeholder": "Ihr Name" },
+      "email": { "label": "E-Mail", "placeholder": "ihre@email.de" },
+      "phone": { "label": "Telefon (optional)", "placeholder": "+49 151 ..." },
+      "message": { "label": "Nachricht", "placeholder": "Erzählen Sie uns von Ihrem Projekt..." }
+    },
+    "honeypot": "Website",
+    "send": "Nachricht senden",
+    "sending": "Wird gesendet…",
+    "sent": "✓ Nachricht gesendet",
+    "consent": "Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben zur Bearbeitung Ihrer Anfrage zu. Mehr in der",
+    "consentLink": "Datenschutzerklärung",
+    "error": "Die Nachricht konnte leider nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt an",
+    "intro": "Bereit für den nächsten Schritt? Buchen Sie ein kostenloses 15-Minuten-Erstgespräch oder schreiben Sie uns auf WhatsApp – wir melden uns in der Regel am selben Tag.",
+    "bookTitle": "15-Minuten Erstgespräch",
+    "bookSub": "Kostenlos · Termin direkt online wählen",
+    "labels": {
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "whatsapp": "WhatsApp",
+      "location": "Standort"
+    },
+    "locationValue": "Konstanz, Bodensee",
+    "follow": "Folgen Sie uns",
+    "reviews": "Google-Bewertungen ansehen"
+  },
+  "whatsapp": {
+    "message": "Hallo ZielTakt, ich interessiere mich für ein Erstgespräch.",
+    "write": "WhatsApp schreiben"
+  },
+  "floating": {
+    "call": "Anrufen",
+    "whatsapp": "WhatsApp",
+    "email": "E-Mail",
+    "book": "Termin",
+    "emailAria": "E-Mail schreiben",
+    "bookAria": "Erstgespräch buchen"
+  },
+  "footer": {
+    "tagline": "Digitale Growth-Systeme für lokale Unternehmen am Bodensee: Website, Sichtbarkeit, Anfragen und Wachstum aus einer Hand.",
+    "navigation": "Navigation",
+    "area": "Einsatzgebiet",
+    "townLink": "Webdesign {{city}}",
+    "contact": "Kontakt",
+    "phonePrefix": "Tel.",
+    "whatsappPrefix": "WhatsApp",
+    "location": "Konstanz, Bodensee",
+    "reviews": "Google-Bewertungen ansehen",
+    "social": "Social Media",
+    "clockPlace": "Konstanz",
+    "rights": "© {{year}} ZielTakt. Alle Rechte vorbehalten.",
+    "imprint": "Impressum",
+    "privacy": "Datenschutz"
+  }
+}

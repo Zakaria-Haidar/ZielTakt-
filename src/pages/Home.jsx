@@ -1,11 +1,14 @@
 import { lazy, Suspense } from 'react';
 import usePageMeta from '@/hooks/usePageMeta';
+import useLang from '@/i18n/useLang';
+import { homePath } from '@/i18n/languages';
 import Navbar from '../components/landing/Navbar';
 import Hero from '../components/landing/Hero';
 import ErrorBoundary from '../components/landing/ErrorBoundary';
 
 // Below-the-fold sections: not needed for first paint, so they load in the
 // background after the hero is already visible instead of blocking it.
+const Problems = lazy(() => import('../components/landing/Problems'));
 const About = lazy(() => import('../components/landing/About'));
 const Services = lazy(() => import('../components/landing/Services'));
 const Preise = lazy(() => import('../components/landing/Preise'));
@@ -19,8 +22,10 @@ const Contact = lazy(() => import('../components/landing/Contact'));
 const Footer = lazy(() => import('../components/landing/Footer'));
 const FloatingContact = lazy(() => import('../components/landing/FloatingContact'));
 
+// Same page for "/" (German) and "/ar" (Arabic); all text comes from src/locales/*.json.
 export default function Home() {
-  usePageMeta('/');
+  const { lang } = useLang();
+  usePageMeta(homePath(lang));
 
   return (
     <div className="bg-void min-h-screen pb-16 md:pb-0 overflow-x-clip">
@@ -32,6 +37,7 @@ export default function Home() {
               some user's device, it disappears quietly instead of taking
               every other section (and the whole page) down with it. */}
           <ErrorBoundary><About /></ErrorBoundary>
+          <ErrorBoundary><Problems /></ErrorBoundary>
           <ErrorBoundary><Services /></ErrorBoundary>
           <ErrorBoundary><Preise /></ErrorBoundary>
           <ErrorBoundary><Projekt /></ErrorBoundary>

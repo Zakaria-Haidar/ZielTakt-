@@ -1,7 +1,14 @@
 import { motion } from 'framer-motion';
 import GlassButton from './GlassButton';
+import { WhatsAppIcon } from './icons';
+import useLang from '@/i18n/useLang';
+import { CAL_URL, whatsappHref } from '@/lib/contact';
 
 export default function Hero() {
+  const { t, href } = useLang();
+  const stats = t('hero.stats', { returnObjects: true });
+  const tiles = t('hero.dashboard.tiles', { returnObjects: true });
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-void">
       {/* Ambient background glow — desktop only. A large `filter: blur()`
@@ -12,76 +19,61 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full pt-32 pb-20 md:pt-40 md:pb-32">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-8 items-center">
-          {/* Left content */}
+          {/* Text column (start side: left in German, right in Arabic) */}
           <div className="lg:col-span-3 space-y-8">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5"
+            {/* Hero text fades in with CSS (.hero-rise in index.css), not framer-motion:
+                it starts as soon as the prerendered HTML arrives instead of waiting for
+                the JS bundle, which keeps LCP fast on mobile. */}
+            <div
+              className="hero-rise inline-flex items-center gap-2 glass rounded-full px-4 py-1.5"
+              style={{ '--rise': '10px', animationDelay: '0.05s' }}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-neon animate-pulse-glow" />
               <span className="text-datagrey text-xs font-medium tracking-widest uppercase">
-                Growth Systems · Konstanz
+                {t('hero.badge')}
               </span>
-            </motion.div>
+            </div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="font-heading font-bold text-titanium leading-[0.95] tracking-[-0.04em]"
-              style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)' }}
+            {/* The headline is the LCP element: it slides in but never starts invisible
+                (.hero-slide = transform only), so it counts as painted on the first frame. */}
+            <h1
+              className="hero-slide font-heading font-bold text-titanium leading-[0.95] tracking-[-0.04em]"
+              style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', '--rise': '30px', animationDelay: '0.1s' }}
             >
-              Professionelle Websites für Unternehmen{' '}
-              <span className="text-gradient-blue">am Bodensee.</span>
-            </motion.h1>
+              {t('hero.titleStart')}{' '}
+              <span className="text-gradient-blue">{t('hero.titleHighlight')}</span>
+            </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.5 }}
-              className="text-datagrey text-lg md:text-xl max-w-lg leading-relaxed"
-              style={{ lineHeight: '1.6' }}
+            <p
+              className="hero-rise text-datagrey text-lg md:text-xl max-w-lg leading-relaxed"
+              style={{ lineHeight: '1.6', animationDelay: '0.2s' }}
             >
-              Wir gestalten moderne, vertrauenswürdige Websites und digitale Lösungen, damit lokale Kunden Ihr Unternehmen bei Google finden und sofort verstehen.
-            </motion.p>
+              {t('hero.text')}
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.7 }}
-              className="flex flex-wrap gap-4"
-            >
-              <GlassButton href="#contact">
-                Kostenloses Erstgespräch sichern
+            <div className="hero-rise flex flex-wrap gap-4" style={{ animationDelay: '0.3s' }}>
+              {/* Books the Cal.com call once CAL_URL is set; until then scrolls to the contact form. */}
+              <GlassButton href={CAL_URL ?? href('contact')} external={Boolean(CAL_URL)}>
+                {t('hero.ctaPrimary')}
               </GlassButton>
-              <GlassButton href="#services" variant="secondary">
-                Leistungen ansehen
+              <GlassButton href={whatsappHref(t('whatsapp.message'))} variant="secondary" external>
+                <WhatsAppIcon className="w-4 h-4" />
+                {t('hero.ctaWhatsApp')}
               </GlassButton>
-            </motion.div>
+            </div>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.85 }}
-              className="text-datagrey text-xs tracking-wide"
-            >
-              Unverbindlich · Persönliche Beratung · Lokal am Bodensee
-            </motion.p>
+            <p className="hero-rise text-datagrey text-xs tracking-wide" style={{ '--rise': '0px', animationDelay: '0.4s' }}>
+              {t('hero.trustLine')}
+            </p>
 
-                        {/* Trust elements */}
+            {/* Trust elements */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 1 }}
               className="grid grid-cols-3 gap-4 sm:flex sm:gap-12 pt-8 border-t border-border"
             >
-              {[
-                { value: 'Lokal', label: 'Bodensee' },
-                { value: 'Persönlich', label: 'Beratung' },
-                { value: 'Schnell', label: 'Umsetzung' },
-              ].map((stat) => (
+              {stats.map((stat) => (
                 <div key={stat.label}>
                   <div className="font-heading font-bold text-lg sm:text-2xl text-titanium">{stat.value}</div>
                   <div className="text-datagrey text-[10px] sm:text-xs tracking-wider sm:tracking-widest uppercase mt-1">{stat.label}</div>
@@ -131,13 +123,13 @@ export default function Hero() {
                       Z
                     </div>
                     <div>
-                      <div className="text-titanium text-sm font-semibold leading-tight">ZielTakt Studio</div>
-                      <div className="text-datagrey text-[10px]">Beispiel-Dashboard</div>
+                      <div className="text-titanium text-sm font-semibold leading-tight">{t('hero.dashboard.name')}</div>
+                      <div className="text-datagrey text-[10px]">{t('hero.dashboard.sub')}</div>
                     </div>
                   </div>
                   <span className="flex items-center gap-1.5 text-[10px] text-neon bg-neon/10 border border-neon/20 rounded-full px-2.5 py-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-neon animate-pulse" />
-                    Aktiv
+                    {t('hero.dashboard.active')}
                   </span>
                 </div>
 
@@ -146,19 +138,19 @@ export default function Hero() {
                   {/* Metric panel */}
                   <div className="glass rounded-xl p-4 flex flex-col justify-between">
                     <div className="text-datagrey text-[10px] tracking-widest uppercase">PageSpeed</div>
-                    <div className="flex items-end gap-1">
+                    <div className="flex items-end gap-1" dir="ltr">
                       <span className="font-heading font-bold text-titanium text-4xl leading-none">98</span>
                       <span className="text-datagrey text-xs mb-1">/100</span>
                     </div>
                     <div className="h-1.5 w-full rounded-full bg-neon/10 overflow-hidden">
-                      <div className="h-full w-[98%] rounded-full bg-gradient-to-r from-neon-dark to-neon" />
+                      <div className="h-full w-[98%] rounded-full bg-gradient-to-r rtl:bg-gradient-to-l from-neon-dark to-neon" />
                     </div>
-                    <div className="text-neon text-[10px] font-medium">Beispielansicht</div>
+                    <div className="text-neon text-[10px] font-medium">{t('hero.dashboard.example')}</div>
                   </div>
 
                   {/* Chart panel */}
                   <div className="glass rounded-xl p-4 flex flex-col justify-between">
-                    <div className="text-datagrey text-[10px] tracking-widest uppercase">Sichtbarkeit</div>
+                    <div className="text-datagrey text-[10px] tracking-widest uppercase">{t('hero.dashboard.visibility')}</div>
                     <div className="flex items-end justify-between gap-1 flex-1 my-2">
                       {[40, 65, 50, 80, 60, 95, 75].map((h, i) => (
                         <motion.div
@@ -170,20 +162,16 @@ export default function Hero() {
                         />
                       ))}
                     </div>
-                    <div className="text-neon text-[10px] font-medium">Beispielansicht</div>
+                    <div className="text-neon text-[10px] font-medium">{t('hero.dashboard.example')}</div>
                   </div>
                 </div>
 
                 {/* Bottom stat tiles */}
                 <div className="grid grid-cols-3 gap-3">
-                  {[
-                    { v: 'SEO', l: 'Lokal optimiert' },
-                    { v: 'A+', l: 'SSL-Sicherheit' },
-                    { v: 'Schnell', l: 'auf dem Handy' },
-                  ].map((t) => (
-                    <div key={t.l} className="glass rounded-xl p-3 text-center">
-                      <div className="font-heading font-bold text-neon text-lg leading-none">{t.v}</div>
-                      <div className="text-datagrey text-[9px] tracking-wide mt-1">{t.l}</div>
+                  {tiles.map((tile) => (
+                    <div key={tile.l} className="glass rounded-xl p-3 text-center">
+                      <div className="font-heading font-bold text-neon text-lg leading-none"><bdi dir="ltr">{tile.v}</bdi></div>
+                      <div className="text-datagrey text-[9px] tracking-wide mt-1">{tile.l}</div>
                     </div>
                   ))}
                 </div>

@@ -3,6 +3,7 @@
 // without JS get the full page. Pure Node: no headless browser needed.
 //
 //   /             -> dist/index.html
+//   /ar           -> dist/ar.html          (Arabic, dir="rtl")
 //   /impressum    -> dist/impressum.html   (Cloudflare serves it at /impressum)
 //   unknown URLs  -> dist/404.html         (served with status 404, see wrangler.jsonc)
 import fs from 'node:fs';
@@ -19,6 +20,15 @@ const { render, routes, notFoundRoute, getHead } = await import(
 
 const template = fs.readFileSync(path.join(distDir, 'index.html'), 'utf-8');
 
+// Arabic pages: preload the two Arabic font files the hero needs (regular + bold).
+// Without this the browser finds them only after parsing the CSS, and the Arabic
+// headline (the LCP element) repaints late. File names carry a build hash, so look them up.
+const assetFiles = fs.readdirSync(path.join(distDir, 'assets'));
+const arabicFontPreloads = ['400', '700']
+  .map((w) => assetFiles.find((f) => f.startsWith(`ibm-plex-sans-arabic-arabic-${w}-normal-`) && f.endsWith('.woff2')))
+  .filter(Boolean)
+  .map((f) => `<link rel="preload" href="/assets/${f}" as="font" type="font/woff2" crossorigin />`);
+
 const esc = (value) =>
   String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -27,8 +37,12 @@ function headTags(head) {
     `<title>${esc(head.title)}</title>`,
     `<meta name="description" content="${esc(head.description)}" />`,
   ];
+  if (head.lang.startsWith('ar')) tags.push(...arabicFontPreloads);
   if (head.robots) tags.push(`<meta name="robots" content="${esc(head.robots)}" />`);
   if (head.canonical) tags.push(`<link rel="canonical" href="${esc(head.canonical)}" />`);
+  for (const { hreflang, href } of head.alternates) {
+    tags.push(`<link rel="alternate" hreflang="${esc(hreflang)}" href="${esc(href)}" />`);
+  }
   tags.push(
     `<meta property="og:title" content="${esc(head.ogTitle)}" />`,
     `<meta property="og:description" content="${esc(head.ogDescription)}" />`,
@@ -52,7 +66,7 @@ async function renderPage(route, outFile) {
   const head = getHead(route);
   // Function replacers: a "$" in the content must not be read as a replace pattern.
   const page = template
-    .replace(/<html lang="[^"]*">/, () => `<html lang="${esc(head.lang)}">`)
+    .replace(/<html lang="[^"]*">/, () => `<html lang="${esc(head.lang)}" dir="${esc(head.dir)}">`)
     .replace('<!--app-head-->', () => headTags(head))
     .replace('<div id="root"><!--app-html-->', () => `<div id="root" data-prerendered="${esc(route.path)}">${appHtml}`);
   if (page.includes('<!--app-html-->') || page.includes('<!--app-head-->')) {
@@ -67,13 +81,17 @@ for (const route of routes) {
 }
 await renderPage(notFoundRoute, '404.html');
 
+// Sitemap with hreflang alternates (xhtml:link) for pages that exist in several languages.
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${routes
   .map((route) => {
-    const { canonical } = getHead(route);
+    const { canonical, alternates } = getHead(route);
+    const links = alternates
+      .map((a) => `\n    <xhtml:link rel="alternate" hreflang="${esc(a.hreflang)}" href="${esc(a.href)}" />`)
+      .join('');
     return `  <url>
-    <loc>${canonical}</loc>
+    <loc>${canonical}</loc>${links}
     <changefreq>${route.sitemap.changefreq}</changefreq>
     <priority>${route.sitemap.priority}</priority>
   </url>`;

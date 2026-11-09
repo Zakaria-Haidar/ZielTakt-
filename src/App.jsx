@@ -10,13 +10,15 @@ const Datenschutz = lazy(() => import('./pages/Datenschutz'));
 const TownPage = lazy(() => import('./pages/TownPage'));
 
 // The router itself is supplied by the entry: BrowserRouter in main.jsx,
-// StaticRouter in entry-server.jsx (prerendering).
+// StaticRouter in entry-server.jsx (prerendering). The language is set by the
+// entry too (from the URL), so "/" and "/ar" render the same Home in different languages.
 function App() {
   return (
     <MotionConfig reducedMotion="user">
       <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/ar" element={<Home />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/datenschutz" element={<Datenschutz />} />
           {staedte.map((stadt) => (

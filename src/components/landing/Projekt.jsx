@@ -1,40 +1,32 @@
 import { motion } from 'framer-motion';
 import SectionDivider from './SectionDivider';
+import { Arrow } from './icons';
+import useLang from '@/i18n/useLang';
 
 // Referenzen / Case Studies. Jeder Eintrag kann eine Website sein,
-// aber auch ein anderer Service (Automatisierung, AI-Assistent, ...) -
-// deshalb "type" statt es auf Websites zu beschränken. Visuell: echtes
-// Kundenlogo statt Screenshot, damit nichts veraltet, wenn ein Kunde sein
-// Website-Design später ändert, und jedes neue Projekt sofort konsistent
-// aussieht.
+// aber auch ein anderer Service (Automatisierung, AI-Assistent, ...).
+// Visuell: echtes Kundenlogo statt Screenshot, damit nichts veraltet, wenn
+// ein Kunde sein Website-Design später ändert.
+// Fixed data (logo, link, name) stays here; descriptions come from
+// projects.items.<id> in the translation files.
 const projects = [
   {
     id: 'swissline',
-    type: 'Website',
-    tag: 'Konstanz · Fahrzeugaufbereitung',
     title: 'Auto Kosmetik Swissline',
-    description:
-      'Premium-Fahrzeugaufbereitung aus Konstanz. Eine moderne Website, die Handwerk und Liebe zum Detail zeigt, von der Markenwelt über das Design bis zur direkten Buchungsanfrage.',
-    facts: ['Individuelles Design', 'Logo & Farbwelt', 'Mobile-First', 'Direkte Buchungsanfrage'],
     logo: '/logo-swissline.webp',
-    logoAlt: 'Auto Kosmetik Swissline Logo',
     url: 'https://autokosmetik-swissline.de',
   },
   {
     id: 'abeer',
-    type: 'Website',
-    tag: 'Kosmetikstudio · Zweisprachig (DE/AR)',
     title: 'Abeer Beauty Center',
-    description:
-      'Kosmetikstudio mit zweisprachiger Website (Deutsch & Arabisch). Klare Leistungsübersicht, funktionierendes Kontaktformular mit direkter Anfrage per E-Mail, ausgelegt für beide Sprachgruppen der Kundschaft.',
-    facts: ['Zweisprachig DE/AR', 'Individuelles Design', 'Kontaktformular inkl. E-Mail-Zustellung', 'Mobile-First'],
     logo: '/logo-abeer.svg',
-    logoAlt: 'Abeer Beauty Center Logo',
     url: 'https://abeerbeauty-center.de',
   },
 ];
 
 export default function Projekt() {
+  const { t } = useLang();
+
   return (
     <section id="projekt" className="relative bg-void py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -47,7 +39,7 @@ export default function Projekt() {
             viewport={{ once: true }}
             className="text-neon text-xs font-medium tracking-[0.3em] uppercase"
           >
-            Projekte
+            {t('projects.eyebrow')}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -57,13 +49,14 @@ export default function Projekt() {
             className="font-heading font-bold text-titanium tracking-[-0.04em]"
             style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
           >
-            Aus der Praxis.
+            {t('projects.title')}
           </motion.h2>
         </div>
 
         <div className="space-y-20">
           {projects.map((project, idx) => {
             const reverse = idx % 2 === 1;
+            const text = t(`projects.items.${project.id}`, { returnObjects: true });
             return (
               <div
                 key={project.id}
@@ -82,7 +75,7 @@ export default function Projekt() {
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-neon/10 blur-3xl pointer-events-none" />
                   <img
                     src={project.logo}
-                    alt={project.logoAlt}
+                    alt={text.logoAlt}
                     loading="lazy"
                     className="relative w-2/3 max-w-[220px] h-auto object-contain"
                   />
@@ -97,16 +90,16 @@ export default function Projekt() {
                   className={`space-y-6 ${reverse ? 'lg:order-1' : ''}`}
                 >
                   <span className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-datagrey text-xs tracking-widest uppercase">
-                    {project.tag}
+                    {text.tag}
                   </span>
                   <h3 className="font-heading font-bold text-titanium text-2xl tracking-tight">
-                    {project.title}
+                    <bdi>{project.title}</bdi>
                   </h3>
                   <p className="text-datagrey text-lg leading-relaxed" style={{ lineHeight: '1.6' }}>
-                    {project.description}
+                    {text.description}
                   </p>
                   <ul className="flex flex-wrap gap-2 pt-2">
-                    {project.facts.map((f) => (
+                    {text.facts.map((f) => (
                       <li
                         key={f}
                         className="px-3 py-1.5 rounded-full text-xs font-medium glass text-titanium/80 border-border"
@@ -121,8 +114,8 @@ export default function Projekt() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-neon text-sm font-medium hover:underline group"
                   >
-                    Website ansehen
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    {t('projects.viewSite')}
+                    <Arrow />
                   </a>
                 </motion.div>
               </div>

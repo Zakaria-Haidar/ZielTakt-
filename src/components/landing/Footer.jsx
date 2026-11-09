@@ -1,14 +1,8 @@
 import { useState, useEffect } from 'react';
 import { CONTACT_EMAIL, GOOGLE_PROFILE_URL, INSTAGRAM_URL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_DISPLAY, WHATSAPP_HREF } from '@/lib/contact';
 import { staedte } from '@/data/staedte';
-
-// Absolute ("/#...") so the links also work from /impressum, /datenschutz and the 404 page.
-const navLinks = [
-  { label: 'Leistungen', href: '/#services' },
-  { label: 'Über uns', href: '/#about' },
-  { label: 'Einzugsgebiet', href: '/#area' },
-  { label: 'Kontakt', href: '/#contact' },
-];
+import useLang from '@/i18n/useLang';
+import { homePath } from '@/i18n/languages';
 
 const instagramIcon = (
   <svg viewBox="0 0 24 24" className="w-7 h-7">
@@ -28,7 +22,11 @@ const instagramIcon = (
   </svg>
 );
 
+// Used on every page (home, Arabic home, town pages, Impressum, Datenschutz, 404).
+// Section links are absolute ("/#..." or "/ar#...") so they work from any page.
 export default function Footer() {
+  const { t, lang, href } = useLang();
+  const navLinks = t('nav.links', { returnObjects: true });
   const [time, setTime] = useState('');
 
   useEffect(() => {
@@ -57,21 +55,21 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1 space-y-4">
             <div className="flex items-center gap-2">
-              <a href="/"><img src="/zieltakt-logo.png" alt="ZielTakt" width="1082" height="229" className="h-7 w-auto" /></a>
+              <a href={homePath(lang)}><img src="/zieltakt-logo.png" alt="ZielTakt" width="1082" height="229" className="h-7 w-auto" /></a>
             </div>
             <p className="text-datagrey text-sm leading-relaxed max-w-xs">
-              Digitale Growth-Systeme für lokale Unternehmen am Bodensee: Website, Sichtbarkeit, Anfragen und Wachstum aus einer Hand.
+              {t('footer.tagline')}
             </p>
           </div>
 
           {/* Navigation */}
           <div className="space-y-4">
-            <span className="text-datagrey text-xs tracking-widest uppercase">Navigation</span>
+            <span className="text-datagrey text-xs tracking-widest uppercase">{t('footer.navigation')}</span>
             <div className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <a
-                  key={link.href}
-                  href={link.href}
+                  key={link.id}
+                  href={href(link.id)}
                   className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300"
                 >
                   {link.label}
@@ -80,17 +78,18 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Einsatzgebiet: town landing pages */}
+          {/* Einsatzgebiet: town landing pages (German) */}
           <div className="space-y-4">
-            <span className="text-datagrey text-xs tracking-widest uppercase">Einsatzgebiet</span>
+            <span className="text-datagrey text-xs tracking-widest uppercase">{t('footer.area')}</span>
             <div className="flex flex-col gap-2">
               {staedte.map((stadt) => (
                 <a
                   key={stadt.slug}
                   href={`/${stadt.slug}`}
+                  hrefLang="de"
                   className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300"
                 >
-                  Webdesign {stadt.stadt}
+                  {t('footer.townLink', { city: stadt.stadt })}
                 </a>
               ))}
             </div>
@@ -98,27 +97,27 @@ export default function Footer() {
 
           {/* Kontakt */}
           <div className="col-span-2 md:col-span-1 space-y-4">
-            <span className="text-datagrey text-xs tracking-widest uppercase">Kontakt</span>
+            <span className="text-datagrey text-xs tracking-widest uppercase">{t('footer.contact')}</span>
             <div className="flex flex-col gap-2">
               <a href={`mailto:${CONTACT_EMAIL}`} className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300 break-all">
-                {CONTACT_EMAIL}
+                <bdi dir="ltr">{CONTACT_EMAIL}</bdi>
               </a>
               <a href={PHONE_HREF} className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300">
-                Tel. {PHONE_DISPLAY}
+                {t('footer.phonePrefix')} <bdi dir="ltr">{PHONE_DISPLAY}</bdi>
               </a>
               <a href={WHATSAPP_HREF} target="_blank" rel="noopener noreferrer" className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300">
-                WhatsApp {WHATSAPP_DISPLAY}
+                {t('footer.whatsappPrefix')} <bdi dir="ltr">{WHATSAPP_DISPLAY}</bdi>
               </a>
-              <span className="text-titanium/70 text-sm">Konstanz, Bodensee</span>
+              <span className="text-titanium/70 text-sm">{t('footer.location')}</span>
               <a href={GOOGLE_PROFILE_URL} target="_blank" rel="noopener noreferrer" className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300">
-                Google-Bewertungen ansehen
+                {t('footer.reviews')}
               </a>
             </div>
           </div>
 
           {/* Social — TikTok folgt, sobald der Account-Link feststeht */}
           <div className="col-span-2 md:col-span-1 space-y-4">
-            <span className="text-datagrey text-xs tracking-widest uppercase">Social Media</span>
+            <span className="text-datagrey text-xs tracking-widest uppercase">{t('footer.social')}</span>
             <div className="flex gap-3">
               <a
                 href={INSTAGRAM_URL}
@@ -133,7 +132,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-2 pt-2">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-titanium/60 text-xs font-mono">{time} · Konstanz</span>
+              <span className="text-titanium/60 text-xs"><bdi dir="ltr" className="font-mono">{time}</bdi> · {t('footer.clockPlace')}</span>
             </div>
           </div>
         </div>
@@ -141,11 +140,11 @@ export default function Footer() {
         {/* Bottom */}
         <div className="flex flex-col md:flex-row items-center justify-between pt-8 gap-4">
           <span className="text-datagrey text-xs">
-            © {new Date().getFullYear()} ZielTakt. Alle Rechte vorbehalten.
+            {t('footer.rights', { year: new Date().getFullYear() })}
           </span>
           <div className="flex gap-6">
-            <a href="/impressum" className="text-titanium/80 text-sm hover:text-neon transition-colors">Impressum</a>
-            <a href="/datenschutz" className="text-titanium/80 text-sm hover:text-neon transition-colors">Datenschutz</a>
+            <a href="/impressum" hrefLang="de" className="text-titanium/80 text-sm hover:text-neon transition-colors">{t('footer.imprint')}</a>
+            <a href="/datenschutz" hrefLang="de" className="text-titanium/80 text-sm hover:text-neon transition-colors">{t('footer.privacy')}</a>
           </div>
         </div>
       </div>

@@ -1,0 +1,23 @@
+// i18next setup. The translation files are bundled (not fetched), so i18next can
+// initialise synchronously: the build-time prerender and the browser's first render
+// produce exactly the same text, which React needs for hydration.
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import de from '@/locales/de.json';
+import ar from '@/locales/ar.json';
+import { DEFAULT_LANG, LANGUAGES } from './languages';
+
+i18n.use(initReactI18next).init({
+  resources: {
+    de: { translation: de },
+    ar: { translation: ar },
+  },
+  lng: DEFAULT_LANG,
+  fallbackLng: DEFAULT_LANG, // a key missing in ar.json shows the German text instead of a raw key
+  supportedLngs: Object.keys(LANGUAGES),
+  initAsync: false,
+  interpolation: { escapeValue: false }, // React escapes output already
+  react: { useSuspense: false },
+});
+
+export default i18n;
