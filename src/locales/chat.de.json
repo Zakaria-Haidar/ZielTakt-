@@ -1,0 +1,182 @@
+{
+  "title": "ZielTakt Assistent",
+  "subtitle": "Automatischer Assistent · antwortet sofort",
+  "greeting": "Hallo! 👋 Ich bin der Assistent von ZielTakt. Ich beantworte Fragen zu Websites, Google-Sichtbarkeit, Preisen und Ablauf. Worum geht es Ihnen?",
+  "inputPlaceholder": "Ihre Frage …",
+  "send": "Senden",
+  "close": "Chat schließen",
+  "restart": "Neu starten",
+  "footnote": "Automatische Antworten. Persönlich erreichen Sie uns per WhatsApp oder im Erstgespräch.",
+  "menu": ["prices", "services", "google", "book", "lead"],
+  "fallback": "Das habe ich leider nicht genau verstanden. Wählen Sie ein Thema unten – oder hinterlassen Sie kurz Ihre Kontaktdaten, dann meldet sich Zakaria persönlich bei Ihnen.",
+  "fallbackChips": ["prices", "services", "google", "lead"],
+  "actions": {
+    "book": "15-Min-Erstgespräch buchen",
+    "whatsapp": "WhatsApp schreiben",
+    "lead": "Rückruf anfordern",
+    "prices": "Preise ansehen",
+    "projects": "Projekte ansehen"
+  },
+  "intents": [
+    {
+      "id": "greeting",
+      "label": "Hallo",
+      "keywords": ["hallo", "hello", "grüezi", "gruezi", "servus", "moin", "guten tag", "guten morgen", "guten abend", "hey", "hi", "salut", "salam"],
+      "answer": "Hallo und willkommen! Wobei kann ich helfen? Zum Beispiel: Was kostet eine Website, wie werde ich bei Google gefunden, oder wie schnell geht es?",
+      "chips": ["prices", "google", "duration", "book"]
+    },
+    {
+      "id": "prices",
+      "label": "Preise",
+      "keywords": ["preis", "preise", "kosten", "kostet", "teuer", "günstig", "billig", "budget", "euro", "franken", "paket", "pakete", "komplett", "monatlich", "pro monat", "angebot", "price", "cost", "wieviel", "wie viel"],
+      "answer": "Unsere Pakete heißen ZielTakt Komplett – einmalige Einrichtung plus fester Monatsbetrag:\n\n• Start: 490 € + 149 €/Monat (CH: CHF 550 + CHF 169)\n• Pro: 1.490 € + 299 €/Monat (CH: CHF 1.690 + CHF 339) – am beliebtesten\n• Partner: 2.900 € + 590–790 €/Monat + Werbebudget (CH: CHF 3.290 + CHF 670–890)\n\nIm Monatsbetrag sind Hosting, Sicherheit, kleine Änderungen und – je nach Paket – Google-Pflege und Berichte enthalten. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.",
+      "chips": ["packageDiff", "contract", "duration", "book"],
+      "actions": ["prices"]
+    },
+    {
+      "id": "packageDiff",
+      "label": "Welches Paket passt?",
+      "keywords": ["unterschied", "welches paket", "welche paket", "start oder pro", "pro oder partner", "empfehlung", "empfehlen", "passt zu mir", "was brauche ich"],
+      "answer": "Kurz gesagt:\n\n• Start – Sie wollen endlich professionell online sein: Website bis 3 Seiten, Google-Profil, WhatsApp- & Anruf-Button.\n• Pro – Sie wollen bei Google gefunden und gebucht werden: bis 7 Seiten, Online-Terminbuchung, Local SEO, automatische Bewertungsanfragen, Monatsbericht.\n• Partner – Sie wollen aktiv wachsen und Mitarbeiter finden: alles aus Pro plus Google-/Meta-Anzeigen, Lead-Automatisierung und Karriereseite.\n\nWelches wirklich passt, klären wir in 15 Minuten im kostenlosen Erstgespräch.",
+      "chips": ["prices", "book", "lead"]
+    },
+    {
+      "id": "services",
+      "label": "Leistungen",
+      "keywords": ["leistung", "leistungen", "was macht ihr", "was machen sie", "was bietet", "angebot", "website", "webseite", "homepage", "internetseite", "webdesign", "seite erstellen", "landingpage", "online shop"],
+      "answer": "Wir bauen für lokale Unternehmen ein komplettes System statt nur einer Website:\n\n• Website – modern, schnell auf dem Handy, auf Anfragen ausgelegt\n• Google – Unternehmensprofil, Local SEO, Google Maps\n• Anfragen & Buchungen – WhatsApp-Button, Online-Termine, Formulare\n• Bewertungen – automatisch um Google-Bewertungen bitten\n• Messen & Wachsen – sehen, woher Ihre Kunden kommen",
+      "chips": ["prices", "google", "reviews", "references"]
+    },
+    {
+      "id": "google",
+      "label": "Bei Google gefunden werden",
+      "keywords": ["google", "gefunden", "finden mich", "sichtbar", "sichtbarkeit", "ranking", "platz 1", "seo", "suchmaschine", "maps", "karte", "unternehmensprofil", "business profil", "lokal"],
+      "answer": "Die meisten Kunden suchen heute „Leistung + Stadt“ bei Google. Damit Sie dort auftauchen, kümmern wir uns um:\n\n• Ihr Google-Unternehmensprofil (Kategorien, Leistungen, Fotos, Öffnungszeiten)\n• eine schnelle Website mit den richtigen Begriffen für Ihre Stadt\n• Bewertungen, denn die entscheiden oft, wen Kunden anrufen\n\nEhrlich gesagt: Platz 1 kann niemand garantieren. Was wir garantieren: alles, was Google für lokale Betriebe sehen will, ist sauber eingerichtet.",
+      "chips": ["reviews", "prices", "duration", "book"]
+    },
+    {
+      "id": "reviews",
+      "label": "Mehr Google-Bewertungen",
+      "keywords": ["bewertung", "bewertungen", "rezension", "rezensionen", "sterne", "review", "reviews", "feedback", "empfehlung"],
+      "answer": "Zufriedene Kunden haben die meisten Betriebe – nur fragt niemand nach einer Bewertung. Wir richten das automatisch ein: Nach dem Auftrag bekommt Ihr Kunde eine kurze Nachricht mit direktem Link zu Ihrem Google-Profil. Ein Klick, fertig.\n\nIm Paket Pro ist das enthalten, einzeln ab 300 €.",
+      "chips": ["prices", "google", "book"]
+    },
+    {
+      "id": "whatsapp",
+      "label": "WhatsApp & Online-Termine",
+      "keywords": ["whatsapp", "buchung", "buchen", "online termin", "terminbuchung", "kalender", "reservierung", "reservieren", "anfragen verloren", "verpasste anrufe", "erreichbar"],
+      "answer": "Viele Anfragen gehen verloren, weil niemand ans Telefon kann. Deshalb bekommt Ihre Website:\n\n• einen WhatsApp-Button mit vorausgefüllter Nachricht\n• Anruf mit einem Klick auf dem Handy\n• Online-Terminbuchung rund um die Uhr (ab Paket Pro)\n• auf Wunsch: neue Anfrage sofort per WhatsApp oder E-Mail an Sie",
+      "chips": ["prices", "ai", "book"]
+    },
+    {
+      "id": "staff",
+      "label": "Mitarbeiter finden",
+      "keywords": ["mitarbeiter", "personal", "fachkraft", "fachkräfte", "bewerbung", "bewerber", "bewerben", "stellenanzeige", "stelle", "stellen", "azubi", "karriere", "job", "jobs", "team suchen"],
+      "answer": "Gute Leute schauen sich zuerst Ihren Online-Auftritt an. Im Paket Partner bauen wir eine Karriereseite für Ihre Stellen und schalten auf Wunsch gezielte Anzeigen bei Google und Meta (Instagram/Facebook) in Ihrer Region. Das Werbebudget zahlen Sie direkt an Google bzw. Meta.",
+      "chips": ["prices", "packageDiff", "book"]
+    },
+    {
+      "id": "duration",
+      "label": "Wie schnell geht es?",
+      "keywords": ["wie lange", "dauer", "dauert", "schnell", "wann fertig", "wann online", "zeitraum", "wie schnell", "lieferzeit", "tage", "wochen"],
+      "answer": "Je nach Paket:\n\n• Start: ca. 7 Tage\n• Pro: 2–3 Wochen\n• Partner: 3–4 Wochen\n\nDie Zeit läuft ab dem Moment, in dem wir Ihre Inhalte (Texte, Fotos, Logo) haben – dabei helfen wir Ihnen natürlich.",
+      "chips": ["process", "prices", "book"]
+    },
+    {
+      "id": "process",
+      "label": "Wie läuft es ab?",
+      "keywords": ["ablauf", "schritte", "wie funktioniert", "wie läuft", "vorgehen", "prozess", "was brauchen sie von mir", "was muss ich"],
+      "answer": "So läuft es ab:\n\n1. Kennenlernen – kostenloses 15-Minuten-Gespräch\n2. Konzept & Design – Sie sehen alles vorab und geben Feedback\n3. Umsetzung – schnell, sicher, fürs Handy optimiert\n4. Launch – Website geht live, Google wird eingerichtet, Sie bekommen eine kurze Einführung\n\nVon Ihnen brauchen wir nur Infos zu Ihrem Betrieb und ein paar Fotos.",
+      "chips": ["duration", "prices", "book"]
+    },
+    {
+      "id": "contract",
+      "label": "Vertrag & Laufzeit",
+      "keywords": ["vertrag", "laufzeit", "mindestlaufzeit", "kündigen", "kündigung", "gebunden", "abo", "versteckte kosten", "zusatzkosten"],
+      "answer": "Vor dem Start bekommen Sie ein schriftliches Festangebot: Leistungen, Laufzeit und alle Kosten stehen dort schwarz auf weiß. Keine versteckten Kosten. Die genaue Laufzeit hängt vom Paket ab – fragen Sie im Erstgespräch einfach direkt danach.",
+      "chips": ["prices", "book", "lead"]
+    },
+    {
+      "id": "changes",
+      "label": "Änderungen & Pflege",
+      "keywords": ["ändern", "änderung", "änderungen", "pflege", "pflegen", "wartung", "hosting", "update", "updates", "selbst bearbeiten", "bearbeiten", "domain", "e-mail adresse", "backup"],
+      "answer": "Hosting, SSL, Sicherheits-Updates und kleine Änderungen sind in jedem Monatspaket enthalten – Sie schicken uns einfach eine Nachricht. Texte, Bilder und Termine können Sie auf Wunsch auch selbst ändern.",
+      "chips": ["prices", "contract", "book"]
+    },
+    {
+      "id": "switzerland",
+      "label": "Kunden in der Schweiz",
+      "keywords": ["schweiz", "schweizer", "chf", "franken", "kreuzlingen", "zürich", "zuerich", "st gallen", "thurgau", "frauenfeld", "schaffhausen", "winterthur"],
+      "answer": "Ja, sehr gerne. Wir sitzen in Konstanz direkt an der Grenze und betreuen Betriebe auf beiden Seiten. Alle Preise gibt es auch in CHF – z. B. Paket Pro: CHF 1.690 + CHF 339/Monat.",
+      "chips": ["prices", "book"]
+    },
+    {
+      "id": "language",
+      "label": "Arabisch & andere Sprachen",
+      "keywords": ["arabisch", "sprache", "sprachen", "sprechen sie", "türkisch", "englisch", "english", "mehrsprachig", "zweisprachig", "übersetzen"],
+      "answer": "Wir beraten Sie auf Deutsch oder Arabisch. Ihre Website bauen wir auf Deutsch – oder zweisprachig, zum Beispiel Deutsch/Arabisch, wie beim Abeer Beauty Center.",
+      "chips": ["references", "prices", "book"]
+    },
+    {
+      "id": "references",
+      "label": "Referenzen",
+      "keywords": ["referenz", "referenzen", "beispiel", "beispiele", "kunden", "projekte", "portfolio", "arbeiten", "zeig mal", "swissline", "abeer"],
+      "answer": "Zwei aktuelle Projekte:\n\n• Auto Kosmetik Swissline (Konstanz) – Website mit eigener Markenwelt und direkter Buchungsanfrage\n• Abeer Beauty Center – zweisprachige Website Deutsch/Arabisch mit Kontaktformular\n\nBeide finden Sie im Bereich „Projekte“ mit Link zur echten Website.",
+      "chips": ["services", "prices", "book"],
+      "actions": ["projects"]
+    },
+    {
+      "id": "ai",
+      "label": "Chatbot & Automatisierung",
+      "keywords": ["chatbot", "chat bot", "bot", "assistent", "ki", "ai", "künstliche intelligenz", "automatisierung", "automatisch", "automation", "follow up", "nachfassen"],
+      "answer": "So einen Assistenten wie diesen bauen wir auch für Ihre Website: Er beantwortet die häufigsten Fragen sofort, auch nachts, und nimmt Anfragen entgegen. Ab 750 €. Weitere Automatisierungen: neue Anfrage sofort per WhatsApp an Sie (ab 250 €), automatische Bewertungsanfragen (ab 300 €), Erinnerungen, damit keine Anfrage verloren geht (ab 400 €).",
+      "chips": ["prices", "whatsapp", "book"]
+    },
+    {
+      "id": "about",
+      "label": "Wer ist ZielTakt?",
+      "keywords": ["wer seid", "wer sind sie", "wer bist", "über euch", "über sie", "ueber euch", "firma", "zakaria", "inhaber", "konstanz", "wo sitzt", "standort", "adresse"],
+      "answer": "ZielTakt ist ein digitales Growth-Studio aus Konstanz am Bodensee. Hinter ZielTakt steht Zakaria Haidar – Sie sprechen immer direkt mit ihm, kein Callcenter. Wir betreuen Betriebe in Deutschland und der Schweiz, persönlich vor Ort oder online.",
+      "chips": ["services", "references", "book"]
+    },
+    {
+      "id": "book",
+      "label": "Erstgespräch buchen",
+      "keywords": ["termin", "erstgespräch", "erstgespraech", "gespräch", "beratung", "kennenlernen", "treffen", "call", "meeting", "anrufen", "telefonat", "sprechen", "rückruf", "zurückrufen", "kontakt", "mensch", "persönlich"],
+      "answer": "Am schnellsten geht es so:\n\n• Kostenloses 15-Minuten-Erstgespräch direkt online buchen\n• oder per WhatsApp schreiben\n• oder hier kurz Ihre Daten hinterlassen – Zakaria meldet sich in der Regel am selben Tag.",
+      "actions": ["book", "whatsapp", "lead"]
+    },
+    {
+      "id": "thanks",
+      "label": "Danke",
+      "keywords": ["danke", "dankeschön", "vielen dank", "merci", "thanks", "super", "perfekt", "alles klar", "ok danke"],
+      "answer": "Gern geschehen! Wenn Sie möchten, klären wir alles Weitere in einem kostenlosen 15-Minuten-Gespräch.",
+      "actions": ["book", "whatsapp"]
+    }
+  ],
+  "lead": {
+    "chip": "Rückruf anfordern",
+    "start": "Gern! Ich nehme kurz Ihre Daten auf, Zakaria meldet sich dann persönlich. Wie heißen Sie?",
+    "nameAgain": "Das sieht nicht nach einem Namen aus. Wie heißen Sie (Vor- und Nachname)?",
+    "askBusiness": "Danke, {{name}}! Wie heißt Ihr Betrieb und in welcher Branche sind Sie? (z. B. „Friseur Müller, Konstanz“)",
+    "businessAgain": "Bitte nennen Sie kurz Ihren Betrieb oder Ihre Branche.",
+    "askEmail": "Unter welcher E-Mail-Adresse erreichen wir Sie?",
+    "emailAgain": "Diese E-Mail-Adresse scheint nicht zu stimmen. Bitte prüfen Sie sie noch einmal.",
+    "askPhone": "Und Ihre Telefon- oder WhatsApp-Nummer? Optional, aber oft schneller.",
+    "phoneAgain": "Diese Nummer kann ich nicht lesen. Bitte im Format +49 151 … oder überspringen.",
+    "skipPhone": "Überspringen",
+    "summary": "Bitte kurz prüfen:\n\nName: {{name}}\nBetrieb: {{business}}\nE-Mail: {{email}}\nTelefon: {{phone}}\n\nSoll ich das an Zakaria senden?",
+    "noPhone": "–",
+    "confirm": "Ja, senden",
+    "cancel": "Abbrechen",
+    "consent": "Mit dem Senden werden Ihre Angaben zur Bearbeitung Ihrer Anfrage an uns übermittelt.",
+    "privacyLink": "Datenschutz",
+    "sending": "Wird gesendet …",
+    "success": "Danke, {{name}}! Ihre Anfrage ist angekommen. Zakaria meldet sich in der Regel am selben Tag – per E-Mail oder Telefon.",
+    "error": "Das hat leider nicht geklappt. Bitte schreiben Sie uns direkt per WhatsApp oder an info@zieltakt.de.",
+    "cancelled": "Kein Problem, abgebrochen. Was möchten Sie sonst wissen?",
+    "messageIntro": "Anfrage über den Chat-Assistenten (Deutsch)",
+    "businessLabel": "Betrieb",
+    "topicLabel": "Zuletzt gefragt nach"
+  }
+}

@@ -318,6 +318,12 @@
     "follow": "Folgen Sie uns",
     "reviews": "Google-Bewertungen ansehen"
   },
+  "chatLauncher": {
+    "open": "Chat öffnen",
+    "close": "Chat schließen",
+    "teaser": "Fragen zu Preisen oder Google? Ich antworte sofort.",
+    "dismiss": "Hinweis schließen"
+  },
   "whatsapp": {
     "message": "Hallo ZielTakt, ich interessiere mich für ein Erstgespräch.",
     "write": "WhatsApp schreiben"
