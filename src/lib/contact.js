@@ -16,8 +16,9 @@ export const whatsappHref = (text) =>
 // Cal.com booking page for the "15-Minuten Erstgespräch".
 // Leave null until the Cal.com event exists: every booking button hides itself while
 // this is null (and the CTAs fall back to the contact form), so nothing links to a dead page.
-// Example once set up: 'https://cal.com/zieltakt/erstgespraech'
-export const CAL_URL = null;
+// If the Cal.com username or event slug ever changes, update this link too
+// (the old link stops working immediately).
+export const CAL_URL = 'https://cal.com/zieltakt-dmdpyk/15min';
 
 // Google Business Profile (reviews). Linked only; nothing is embedded.
 export const GOOGLE_PROFILE_URL = 'https://maps.google.com/?cid=9393194777394528964';
