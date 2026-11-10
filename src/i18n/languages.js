@@ -1,15 +1,17 @@
 // Every language the site supports, in one place.
 //
-// To add English later:
-//   1. copy src/locales/de.json to src/locales/en.json and translate it
-//   2. uncomment the "en" line below
-//   3. add `en: { translation: en }` to resources in src/i18n/index.js
-//   4. add an '/en' entry to src/routes.js and a <Route path="/en"> in App.jsx
+// Order here = order in the language switcher.
+// To add another language (e.g. French):
+//   1. copy src/locales/de.json to src/locales/fr.json and translate it (+ chat.fr.json)
+//   2. add a line below
+//   3. add `fr: { translation: fr }` to resources in src/i18n/index.js
+//   4. add an '/fr' entry to src/routes.js, a <Route path="/fr"> in App.jsx
+//      and the chat file to CONTENT in components/landing/chat/ChatPanel.jsx
 // hreflang tags, the language switcher and the sitemap pick it up automatically.
 export const LANGUAGES = {
   de: { code: 'de', label: 'DE', name: 'Deutsch', path: '/', dir: 'ltr', hreflang: 'de' },
+  en: { code: 'en', label: 'EN', name: 'English', path: '/en', dir: 'ltr', hreflang: 'en' },
   ar: { code: 'ar', label: 'عربي', name: 'العربية', path: '/ar', dir: 'rtl', hreflang: 'ar' },
-  // en: { code: 'en', label: 'EN', name: 'English', path: '/en', dir: 'ltr', hreflang: 'en' },
 };
 
 export const DEFAULT_LANG = 'de';

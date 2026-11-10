@@ -6,12 +6,13 @@ import { CAL_URL, whatsappHref } from '@/lib/contact';
 import { WhatsAppIcon } from '../icons';
 import { matchIntent, isEmail, isPhone, looksLikeName } from './matcher';
 import de from '@/locales/chat.de.json';
+import en from '@/locales/chat.en.json';
 import ar from '@/locales/chat.ar.json';
 
 // ZielTakt chat assistant: rule-based (no AI, no third party). This file is
 // only downloaded when a visitor opens the chat (lazy import in FloatingContact).
 // Nothing is stored; a lead is sent to /api/contact only after the visitor confirms.
-const CONTENT = { de, ar };
+const CONTENT = { de, en, ar };
 
 const fill = (text, vars = {}) => text.replace(/\{\{(\w+)\}\}/g, (_, k) => vars[k] ?? '');
 

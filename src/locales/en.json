@@ -1,0 +1,360 @@
+{
+  "nav": {
+    "links": [
+      { "label": "Services", "id": "services" },
+      { "label": "About", "id": "about" },
+      { "label": "Service area", "id": "area" },
+      { "label": "Contact", "id": "contact" }
+    ],
+    "cta": "Start a project",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "languageLabel": "Language"
+  },
+  "hero": {
+    "badge": "Growth Systems · Konstanz",
+    "titleStart": "Professional websites for businesses",
+    "titleHighlight": "around Lake Constance.",
+    "text": "We build modern, trustworthy websites and digital systems so local customers find your business on Google and understand it at a glance.",
+    "ctaPrimary": "Book a free intro call",
+    "ctaWhatsApp": "Message on WhatsApp",
+    "trustLine": "No obligation · Personal advice · Local to Lake Constance",
+    "stats": [
+      { "value": "Local", "label": "Lake Constance" },
+      { "value": "Personal", "label": "Advice" },
+      { "value": "Fast", "label": "Delivery" }
+    ],
+    "dashboard": {
+      "name": "ZielTakt Studio",
+      "sub": "Sample dashboard",
+      "active": "Active",
+      "visibility": "Visibility",
+      "example": "Sample view",
+      "tiles": [
+        { "v": "SEO", "l": "Local ready" },
+        { "v": "A+", "l": "SSL security" },
+        { "v": "Fast", "l": "on mobile" }
+      ]
+    }
+  },
+  "problems": {
+    "eyebrow": "Sound familiar?",
+    "title": "Good work alone doesn't bring new customers.",
+    "items": [
+      {
+        "title": "Not found on Google",
+        "text": "Customers search for your service in your town and find your competitors first."
+      },
+      {
+        "title": "Too few reviews",
+        "text": "You have plenty of happy customers, but hardly anyone leaves a review. So new customers trust someone else."
+      },
+      {
+        "title": "Enquiries get lost",
+        "text": "Calls while you're working, unanswered WhatsApp messages, no online booking: every missed enquiry is a lost customer."
+      },
+      {
+        "title": "No job applicants",
+        "text": "You're looking for staff, but without a strong online presence hardly anyone applies."
+      }
+    ],
+    "footer": "ZielTakt solves exactly that: with one system instead of loose pieces.",
+    "footerLink": "See the solution"
+  },
+  "about": {
+    "eyebrow": "About us",
+    "titleStart": "Your local partner for",
+    "titleHighlight": "digital craftsmanship.",
+    "p1": "ZielTakt is a digital growth studio from Konstanz. We build more than websites for local businesses: we combine design, visibility and automation into one system built to win new customers.",
+    "p2": "Every website is made to measure: no site builder, no stock templates, but thoughtful design that fits your business and your customers. We know the Lake Constance region because we live and work here. And we speak German, English and Arabic.",
+    "stats": [
+      { "value": "100%", "label": "Custom work" },
+      { "value": "Lake Constance", "label": "Region" },
+      { "value": "1:1", "label": "Support" }
+    ],
+    "values": [
+      { "label": "Personal", "sub": "Direct contact, no call centre" },
+      { "label": "Real design", "sub": "Handmade, no site builder" },
+      { "label": "Reliable", "sub": "We keep our promises" },
+      { "label": "Fast", "sub": "From idea to launch" }
+    ]
+  },
+  "services": {
+    "eyebrow": "Services",
+    "titleStart": "More than a website:",
+    "titleHighlight": "A system for more customers.",
+    "text": "We connect your website, Google visibility, leads, bookings and tracking into one system that grows your business online.",
+    "items": [
+      {
+        "title": "Website & Conversion",
+        "tagline": "So visitors become customers.",
+        "description": "We build websites that don't just look good but generate enquiries and bookings.",
+        "features": [
+          "Custom, mobile-first web design",
+          "Page structure built to convert",
+          "Clear calls to action & trust elements",
+          "Fast loading & technical SEO foundation"
+        ]
+      },
+      {
+        "title": "Google & Local SEO",
+        "tagline": "So customers find you.",
+        "description": "We optimise your online presence for Google, Maps and local searches.",
+        "features": [
+          "Google Business Profile setup & care",
+          "Local SEO & keyword targeting",
+          "Google Search Console & indexing",
+          "Structured data for better visibility"
+        ]
+      },
+      {
+        "title": "Leads & Bookings",
+        "tagline": "So interest turns into real enquiries.",
+        "description": "We make it easy for your customers to get in touch, book an appointment or send a request.",
+        "features": [
+          "24/7 online booking",
+          "Contact & enquiry forms",
+          "WhatsApp contact & click-to-call",
+          "Automatic confirmations & reminders"
+        ]
+      },
+      {
+        "title": "Tracking & Growth",
+        "tagline": "So you know what really works.",
+        "description": "We show you where your customers come from and which measures actually bring enquiries.",
+        "features": [
+          "Google Analytics & Search Console",
+          "Conversion & form tracking",
+          "Performance monitoring",
+          "Reporting depending on package"
+        ]
+      }
+    ],
+    "unsure": "Not sure what you need?",
+    "unsureLink": "Let's talk in person"
+  },
+  "pricing": {
+    "eyebrow": "Pricing",
+    "title": "ZielTakt Komplett.",
+    "text": "Website, Google visibility and ongoing care in one package: a one-time setup plus a fixed monthly fee. No hidden costs.",
+    "badge": "Transparent pricing · Fixed quote before we start",
+    "recommended": "Recommended",
+    "oneTime": "one-time",
+    "perMonth": "/month",
+    "switzerland": "Switzerland",
+    "delivery": "Delivery",
+    "minTerm": "12-month minimum term",
+    "packages": [
+      {
+        "name": "Start",
+        "setup": "€790",
+        "monthly": "€149",
+        "chfSetup": "CHF 990",
+        "chfMonthly": "CHF 179",
+        "time": "approx. 7 days",
+        "for": "For businesses that finally want a professional presence online.",
+        "features": [
+          "Website with up to 3 pages, mobile-optimised",
+          "Google Business Profile setup",
+          "WhatsApp & call buttons",
+          "Hosting, SSL & security updates",
+          "Small changes every month included"
+        ],
+        "popular": false
+      },
+      {
+        "name": "Pro",
+        "setup": "€1,490",
+        "monthly": "€349",
+        "chfSetup": "CHF 1,890",
+        "chfMonthly": "CHF 399",
+        "time": "2–3 weeks",
+        "for": "For businesses that want to be found and booked on Google.",
+        "features": [
+          "Everything in Start",
+          "Website with up to 7 pages",
+          "Online booking",
+          "Local SEO & ongoing Google Profile care",
+          "Automatic Google review requests",
+          "Monthly report"
+        ],
+        "popular": true
+      },
+      {
+        "name": "Partner",
+        "setup": "€2,900",
+        "monthly": "€590–790",
+        "chfSetup": "CHF 3,490",
+        "chfMonthly": "CHF 690–890",
+        "extra": "+ ad budget",
+        "time": "3–4 weeks",
+        "for": "For businesses that want to grow actively and find staff.",
+        "features": [
+          "Everything in Pro",
+          "Google & Meta ads: setup & management",
+          "Lead automation & follow-ups",
+          "Careers page for your job openings",
+          "Monthly strategy call"
+        ],
+        "popular": false
+      }
+    ],
+    "notes": "Timelines start once all content has been approved by the client. In the Partner package you pay the ad budget directly to Google or Meta. 12-month minimum term, then cancellable monthly. Scope and all costs are set out in writing in a fixed quote before we start.",
+    "automationTitle": "Automation & AI",
+    "automationText": "Less manual work, more time for your business. Bookable individually, as part of a project or added later.",
+    "automations": [
+      { "name": "Lead automation", "price": "from €250", "chf": "from CHF 290", "note": "New enquiry → forwarded instantly via WhatsApp/email" },
+      { "name": "Review automation", "price": "from €300", "chf": "from CHF 340", "note": "Automatically ask for a Google review after each job" },
+      { "name": "Follow-up automation", "price": "from €400", "chf": "from CHF 450", "note": "No reply? An automatic reminder so no enquiry gets lost" },
+      { "name": "AI assistant", "price": "from €750", "chf": "from CHF 850", "note": "Answers common questions automatically & captures new leads" }
+    ],
+    "automationNote": "Running costs for the tools/software used are separate, depending on scope. Further automations (CRM integration, complete workflow systems) on request.",
+    "cta": "Request a custom quote",
+    "vatNote": "All prices are final prices. Under § 19 of the German VAT Act (small business rule), no VAT is charged.",
+    "vatNoteOriginal": "Gemäß § 19 UStG wird keine Umsatzsteuer berechnet."
+  },
+  "projects": {
+    "eyebrow": "Projects",
+    "title": "Real work.",
+    "viewSite": "View website",
+    "items": {
+      "swissline": {
+        "tag": "Konstanz · Car detailing",
+        "description": "Premium car detailing from Konstanz. A modern website that shows craftsmanship and attention to detail, from the brand identity and design to direct booking requests.",
+        "facts": ["Custom design", "Logo & colour palette", "Mobile-first", "Direct booking request"],
+        "logoAlt": "Auto Kosmetik Swissline logo"
+      },
+      "abeer": {
+        "tag": "Beauty salon · Bilingual (DE/AR)",
+        "description": "Beauty salon with a bilingual website (German & Arabic). A clear overview of services and a working contact form that delivers enquiries by email, designed for both language groups of its clientele.",
+        "facts": ["Bilingual DE/AR", "Custom design", "Contact form with email delivery", "Mobile-first"],
+        "logoAlt": "Abeer Beauty Center logo"
+      }
+    }
+  },
+  "process": {
+    "eyebrow": "Process",
+    "title": "Four steps to your finished website.",
+    "steps": [
+      { "title": "Get to know you", "time": "Day 1", "desc": "Free intro call. We clarify your goals, your customers and what the website needs to achieve." },
+      { "title": "Concept & design", "time": "3–5 days", "desc": "Layout, colours, fonts and content are designed. You see everything in advance and give feedback." },
+      { "title": "Development", "time": "5–10 days", "desc": "We build the website: responsive, fast, secure and easy to maintain." },
+      { "title": "Launch & handover", "time": "1–2 days", "desc": "The website goes live, Google visibility is set up, and you get a short walkthrough." }
+    ]
+  },
+  "partner": {
+    "badge": "Referral programme",
+    "title": "Know a business that needs a new website?",
+    "text": "Photographers, print shops, consultants or simply good contacts: if you refer a client who signs with us, you receive {{pct}}% of the project value as a thank-you. No contract, no small print.",
+    "cta": "Become a partner",
+    "presetSubject": "Partner enquiry"
+  },
+  "area": {
+    "eyebrow": "Service area",
+    "title": "Konstanz and the whole region.",
+    "mapLabel": "Map of the service area around Lake Constance",
+    "germany": "Germany",
+    "switzerland": "Switzerland",
+    "text": "We work with businesses in Konstanz and across the region – personally, quickly and reliably. Practice, trade, restaurant or retail: we know the region and your customers.",
+    "remote": "Outside the region we work with you remotely, by video call and WhatsApp, anywhere in Germany and Switzerland.",
+    "studio": "Studio location",
+    "studioPlace": "Konstanz, Baden-Württemberg",
+    "studioNote": "Virtual office · personal meetings by appointment"
+  },
+  "region": {
+    "title": "For businesses in the region"
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Frequently asked questions.",
+    "items": [
+      {
+        "q": "Can we work together in English?",
+        "a": "Yes. We advise you in English, German or Arabic, by phone, WhatsApp or in person. Your website can be in German, English or several languages."
+      },
+      {
+        "q": "How long does a website take?",
+        "a": "Depending on the package: Start is live in about 7 days, Pro in 2–3 weeks, Partner in 3–4 weeks. The individual steps are shown in the Process section above, from the intro call to launch."
+      },
+      {
+        "q": "What does it really cost in the end?",
+        "a": "ZielTakt Komplett consists of a one-time setup and a fixed monthly fee: Start €790 + €149/month, Pro €1,490 + €349/month, Partner €2,900 + €590–790/month plus ad budget, each with a 12-month minimum term. After the intro call you receive a fixed written quote listing all costs, including any running costs for tools or software."
+      },
+      {
+        "q": "Can I edit my website myself later?",
+        "a": "Yes. We build on an easy-to-maintain system so you can change texts, images and appointments yourself. If you'd rather hand it off: small changes are included in every monthly package and we take care of them for you."
+      },
+      {
+        "q": "What happens after launch?",
+        "a": "After launch we hand over the website, show you the most important features and set up your Google visibility (Google Business Profile, Search Console). After that we look after technology, security and visibility as part of your monthly package."
+      },
+      {
+        "q": "Do you work with clients in Switzerland?",
+        "a": "Yes. We're based in Konstanz, right on the border, and work with clients across the region, including the Swiss side. All prices are also available in CHF. Personal meetings by appointment."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's talk.",
+    "fields": {
+      "name": { "label": "Name", "placeholder": "Your name" },
+      "email": { "label": "Email", "placeholder": "you@company.com" },
+      "phone": { "label": "Phone (optional)", "placeholder": "+41 79 ..." },
+      "message": { "label": "Message", "placeholder": "Tell us about your project..." }
+    },
+    "honeypot": "Website",
+    "send": "Send message",
+    "sending": "Sending…",
+    "sent": "✓ Message sent",
+    "consent": "By sending, you agree that we process your details to handle your enquiry. More in our",
+    "consentLink": "privacy policy (German)",
+    "error": "Unfortunately the message could not be sent. Please try again or email us directly at",
+    "intro": "Ready for the next step? Book a free 15-minute intro call or message us on WhatsApp – we usually reply the same day.",
+    "bookTitle": "15-minute intro call",
+    "bookSub": "Free · pick a time online",
+    "labels": {
+      "email": "Email",
+      "phone": "Phone",
+      "whatsapp": "WhatsApp",
+      "location": "Location"
+    },
+    "locationValue": "Konstanz, Lake Constance",
+    "follow": "Follow us",
+    "reviews": "See our Google reviews"
+  },
+  "chatLauncher": {
+    "open": "Open chat",
+    "close": "Close chat",
+    "teaser": "Questions about pricing or Google? I'll answer right away.",
+    "dismiss": "Close hint"
+  },
+  "whatsapp": {
+    "message": "Hi ZielTakt, I'm interested in an intro call.",
+    "write": "Message on WhatsApp"
+  },
+  "floating": {
+    "call": "Call",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "book": "Book",
+    "emailAria": "Send an email",
+    "bookAria": "Book an intro call"
+  },
+  "footer": {
+    "tagline": "Digital growth systems for local businesses around Lake Constance: website, visibility, enquiries and growth from one source.",
+    "navigation": "Navigation",
+    "area": "Service area",
+    "townLink": "Web design {{city}}",
+    "contact": "Contact",
+    "phonePrefix": "Tel.",
+    "whatsappPrefix": "WhatsApp",
+    "location": "Konstanz, Lake Constance",
+    "reviews": "See our Google reviews",
+    "social": "Social media",
+    "clockPlace": "Konstanz",
+    "rights": "© {{year}} ZielTakt. All rights reserved.",
+    "imprint": "Imprint (Impressum)",
+    "privacy": "Privacy (Datenschutz)"
+  }
+}

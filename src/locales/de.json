@@ -143,13 +143,14 @@
     "perMonth": "/Monat",
     "switzerland": "Schweiz",
     "delivery": "Umsetzung",
+    "minTerm": "12 Monate Mindestlaufzeit",
     "packages": [
       {
         "name": "Start",
-        "setup": "490 €",
+        "setup": "790 €",
         "monthly": "149 €",
-        "chfSetup": "CHF 550",
-        "chfMonthly": "CHF 169",
+        "chfSetup": "CHF 990",
+        "chfMonthly": "CHF 179",
         "time": "ca. 7 Tage",
         "for": "Für Betriebe, die endlich professionell online sein wollen.",
         "features": [
@@ -164,9 +165,9 @@
       {
         "name": "Pro",
         "setup": "1.490 €",
-        "monthly": "299 €",
-        "chfSetup": "CHF 1.690",
-        "chfMonthly": "CHF 339",
+        "monthly": "349 €",
+        "chfSetup": "CHF 1.890",
+        "chfMonthly": "CHF 399",
         "time": "2–3 Wochen",
         "for": "Für Betriebe, die bei Google gefunden und gebucht werden wollen.",
         "features": [
@@ -183,8 +184,8 @@
         "name": "Partner",
         "setup": "2.900 €",
         "monthly": "590–790 €",
-        "chfSetup": "CHF 3.290",
-        "chfMonthly": "CHF 670–890",
+        "chfSetup": "CHF 3.490",
+        "chfMonthly": "CHF 690–890",
         "extra": "+ Werbebudget",
         "time": "3–4 Wochen",
         "for": "Für Betriebe, die aktiv wachsen und Mitarbeiter finden wollen.",
@@ -198,7 +199,7 @@
         "popular": false
       }
     ],
-    "notes": "Zeiträume gelten ab Freigabe aller Inhalte durch den Kunden. Das Werbebudget im Partner-Paket zahlen Sie direkt an Google bzw. Meta. Laufzeit, Leistungsumfang und alle Kosten stehen vorab im schriftlichen Festangebot.",
+    "notes": "Zeiträume gelten ab Freigabe aller Inhalte durch den Kunden. Das Werbebudget im Partner-Paket zahlen Sie direkt an Google bzw. Meta. Mindestlaufzeit 12 Monate, danach monatlich kündbar. Leistungsumfang und alle Kosten stehen vorab im schriftlichen Festangebot.",
     "automationTitle": "Automation & AI",
     "automationText": "Weniger manuelle Arbeit, mehr Zeit für Ihr Geschäft. Einzeln buchbar, ob als Teil eines Projekts oder später ergänzt.",
     "automations": [
@@ -273,7 +274,7 @@
       },
       {
         "q": "Was kostet es wirklich am Ende?",
-        "a": "ZielTakt Komplett besteht aus einer einmaligen Einrichtung und einem festen Monatsbetrag: Start 490 € + 149 €/Monat, Pro 1.490 € + 299 €/Monat, Partner 2.900 € + 590–790 €/Monat zuzüglich Werbebudget. Nach dem Erstgespräch erhalten Sie ein schriftliches Festangebot, in dem alle Kosten aufgeführt sind, auch eventuelle laufende Kosten für Tools oder Software."
+        "a": "ZielTakt Komplett besteht aus einer einmaligen Einrichtung und einem festen Monatsbetrag: Start 790 € + 149 €/Monat, Pro 1.490 € + 349 €/Monat, Partner 2.900 € + 590–790 €/Monat zuzüglich Werbebudget, jeweils mit 12 Monaten Mindestlaufzeit. Nach dem Erstgespräch erhalten Sie ein schriftliches Festangebot, in dem alle Kosten aufgeführt sind, auch eventuelle laufende Kosten für Tools oder Software."
       },
       {
         "q": "Kann ich meine Website später selbst bearbeiten?",

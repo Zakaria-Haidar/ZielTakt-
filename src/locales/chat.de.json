@@ -29,7 +29,7 @@
       "id": "prices",
       "label": "Preise",
       "keywords": ["preis", "preise", "kosten", "kostet", "teuer", "günstig", "billig", "budget", "euro", "franken", "paket", "pakete", "komplett", "monatlich", "pro monat", "angebot", "price", "cost", "wieviel", "wie viel"],
-      "answer": "Unsere Pakete heißen ZielTakt Komplett – einmalige Einrichtung plus fester Monatsbetrag:\n\n• Start: 490 € + 149 €/Monat (CH: CHF 550 + CHF 169)\n• Pro: 1.490 € + 299 €/Monat (CH: CHF 1.690 + CHF 339) – am beliebtesten\n• Partner: 2.900 € + 590–790 €/Monat + Werbebudget (CH: CHF 3.290 + CHF 670–890)\n\nIm Monatsbetrag sind Hosting, Sicherheit, kleine Änderungen und – je nach Paket – Google-Pflege und Berichte enthalten. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.",
+      "answer": "Unsere Pakete heißen ZielTakt Komplett – einmalige Einrichtung plus fester Monatsbetrag:\n\n• Start: 790 € + 149 €/Monat (CH: CHF 990 + CHF 179)\n• Pro: 1.490 € + 349 €/Monat (CH: CHF 1.890 + CHF 399) – am beliebtesten\n• Partner: 2.900 € + 590–790 €/Monat + Werbebudget (CH: CHF 3.490 + CHF 690–890)\n\nIm Monatsbetrag sind Hosting, Sicherheit, kleine Änderungen und – je nach Paket – Google-Pflege und Berichte enthalten. Mindestlaufzeit 12 Monate. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.",
       "chips": ["packageDiff", "contract", "duration", "book"],
       "actions": ["prices"]
     },
@@ -93,7 +93,7 @@
       "id": "contract",
       "label": "Vertrag & Laufzeit",
       "keywords": ["vertrag", "laufzeit", "mindestlaufzeit", "kündigen", "kündigung", "gebunden", "abo", "versteckte kosten", "zusatzkosten"],
-      "answer": "Vor dem Start bekommen Sie ein schriftliches Festangebot: Leistungen, Laufzeit und alle Kosten stehen dort schwarz auf weiß. Keine versteckten Kosten. Die genaue Laufzeit hängt vom Paket ab – fragen Sie im Erstgespräch einfach direkt danach.",
+      "answer": "Vor dem Start bekommen Sie ein schriftliches Festangebot: Leistungen und alle Kosten stehen dort schwarz auf weiß. Keine versteckten Kosten. Die Mindestlaufzeit beträgt 12 Monate, danach ist monatlich kündbar.",
       "chips": ["prices", "book", "lead"]
     },
     {
@@ -107,7 +107,7 @@
       "id": "switzerland",
       "label": "Kunden in der Schweiz",
       "keywords": ["schweiz", "schweizer", "chf", "franken", "kreuzlingen", "zürich", "zuerich", "st gallen", "thurgau", "frauenfeld", "schaffhausen", "winterthur"],
-      "answer": "Ja, sehr gerne. Wir sitzen in Konstanz direkt an der Grenze und betreuen Betriebe auf beiden Seiten. Alle Preise gibt es auch in CHF – z. B. Paket Pro: CHF 1.690 + CHF 339/Monat.",
+      "answer": "Ja, sehr gerne. Wir sitzen in Konstanz direkt an der Grenze und betreuen Betriebe auf beiden Seiten. Alle Preise gibt es auch in CHF – z. B. Paket Pro: CHF 1.890 + CHF 399/Monat.",
       "chips": ["prices", "book"]
     },
     {

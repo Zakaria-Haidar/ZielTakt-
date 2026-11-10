@@ -22,7 +22,7 @@ const Contact = lazy(() => import('../components/landing/Contact'));
 const Footer = lazy(() => import('../components/landing/Footer'));
 const FloatingContact = lazy(() => import('../components/landing/FloatingContact'));
 
-// Same page for "/" (German) and "/ar" (Arabic); all text comes from src/locales/*.json.
+// Same page for "/" (German), "/en" (English) and "/ar" (Arabic); all text comes from src/locales/*.json.
 export default function Home() {
   const { lang } = useLang();
   usePageMeta(homePath(lang));

@@ -78,6 +78,20 @@ export const routes = [
     sitemap: { changefreq: 'monthly', priority: '1.0' },
   },
   {
+    path: '/en',
+    lang: 'en',
+    ogLocale: 'en_GB',
+    title: 'ZielTakt – Websites & Google visibility for local businesses | Konstanz',
+    description:
+      'ZielTakt from Konstanz: professional websites, Google visibility, reviews, WhatsApp and online booking for local businesses in Germany and Switzerland. Free intro call in English, German or Arabic.',
+    ogTitle: 'ZielTakt – Web design studio Konstanz',
+    ogDescription:
+      'Websites for businesses around Lake Constance: modern design, local Google visibility and online booking from one source.',
+    alternates: HOME_ALTERNATES,
+    jsonLd: [homeJsonLd],
+    sitemap: { changefreq: 'monthly', priority: '0.9' },
+  },
+  {
     path: '/ar',
     lang: 'ar',
     dir: 'rtl',

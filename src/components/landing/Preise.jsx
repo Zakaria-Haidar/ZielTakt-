@@ -107,6 +107,7 @@ export default function Preise() {
                 <div className="text-datagrey text-sm mt-2">
                   {t('pricing.delivery')}: {pkg.time}
                 </div>
+                <div className="text-datagrey text-sm mt-1">{t('pricing.minTerm')}</div>
               </div>
 
               <ul className="space-y-2.5 pt-4 border-t border-border flex-1">

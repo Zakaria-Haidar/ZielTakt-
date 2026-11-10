@@ -1,0 +1,182 @@
+{
+  "title": "ZielTakt Assistant",
+  "subtitle": "Automated assistant · replies instantly",
+  "greeting": "Hi! 👋 I'm the ZielTakt assistant. I can answer questions about websites, Google visibility, pricing and how we work. What can I help you with?",
+  "inputPlaceholder": "Your question …",
+  "send": "Send",
+  "close": "Close chat",
+  "restart": "Start over",
+  "footnote": "Automated answers. To talk to a person: WhatsApp or book an intro call.",
+  "menu": ["prices", "services", "google", "book", "lead"],
+  "fallback": "Sorry, I didn't quite get that. Pick a topic below – or leave your contact details and Zakaria will get back to you personally.",
+  "fallbackChips": ["prices", "services", "google", "lead"],
+  "actions": {
+    "book": "Book a 15-min intro call",
+    "whatsapp": "Message on WhatsApp",
+    "lead": "Request a call back",
+    "prices": "See pricing",
+    "projects": "See projects"
+  },
+  "intents": [
+    {
+      "id": "greeting",
+      "label": "Hello",
+      "keywords": ["hello", "hey", "good morning", "good afternoon", "good evening", "greetings", "howdy", "hi", "yo", "hallo", "salam"],
+      "answer": "Hello and welcome! How can I help? For example: what does a website cost, how do I get found on Google, or how fast can you deliver?",
+      "chips": ["prices", "google", "duration", "book"]
+    },
+    {
+      "id": "prices",
+      "label": "Pricing",
+      "keywords": ["price", "prices", "pricing", "cost", "costs", "how much", "expensive", "cheap", "budget", "fee", "fees", "euro", "franc", "francs", "package", "packages", "monthly", "per month", "quote", "rates"],
+      "answer": "Our packages are called ZielTakt Komplett – a one-time setup plus a fixed monthly fee:\n\n• Start: €790 + €149/month (CH: CHF 990 + CHF 179)\n• Pro: €1,490 + €349/month (CH: CHF 1,890 + CHF 399) – most popular\n• Partner: €2,900 + €590–790/month + ad budget (CH: CHF 3,490 + CHF 690–890)\n\nThe monthly fee covers hosting, security, small changes and – depending on the package – Google Profile care and reports. 12-month minimum term. No VAT is charged (§ 19 UStG, German small business rule).",
+      "chips": ["packageDiff", "contract", "duration", "book"],
+      "actions": ["prices"]
+    },
+    {
+      "id": "packageDiff",
+      "label": "Which package fits?",
+      "keywords": ["difference", "which package", "which one", "start or pro", "pro or partner", "recommend", "recommendation", "right for me", "what do i need", "best for me"],
+      "answer": "In short:\n\n• Start – you finally want a professional online presence: website up to 3 pages, Google Profile, WhatsApp & call buttons.\n• Pro – you want to be found and booked on Google: up to 7 pages, online booking, local SEO, automatic review requests, monthly report.\n• Partner – you want to grow actively and find staff: everything in Pro plus Google/Meta ads, lead automation and a careers page.\n\nWe'll work out which one really fits in a free 15-minute intro call.",
+      "chips": ["prices", "book", "lead"]
+    },
+    {
+      "id": "services",
+      "label": "Services",
+      "keywords": ["service", "services", "what do you do", "what do you offer", "offer", "website", "web site", "homepage", "webpage", "web design", "webdesign", "landing page", "build a site", "online shop"],
+      "answer": "We build a complete system for local businesses instead of just a website:\n\n• Website – modern, fast on mobile, built to bring enquiries\n• Google – Business Profile, local SEO, Google Maps\n• Enquiries & bookings – WhatsApp button, online booking, forms\n• Reviews – automatically ask happy customers for Google reviews\n• Measure & grow – see where your customers come from",
+      "chips": ["prices", "google", "reviews", "references"]
+    },
+    {
+      "id": "google",
+      "label": "Get found on Google",
+      "keywords": ["google", "found", "find me", "visible", "visibility", "ranking", "rank", "first page", "seo", "search engine", "maps", "business profile", "gmb", "local search", "local"],
+      "answer": "Most customers search \"service + town\" on Google today. To show up there, we take care of:\n\n• your Google Business Profile (categories, services, photos, opening hours)\n• a fast website with the right terms for your town\n• reviews – they often decide who customers call\n\nTo be honest: nobody can guarantee position 1. What we guarantee: everything Google wants to see from a local business is set up properly.",
+      "chips": ["reviews", "prices", "duration", "book"]
+    },
+    {
+      "id": "reviews",
+      "label": "More Google reviews",
+      "keywords": ["review", "reviews", "rating", "ratings", "stars", "testimonials", "feedback", "reputation"],
+      "answer": "Most businesses have happy customers – but nobody asks them for a review. We automate it: after the job, your customer gets a short message with a direct link to your Google profile. One click, done.\n\nIncluded in the Pro package, or on its own from €300.",
+      "chips": ["prices", "google", "book"]
+    },
+    {
+      "id": "whatsapp",
+      "label": "WhatsApp & online booking",
+      "keywords": ["whatsapp", "booking", "book online", "online booking", "appointment system", "calendar", "reservation", "reserve", "missed calls", "lost enquiries", "reachable"],
+      "answer": "Many enquiries get lost because nobody can pick up the phone. So your website gets:\n\n• a WhatsApp button with a pre-filled message\n• one-tap calling on mobile\n• 24/7 online booking (from the Pro package)\n• if you like: every new enquiry sent to you instantly via WhatsApp or email",
+      "chips": ["prices", "ai", "book"]
+    },
+    {
+      "id": "staff",
+      "label": "Finding staff",
+      "keywords": ["staff", "employees", "employee", "hiring", "hire", "recruit", "recruiting", "applicants", "job ad", "jobs", "careers", "vacancy", "vacancies", "workers", "team"],
+      "answer": "Good people look at your online presence first. In the Partner package we build a careers page for your openings and, if you like, run targeted Google and Meta (Instagram/Facebook) ads in your region. You pay the ad budget directly to Google or Meta.",
+      "chips": ["prices", "packageDiff", "book"]
+    },
+    {
+      "id": "duration",
+      "label": "How fast is it?",
+      "keywords": ["how long", "how fast", "how quickly", "duration", "timeline", "time frame", "when ready", "when live", "turnaround", "days", "weeks", "deadline"],
+      "answer": "Depending on the package:\n\n• Start: approx. 7 days\n• Pro: 2–3 weeks\n• Partner: 3–4 weeks\n\nThe clock starts once we have your content (texts, photos, logo) – and of course we help you with that.",
+      "chips": ["process", "prices", "book"]
+    },
+    {
+      "id": "process",
+      "label": "How does it work?",
+      "keywords": ["process", "steps", "how does it work", "how do you work", "procedure", "what do you need from me", "what do i need to provide", "workflow"],
+      "answer": "Here's how it works:\n\n1. Get to know you – free 15-minute call\n2. Concept & design – you see everything in advance and give feedback\n3. Build – fast, secure, mobile-optimised\n4. Launch – the site goes live, Google is set up, you get a short walkthrough\n\nAll we need from you is info about your business and a few photos.",
+      "chips": ["duration", "prices", "book"]
+    },
+    {
+      "id": "contract",
+      "label": "Contract & term",
+      "keywords": ["contract", "minimum term", "term", "cancel", "cancellation", "commitment", "locked in", "subscription", "hidden costs", "extra costs", "notice period"],
+      "answer": "Before we start you get a fixed written quote: services and all costs in black and white. No hidden costs. The minimum term is 12 months; after that you can cancel monthly.",
+      "chips": ["prices", "book", "lead"]
+    },
+    {
+      "id": "changes",
+      "label": "Changes & maintenance",
+      "keywords": ["change", "changes", "update", "updates", "maintenance", "maintain", "hosting", "edit myself", "edit", "domain", "email address", "backup", "support"],
+      "answer": "Hosting, SSL, security updates and small changes are included in every monthly package – just send us a message. If you like, you can also change texts, images and appointments yourself.",
+      "chips": ["prices", "contract", "book"]
+    },
+    {
+      "id": "switzerland",
+      "label": "Clients in Switzerland",
+      "keywords": ["switzerland", "swiss", "chf", "kreuzlingen", "zurich", "zürich", "st gallen", "thurgau", "frauenfeld", "schaffhausen", "winterthur"],
+      "answer": "Yes, gladly. We're in Konstanz, right on the border, and work with businesses on both sides. All prices are also available in CHF – e.g. the Pro package: CHF 1,890 + CHF 399/month.",
+      "chips": ["prices", "book"]
+    },
+    {
+      "id": "language",
+      "label": "English & other languages",
+      "keywords": ["english", "language", "languages", "speak", "german", "arabic", "multilingual", "bilingual", "translate", "translation"],
+      "answer": "We advise you in English, German or Arabic. Your website can be in German, English or several languages – for example German/Arabic, like the Abeer Beauty Center.",
+      "chips": ["references", "prices", "book"]
+    },
+    {
+      "id": "references",
+      "label": "References",
+      "keywords": ["reference", "references", "example", "examples", "clients", "customers", "projects", "portfolio", "your work", "show me", "swissline", "abeer", "case study"],
+      "answer": "Two recent projects:\n\n• Auto Kosmetik Swissline (Konstanz) – website with its own brand identity and direct booking requests\n• Abeer Beauty Center – bilingual German/Arabic website with contact form\n\nYou'll find both in the Projects section with a link to the live site.",
+      "chips": ["services", "prices", "book"],
+      "actions": ["projects"]
+    },
+    {
+      "id": "ai",
+      "label": "Chatbot & automation",
+      "keywords": ["chatbot", "chat bot", "bot", "assistant", "ai", "artificial intelligence", "automation", "automate", "automatic", "follow up", "follow-up"],
+      "answer": "We can build an assistant like this one for your website too: it answers the most common questions instantly, even at night, and takes enquiries. From €750. More automations: every new enquiry sent to you via WhatsApp instantly (from €250), automatic review requests (from €300), reminders so no enquiry gets lost (from €400).",
+      "chips": ["prices", "whatsapp", "book"]
+    },
+    {
+      "id": "about",
+      "label": "Who is ZielTakt?",
+      "keywords": ["who are you", "about you", "about us", "company", "zakaria", "owner", "founder", "konstanz", "where are you", "location", "address", "based"],
+      "answer": "ZielTakt is a digital growth studio from Konstanz on Lake Constance. Behind ZielTakt is Zakaria Haidar – you always talk to him directly, no call centre. We work with businesses in Germany and Switzerland, in person or remotely, in English, German or Arabic.",
+      "chips": ["services", "references", "book"]
+    },
+    {
+      "id": "book",
+      "label": "Book an intro call",
+      "keywords": ["appointment", "intro call", "call", "consultation", "meeting", "meet", "talk", "speak to", "phone", "call me", "call back", "callback", "contact", "human", "person", "real person"],
+      "answer": "The quickest ways:\n\n• Book a free 15-minute intro call online\n• or message us on WhatsApp\n• or leave your details here – Zakaria usually gets back to you the same day.",
+      "actions": ["book", "whatsapp", "lead"]
+    },
+    {
+      "id": "thanks",
+      "label": "Thanks",
+      "keywords": ["thanks", "thank you", "thx", "cheers", "great", "perfect", "awesome", "danke"],
+      "answer": "You're welcome! If you like, we can go through everything else in a free 15-minute call.",
+      "actions": ["book", "whatsapp"]
+    }
+  ],
+  "lead": {
+    "chip": "Request a call back",
+    "start": "Sure! I'll take down a few details and Zakaria will get back to you personally. What's your name?",
+    "nameAgain": "That doesn't look like a name. What's your name (first and last)?",
+    "askBusiness": "Thanks, {{name}}! What's your business called and what industry are you in? (e.g. \"Müller Hair Salon, Konstanz\")",
+    "businessAgain": "Please give your business name or industry briefly.",
+    "askEmail": "What email address can we reach you at?",
+    "emailAgain": "That email address doesn't look right. Please check it again.",
+    "askPhone": "And your phone or WhatsApp number? Optional, but often quicker.",
+    "phoneAgain": "I can't read that number. Please use the format +41 79 … or skip.",
+    "skipPhone": "Skip",
+    "summary": "Please check:\n\nName: {{name}}\nBusiness: {{business}}\nEmail: {{email}}\nPhone: {{phone}}\n\nShall I send this to Zakaria?",
+    "noPhone": "–",
+    "confirm": "Yes, send",
+    "cancel": "Cancel",
+    "consent": "By sending, your details are passed to us to handle your enquiry.",
+    "privacyLink": "Privacy policy (German)",
+    "sending": "Sending …",
+    "success": "Thanks, {{name}}! Your request has arrived. Zakaria usually gets back to you the same day – by email or phone.",
+    "error": "Sorry, that didn't work. Please message us directly on WhatsApp or at info@zieltakt.de.",
+    "cancelled": "No problem, cancelled. What else would you like to know?",
+    "messageIntro": "Anfrage über den Chat-Assistenten (Englisch)",
+    "businessLabel": "Betrieb",
+    "topicLabel": "Zuletzt gefragt nach"
+  }
+}
