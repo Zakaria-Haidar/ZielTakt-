@@ -18,16 +18,14 @@ export default function Services() {
 
         <div className="pt-16 pb-20 space-y-4">
           <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-neon text-xs font-medium tracking-[0.3em] uppercase"
+            className="text-neon-ink text-xs font-medium tracking-[0.3em] uppercase"
           >
             {t('services.eyebrow')}
           </motion.span>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="font-heading font-bold text-titanium tracking-[-0.04em]"
@@ -36,8 +34,8 @@ export default function Services() {
             {t('services.titleStart')} <span className="text-gradient-blue">{t('services.titleHighlight')}</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 15 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-datagrey text-lg max-w-2xl leading-relaxed"
@@ -52,17 +50,17 @@ export default function Services() {
             return (
               <motion.div
                 key={phase.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ y: 30 }}
+                whileInView={{ y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: (i % 2) * 0.1 }}
-                className="glass-strong rounded-2xl p-7 space-y-5 hover:border-neon/20 transition-all duration-500 group"
+                className="glass-strong zt-card rounded-2xl p-6 md:p-8 space-y-5 hover:border-neon/20 transition-all duration-500 group"
               >
                 <div className="flex items-start justify-between">
                   <div className="w-12 h-12 rounded-xl bg-neon/5 border border-neon/10 flex items-center justify-center group-hover:glow-blue transition-all duration-500">
-                    <Icon className="w-6 h-6 text-neon" />
+                    <Icon className="w-6 h-6 text-neon-ink" />
                   </div>
-                  <span aria-hidden="true" className="font-heading font-bold text-titanium/15 text-3xl tracking-tight">
+                  <span aria-hidden="true" className="font-heading font-bold text-datagrey/50 text-3xl tracking-tight">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
@@ -71,7 +69,7 @@ export default function Services() {
                     <h3 className="font-heading font-semibold text-titanium text-xl tracking-tight">
                       {phase.title}
                     </h3>
-                    <span className="text-neon text-sm font-medium">{phase.tagline}</span>
+                    <span className="text-neon-ink text-sm font-medium">{phase.tagline}</span>
                   </div>
                   <p className="text-datagrey text-sm leading-relaxed" style={{ lineHeight: '1.6' }}>
                     {phase.description}
@@ -91,15 +89,13 @@ export default function Services() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
           className="mt-14 text-center"
         >
           <p className="text-datagrey text-sm">
             {t('services.unsure')}{' '}
-            <a href={href('contact')} className="text-neon hover:underline font-medium group inline-flex items-center gap-1">
+            <a href={href('contact')} className="text-neon-ink hover:underline font-medium group inline-flex items-center gap-1">
               {t('services.unsureLink')} <Arrow />
             </a>
           </p>

@@ -16,15 +16,22 @@ module.exports = {
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
+        // Brand cyan: identical in both themes (fills, borders, glows).
         neon: {
           DEFAULT: '#00E0FF',
           dark: '#0090FF',
           glow: 'rgba(0, 224, 255, 0.3)',
+          // Cyan used as text: #00E0FF in dark, darker same-hue #006570 in light (contrast).
+          ink: 'rgb(var(--zt-neon-ink) / <alpha-value>)',
         },
-        void: '#070708',
-        charcoal: '#0E0F11',
-        titanium: '#F2F2F7',
-        datagrey: '#8E9196',
+        // Text on a solid neon fill: always dark, in both themes.
+        'on-neon': '#070708',
+        // Theme-aware palette (values in src/index.css).
+        void: 'rgb(var(--zt-void) / <alpha-value>)',
+        charcoal: 'rgb(var(--zt-charcoal) / <alpha-value>)',
+        titanium: 'rgb(var(--zt-titanium) / <alpha-value>)',
+        datagrey: 'rgb(var(--zt-datagrey) / <alpha-value>)',
+        ink: 'rgb(var(--zt-ink) / <alpha-value>)',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
@@ -105,5 +112,9 @@ module.exports = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    // `light:` variant for the few places the light theme needs its own treatment.
+    ({ addVariant }) => addVariant('light', ':root[data-theme="light"] &'),
+  ],
 }

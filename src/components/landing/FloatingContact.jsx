@@ -99,7 +99,7 @@ export default function FloatingContact() {
             {...chatButtonProps}
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.96 }}
-            className="relative w-14 h-14 rounded-full flex items-center justify-center text-void bg-gradient-to-br from-neon to-neon-dark"
+            className="relative w-14 h-14 rounded-full flex items-center justify-center text-on-neon bg-gradient-to-br from-neon to-neon-dark"
             style={{ boxShadow: '0 0 24px rgba(0,224,255,0.45)' }}
           >
             {chatOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
@@ -128,7 +128,7 @@ export default function FloatingContact() {
             title={t('floating.bookAria')}
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.96 }}
-            className="w-12 h-12 me-1 rounded-full flex items-center justify-center glass text-neon border border-neon/30"
+            className="w-12 h-12 me-1 rounded-full flex items-center justify-center glass text-neon-ink border border-neon/30"
           >
             <CalendarCheck className="w-5 h-5" />
           </motion.a>
@@ -139,7 +139,7 @@ export default function FloatingContact() {
           title={t('floating.emailAria')}
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.96 }}
-          className="w-12 h-12 me-1 rounded-full flex items-center justify-center glass text-neon border border-neon/30"
+          className="w-12 h-12 me-1 rounded-full flex items-center justify-center glass text-neon-ink border border-neon/30"
         >
           <Mail className="w-5 h-5" />
         </motion.a>
@@ -149,7 +149,7 @@ export default function FloatingContact() {
       {!chatOpen && (
         <button
           {...chatButtonProps}
-          className="md:hidden fixed end-4 z-[91] w-14 h-14 rounded-full flex items-center justify-center text-void bg-gradient-to-br from-neon to-neon-dark"
+          className="md:hidden fixed end-4 z-[91] w-14 h-14 rounded-full flex items-center justify-center text-on-neon bg-gradient-to-br from-neon to-neon-dark"
           style={{ bottom: 'calc(4.75rem + env(safe-area-inset-bottom))', boxShadow: '0 0 20px rgba(0,224,255,0.45)' }}
         >
           <MessageCircle className="w-6 h-6" />
@@ -165,7 +165,7 @@ export default function FloatingContact() {
         <div className="grid grid-cols-3">
           <a
             href={PHONE_HREF}
-            className="flex flex-col items-center justify-center gap-1 py-3 text-datagrey hover:text-neon transition-colors"
+            className="flex flex-col items-center justify-center gap-1 py-3 text-datagrey hover:text-neon-ink transition-colors"
           >
             <Phone className="w-5 h-5" />
             <span className="text-[11px] font-medium">{t('floating.call')}</span>
@@ -174,7 +174,7 @@ export default function FloatingContact() {
             href={waHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center justify-center gap-1 py-3 text-datagrey hover:text-neon transition-colors border-x border-border"
+            className="flex flex-col items-center justify-center gap-1 py-3 text-datagrey hover:text-neon-ink transition-colors border-x border-border"
           >
             <WhatsAppIcon className="w-5 h-5" />
             <span className="text-[11px] font-medium">{t('floating.whatsapp')}</span>
@@ -182,7 +182,7 @@ export default function FloatingContact() {
           <a
             href={third.href}
             {...(third.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-            className="flex flex-col items-center justify-center gap-1 py-3 text-datagrey hover:text-neon transition-colors"
+            className="flex flex-col items-center justify-center gap-1 py-3 text-datagrey hover:text-neon-ink transition-colors"
           >
             <ThirdIcon className="w-5 h-5" />
             <span className="text-[11px] font-medium">{third.label}</span>

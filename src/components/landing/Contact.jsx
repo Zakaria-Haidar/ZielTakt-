@@ -58,7 +58,7 @@ function ContactRow({ icon, label, value, href, external }) {
       </div>
       <div>
         <div className="text-datagrey text-xs tracking-widest uppercase">{label}</div>
-        <div className="text-titanium text-base font-medium group-hover:text-neon transition-colors">{value}</div>
+        <div className="text-titanium text-base font-medium group-hover:text-neon-ink transition-colors">{value}</div>
       </div>
     </>
   );
@@ -130,7 +130,7 @@ export default function Contact() {
   };
 
   const inputClass =
-    'w-full bg-transparent border-0 border-b border-border pb-3 text-titanium text-lg placeholder:text-datagrey focus:outline-none focus:border-neon transition-colors duration-500';
+    'w-full bg-transparent border-0 border-b border-border pb-3 text-titanium text-lg placeholder:text-datagrey focus:outline-none focus:border-neon transition-colors duration-500 light:border-datagrey light:focus:border-neon-ink';
 
   return (
     <section id="contact" className="relative bg-void py-16 md:py-24">
@@ -139,16 +139,14 @@ export default function Contact() {
 
         <div className="pt-16 pb-20 space-y-4">
           <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-neon text-xs font-medium tracking-[0.3em] uppercase"
+            className="text-neon-ink text-xs font-medium tracking-[0.3em] uppercase"
           >
             {t('contact.eyebrow')}
           </motion.span>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="font-heading font-bold text-titanium tracking-[-0.04em]"
@@ -162,8 +160,8 @@ export default function Contact() {
           {/* Form */}
           <motion.form
             onSubmit={handleSubmit}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 30 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="space-y-8"
@@ -213,10 +211,10 @@ export default function Contact() {
             <div className="pt-4">
               {sent ? (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  initial={{ scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   role="status"
-                  className="glass rounded-full px-8 py-4 text-neon text-center font-medium glow-blue"
+                  className="glass rounded-full px-8 py-4 text-neon-ink text-center font-medium glow-blue"
                 >
                   {t('contact.sent')}
                 </motion.div>
@@ -228,12 +226,12 @@ export default function Contact() {
               )}
               <p className="mt-4 text-datagrey text-xs leading-relaxed">
                 {t('contact.consent')}{' '}
-                <a href="/datenschutz" hrefLang="de" className="text-neon hover:underline">{t('contact.consentLink')}</a>.
+                <a href="/datenschutz" hrefLang="de" className="text-neon-ink hover:underline">{t('contact.consentLink')}</a>.
               </p>
               {error && (
-                <p role="alert" className="mt-4 text-sm text-red-400 leading-relaxed">
+                <p role="alert" className="mt-4 text-sm text-red-400 light:text-red-700 leading-relaxed">
                   {t('contact.error')}{' '}
-                  <a href={`mailto:${CONTACT_EMAIL}`} className="text-neon hover:underline"><bdi dir="ltr">{CONTACT_EMAIL}</bdi></a>.
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="text-neon-ink hover:underline"><bdi dir="ltr">{CONTACT_EMAIL}</bdi></a>.
                 </p>
               )}
             </div>
@@ -241,8 +239,8 @@ export default function Contact() {
 
           {/* Booking, contact info & socials */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 30 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="space-y-10"
@@ -260,38 +258,38 @@ export default function Contact() {
                 className="glass-strong rounded-2xl p-5 flex items-center gap-4 border border-neon/30 hover:border-neon/60 hover:glow-blue transition-all duration-500 group"
               >
                 <div className="w-12 h-12 rounded-xl bg-neon/10 border border-neon/20 flex items-center justify-center flex-shrink-0">
-                  <CalendarCheck className="w-6 h-6 text-neon" />
+                  <CalendarCheck className="w-6 h-6 text-neon-ink" />
                 </div>
                 <div className="flex-1">
                   <div className="text-titanium text-base font-semibold">{t('contact.bookTitle')}</div>
                   <div className="text-datagrey text-sm mt-0.5">{t('contact.bookSub')}</div>
                 </div>
-                <span className="text-neon text-lg"><Arrow /></span>
+                <span className="text-neon-ink text-lg"><Arrow /></span>
               </a>
             )}
 
             <div className="space-y-5">
               <ContactRow
-                icon={<WhatsAppIcon className="w-5 h-5 text-neon" />}
+                icon={<WhatsAppIcon className="w-5 h-5 text-neon-ink" />}
                 label={t('contact.labels.whatsapp')}
                 value={<bdi dir="ltr">{WHATSAPP_DISPLAY}</bdi>}
                 href={whatsappHref(t('whatsapp.message'))}
                 external
               />
               <ContactRow
-                icon={<Phone className="w-5 h-5 text-neon" />}
+                icon={<Phone className="w-5 h-5 text-neon-ink" />}
                 label={t('contact.labels.phone')}
                 value={<bdi dir="ltr">{PHONE_DISPLAY}</bdi>}
                 href={PHONE_HREF}
               />
               <ContactRow
-                icon={<Mail className="w-5 h-5 text-neon" />}
+                icon={<Mail className="w-5 h-5 text-neon-ink" />}
                 label={t('contact.labels.email')}
                 value={<bdi dir="ltr">{CONTACT_EMAIL}</bdi>}
                 href={`mailto:${CONTACT_EMAIL}`}
               />
               <ContactRow
-                icon={<MapPin className="w-5 h-5 text-neon" />}
+                icon={<MapPin className="w-5 h-5 text-neon-ink" />}
                 label={t('contact.labels.location')}
                 value={t('contact.locationValue')}
               />
@@ -309,7 +307,7 @@ export default function Contact() {
                     aria-label={link.label}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:scale-110 hover:border-white/30 transition-all"
+                    className="w-12 h-12 rounded-xl bg-ink/5 border border-ink/10 flex items-center justify-center hover:scale-110 hover:border-ink/30 transition-all"
                   >
                     {socialIcons[link.icon]}
                   </a>
@@ -319,7 +317,7 @@ export default function Contact() {
                 href={GOOGLE_PROFILE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 pt-2 text-neon text-sm font-medium hover:underline group"
+                className="inline-flex items-center gap-2 pt-2 text-neon-ink text-sm font-medium hover:underline group"
               >
                 {t('contact.reviews')}
                 <Arrow />

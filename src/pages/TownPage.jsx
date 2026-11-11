@@ -1,17 +1,22 @@
 import { motion } from 'framer-motion';
-import { Check, Phone } from 'lucide-react';
+import { Check, MapPin, Phone } from 'lucide-react';
 import usePageMeta from '@/hooks/usePageMeta';
-import { staedte } from '@/data/staedte';
+import { staedte, townPath } from '@/data/staedte';
 import { PHONE_DISPLAY, PHONE_HREF, WHATSAPP_DISPLAY, WHATSAPP_HREF } from '@/lib/contact';
 import Navbar from '../components/landing/Navbar';
 import Footer from '../components/landing/Footer';
 import FloatingContact from '../components/landing/FloatingContact';
 import SectionDivider from '../components/landing/SectionDivider';
 import GlassButton from '../components/landing/GlassButton';
+// Shared homepage sections (same on every town page; the town-specific copy is above them).
+import Services from '../components/landing/Services';
+import Preise from '../components/landing/Preise';
+import FAQ from '../components/landing/FAQ';
 
+// Transform-only reveal: content is always painted (crawlers, full-page captures).
 const reveal = {
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
+  initial: { y: 20 },
+  whileInView: { y: 0 },
   viewport: { once: true, margin: '-40px' },
   transition: { duration: 0.6 },
 };
@@ -27,9 +32,10 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
-// One landing page per town; all copy comes verbatim from src/data/staedte.js.
+// One landing page per town (/standorte/<slug>); the town copy comes verbatim from
+// src/data/staedte.js, followed by the shared Services, pricing and FAQ sections.
 export default function TownPage({ stadt }) {
-  usePageMeta(`/${stadt.slug}`);
+  usePageMeta(townPath(stadt));
 
   const referenzen = stadt.referenzen.filter((r) => r.freigegeben === true);
   // Only towns from "umgebung" that have their own page.
@@ -49,10 +55,10 @@ export default function TownPage({ stadt }) {
             <nav aria-label="Breadcrumb">
               <ol className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-xs font-medium tracking-widest uppercase">
                 <li>
-                  <a href="/" className="text-datagrey hover:text-neon transition-colors">Start</a>
+                  <a href="/" className="text-datagrey hover:text-neon-ink transition-colors">Start</a>
                 </li>
                 <li aria-hidden="true" className="text-datagrey/60">/</li>
-                <li aria-current="page" className="text-neon">Webdesign {stadt.stadt}</li>
+                <li aria-current="page" className="text-neon-ink">Webdesign {stadt.stadt}</li>
               </ol>
             </nav>
 
@@ -62,6 +68,11 @@ export default function TownPage({ stadt }) {
             >
               {stadt.h1}
             </h1>
+
+            <p className="inline-flex items-start gap-2 text-titanium/80 text-sm md:text-base font-medium">
+              <MapPin className="w-4 h-4 mt-0.5 text-neon-ink flex-shrink-0" />
+              <span>{stadt.lage}</span>
+            </p>
 
             <div className="space-y-5 max-w-3xl">
               {stadt.intro.map((absatz) => (
@@ -90,7 +101,7 @@ export default function TownPage({ stadt }) {
                   <motion.ul {...reveal} className="glass-strong rounded-2xl p-6 md:p-8 space-y-4">
                     {abschnitt.liste.map((punkt) => (
                       <li key={punkt} className="flex items-start gap-3 text-titanium/90 text-base leading-relaxed">
-                        <Check className="w-5 h-5 text-neon flex-shrink-0 mt-0.5" strokeWidth={2.5} />
+                        <Check className="w-5 h-5 text-neon-ink flex-shrink-0 mt-0.5" strokeWidth={2.5} />
                         <span>{punkt}</span>
                       </li>
                     ))}
@@ -121,7 +132,7 @@ export default function TownPage({ stadt }) {
                         href={ref.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-neon text-sm font-medium hover:underline group"
+                        className="inline-flex items-center gap-2 text-neon-ink text-sm font-medium hover:underline group"
                       >
                         Website ansehen
                         <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -139,7 +150,7 @@ export default function TownPage({ stadt }) {
             <SectionDivider />
             <div className="pt-10 md:pt-14 space-y-8">
               <motion.h2 {...reveal} className={h2Class} style={h2Style}>
-                Häufige Fragen
+                Fragen aus {stadt.stadt}
               </motion.h2>
               <div className="space-y-4">
                 {stadt.faq.map((item) => (
@@ -161,6 +172,10 @@ export default function TownPage({ stadt }) {
           </div>
         </section>
 
+        <Services />
+        <Preise />
+        <FAQ />
+
         <section className="relative py-10 md:py-14">
           <div className="max-w-4xl mx-auto px-6 md:px-12">
             <motion.div
@@ -169,7 +184,7 @@ export default function TownPage({ stadt }) {
             >
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-neon/10 blur-3xl pointer-events-none" />
               <div className="relative space-y-3">
-                <span className="text-neon text-xs font-medium tracking-[0.3em] uppercase">Kontakt</span>
+                <span className="text-neon-ink text-xs font-medium tracking-[0.3em] uppercase">Kontakt</span>
                 <h2 className={h2Class} style={h2Style}>Lassen Sie uns sprechen.</h2>
               </div>
               <div className="relative flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-4">
@@ -190,7 +205,7 @@ export default function TownPage({ stadt }) {
                   WhatsApp {WHATSAPP_DISPLAY}
                 </a>
               </div>
-              <a href="/#contact" className="relative inline-flex items-center gap-2 text-neon text-sm font-medium hover:underline group">
+              <a href="/#contact" className="relative inline-flex items-center gap-2 text-neon-ink text-sm font-medium hover:underline group">
                 Zum Kontaktformular
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </a>
@@ -206,8 +221,8 @@ export default function TownPage({ stadt }) {
                 {nachbarn.map((n) => (
                   <li key={n.slug}>
                     <a
-                      href={`/${n.slug}`}
-                      className="inline-flex px-4 py-2 rounded-full text-sm font-medium glass text-titanium/80 border-border hover:text-neon hover:border-neon/30 transition-colors duration-300"
+                      href={townPath(n)}
+                      className="inline-flex px-4 py-2 rounded-full text-sm font-medium glass text-titanium/80 border-border hover:text-neon-ink hover:border-neon/30 transition-colors duration-300"
                     >
                       {n.stadt}
                     </a>

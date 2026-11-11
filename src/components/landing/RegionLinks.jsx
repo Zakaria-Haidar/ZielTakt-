@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { staedte } from '@/data/staedte';
+import { staedte, townPath } from '@/data/staedte';
 import useLang from '@/i18n/useLang';
 
 // Internal links from the homepage to the (German) town landing pages.
@@ -9,8 +9,8 @@ export default function RegionLinks() {
   return (
     <section className="relative bg-void pb-8 md:pb-12">
       <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ y: 15 }}
+        whileInView={{ y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
         className="max-w-7xl mx-auto px-6 md:px-12"
@@ -23,9 +23,9 @@ export default function RegionLinks() {
             {staedte.map((stadt) => (
               <li key={stadt.slug}>
                 <a
-                  href={`/${stadt.slug}`}
+                  href={townPath(stadt)}
                   hrefLang="de"
-                  className="inline-flex px-4 py-2 rounded-full text-sm font-medium glass text-titanium/80 border-border hover:text-neon hover:border-neon/30 transition-colors duration-300"
+                  className="inline-flex px-4 py-2 rounded-full text-sm font-medium glass text-titanium/80 border-border hover:text-neon-ink hover:border-neon/30 transition-colors duration-300"
                 >
                   {stadt.stadt}
                 </a>

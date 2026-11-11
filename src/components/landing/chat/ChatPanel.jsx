@@ -220,7 +220,7 @@ export default function ChatPanel({ open, onClose }) {
           key={a}
           href={href}
           {...(CAL_URL ? { target: '_blank', rel: 'noopener noreferrer' } : { onClick: onClose })}
-          className={`${base} bg-neon text-void hover:bg-neon/90`}
+          className={`${base} bg-neon text-on-neon hover:bg-neon/90`}
         >
           <CalendarCheck className="w-4 h-4" />
           {c.actions.book}
@@ -244,7 +244,7 @@ export default function ChatPanel({ open, onClose }) {
     }
     if (a === 'lead') {
       return (
-        <button key={a} type="button" onClick={() => onChip('lead')} className={`${base} border border-neon/40 text-neon hover:bg-neon/10`}>
+        <button key={a} type="button" onClick={() => onChip('lead')} className={`${base} border border-neon/40 text-neon-ink hover:bg-neon/10`}>
           {c.actions.lead}
         </button>
       );
@@ -252,7 +252,7 @@ export default function ChatPanel({ open, onClose }) {
     const section = a === 'prices' ? 'preise' : a === 'projects' ? 'projekt' : null;
     if (!section) return null;
     return (
-      <a key={a} href={sectionHref(lang, section)} onClick={onClose} className={`${base} border border-neon/40 text-neon hover:bg-neon/10`}>
+      <a key={a} href={sectionHref(lang, section)} onClick={onClose} className={`${base} border border-neon/40 text-neon-ink hover:bg-neon/10`}>
         {c.actions[a]}
       </a>
     );
@@ -270,7 +270,7 @@ export default function ChatPanel({ open, onClose }) {
     >
       {/* Header */}
       <div className="flex items-center gap-3 px-4 py-3 border-b border-border bg-void/60">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-neon to-neon-dark flex items-center justify-center font-heading font-bold text-void flex-shrink-0">
+        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-neon to-neon-dark flex items-center justify-center font-heading font-bold text-on-neon flex-shrink-0">
           Z
         </div>
         <div className="flex-1 min-w-0">
@@ -295,15 +295,15 @@ export default function ChatPanel({ open, onClose }) {
             <div
               className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed whitespace-pre-line ${
                 m.from === 'user'
-                  ? 'bg-neon text-void rounded-ee-md'
-                  : 'bg-white/5 border border-white/10 text-titanium rounded-es-md'
+                  ? 'bg-neon text-on-neon rounded-ee-md'
+                  : 'bg-ink/5 border border-ink/10 text-titanium rounded-es-md'
               }`}
             >
               {m.text}
               {m.consent && m === last && (
-                <div className="mt-2 pt-2 border-t border-white/10 text-datagrey text-xs">
+                <div className="mt-2 pt-2 border-t border-ink/10 text-datagrey text-xs">
                   {c.lead.consent}{' '}
-                  <a href="/datenschutz" hrefLang="de" target="_blank" rel="noopener noreferrer" className="text-neon hover:underline">
+                  <a href="/datenschutz" hrefLang="de" target="_blank" rel="noopener noreferrer" className="text-neon-ink hover:underline">
                     {c.lead.privacyLink}
                   </a>
                 </div>
@@ -314,7 +314,7 @@ export default function ChatPanel({ open, onClose }) {
 
         {typing && (
           <div className="flex justify-start" aria-hidden="true">
-            <div className="bg-white/5 border border-white/10 rounded-2xl rounded-es-md px-4 py-3 flex gap-1">
+            <div className="bg-ink/5 border border-ink/10 rounded-2xl rounded-es-md px-4 py-3 flex gap-1">
               {[0, 1, 2].map((i) => (
                 <span key={i} className="w-1.5 h-1.5 rounded-full bg-datagrey animate-pulse" style={{ animationDelay: `${i * 150}ms` }} />
               ))}
@@ -333,7 +333,7 @@ export default function ChatPanel({ open, onClose }) {
                     key={id}
                     type="button"
                     onClick={() => onChip(id)}
-                    className="rounded-full border border-neon/30 px-3 py-1.5 text-xs font-medium text-neon hover:bg-neon/10 transition-colors"
+                    className="rounded-full border border-neon/30 px-3 py-1.5 text-xs font-medium text-neon-ink hover:bg-neon/10 transition-colors"
                   >
                     {chipLabel(id)}
                   </button>
@@ -357,19 +357,19 @@ export default function ChatPanel({ open, onClose }) {
           maxLength={300}
           dir="auto"
           disabled={step === 'sending'}
-          className="flex-1 min-w-0 bg-white/5 border border-white/10 rounded-full px-4 py-2.5 text-titanium placeholder:text-datagrey focus:outline-none focus:border-neon/50"
+          className="flex-1 min-w-0 bg-ink/5 border border-ink/10 rounded-full px-4 py-2.5 text-titanium placeholder:text-datagrey focus:outline-none focus:border-neon/50"
           style={{ fontSize: '16px' }} // 16px stops iOS from zooming into the field
         />
         <button
           type="submit"
           aria-label={c.send}
           disabled={!input.trim() || step === 'sending'}
-          className="w-11 h-11 rounded-full bg-neon text-void flex items-center justify-center disabled:opacity-40 flex-shrink-0"
+          className="w-11 h-11 rounded-full bg-neon text-on-neon flex items-center justify-center disabled:opacity-40 flex-shrink-0"
         >
           <Send className="w-4 h-4 rtl:-scale-x-100" />
         </button>
       </form>
-      <p className="px-4 pb-2 -mt-1 text-[11px] text-datagrey/80 bg-void/60">{c.footnote}</p>
+      <p className="px-4 pb-2 -mt-1 text-[11px] text-datagrey/80 light:text-datagrey bg-void/60">{c.footnote}</p>
     </div>
   );
 }

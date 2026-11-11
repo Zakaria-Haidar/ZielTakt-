@@ -13,16 +13,14 @@ export default function Ablauf() {
 
         <div className="pt-16 pb-20 space-y-4">
           <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-neon text-xs font-medium tracking-[0.3em] uppercase"
+            className="text-neon-ink text-xs font-medium tracking-[0.3em] uppercase"
           >
             {t('process.eyebrow')}
           </motion.span>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="font-heading font-bold text-titanium tracking-[-0.04em]"
@@ -36,17 +34,17 @@ export default function Ablauf() {
           {steps.map((step, i) => (
             <motion.div
               key={step.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ y: 30 }}
+              whileInView={{ y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="glass-strong rounded-2xl p-7 space-y-4 hover:border-neon/20 transition-all duration-500 relative"
             >
               <div className="flex items-center justify-between">
-                <span aria-hidden="true" className="font-heading font-bold text-titanium/15 text-3xl tracking-tight">
+                <span aria-hidden="true" className="font-heading font-bold text-datagrey/50 text-3xl tracking-tight">
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                <span className="text-neon text-xs font-medium tracking-widest uppercase bg-neon/10 border border-neon/20 rounded-full px-3 py-1">
+                <span className="text-neon-ink text-xs font-medium tracking-widest uppercase bg-neon/10 border border-neon/20 rounded-full px-3 py-1">
                   {step.time}
                 </span>
               </div>

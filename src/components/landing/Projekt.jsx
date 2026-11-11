@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import { CircleCheck, MapPin } from 'lucide-react';
+import FloatingIcons from './FloatingIcons';
 import SectionDivider from './SectionDivider';
 import { Arrow } from './icons';
 import useLang from '@/i18n/useLang';
@@ -14,6 +16,11 @@ const projects = [
     id: 'swissline',
     title: 'Auto Kosmetik Swissline',
     logo: '/logo-swissline.webp',
+    // Emblem only (car + arc, no wordmark) for small thumbnails.
+    icon: '/logo-swissline-icon.webp',
+    // The logo has white/silver parts: always show it on a fixed dark backdrop,
+    // independent of the site theme.
+    backdrop: 'dark',
     url: 'https://autokosmetik-swissline.de',
   },
   {
@@ -24,6 +31,12 @@ const projects = [
   },
 ];
 
+// Floating cards beside the heading (lg positions; mobile shows only the first).
+const FLOATERS = [
+  { Icon: MapPin, pos: 'lg:top-4 lg:end-[22%]', d: 6.8 },
+  { Icon: CircleCheck, pos: 'lg:top-16 lg:end-[2%]', d: 8 },
+];
+
 export default function Projekt() {
   const { t } = useLang();
 
@@ -32,18 +45,17 @@ export default function Projekt() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <SectionDivider />
 
-        <div className="pt-16 pb-16 space-y-4">
+        <div className="relative pt-16 pb-16 space-y-4">
+          <FloatingIcons items={FLOATERS} />
           <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-neon text-xs font-medium tracking-[0.3em] uppercase"
+            className="text-neon-ink text-xs font-medium tracking-[0.3em] uppercase"
           >
             {t('projects.eyebrow')}
           </motion.span>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="font-heading font-bold text-titanium tracking-[-0.04em]"
@@ -64,13 +76,15 @@ export default function Projekt() {
               >
                 {/* Echtes Kundenlogo statt Screenshot */}
                 <motion.div
-                  initial={{ opacity: 0, x: reverse ? 30 : -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ x: reverse ? 30 : -30 }}
+                  whileInView={{ x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8 }}
-                  className={`relative aspect-[4/3] rounded-2xl overflow-hidden glass-strong flex items-center justify-center ${
-                    reverse ? 'lg:order-2' : ''
-                  }`}
+                  className={`relative aspect-[4/3] rounded-2xl overflow-hidden flex items-center justify-center zt-card ${
+                    project.backdrop === 'dark'
+                      ? 'bg-gradient-to-br from-[#1f2227] to-[#0d0e10] border border-white/10'
+                      : 'glass-strong'
+                  } ${reverse ? 'lg:order-2' : ''}`}
                 >
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-neon/10 blur-3xl pointer-events-none" />
                   <img
@@ -83,8 +97,8 @@ export default function Projekt() {
 
                 {/* Text */}
                 <motion.div
-                  initial={{ opacity: 0, x: reverse ? -30 : 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ x: reverse ? -30 : 30 }}
+                  whileInView={{ x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className={`space-y-6 ${reverse ? 'lg:order-1' : ''}`}
@@ -112,7 +126,7 @@ export default function Projekt() {
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-neon text-sm font-medium hover:underline group"
+                    className="inline-flex items-center gap-2 text-neon-ink text-sm font-medium hover:underline group"
                   >
                     {t('projects.viewSite')}
                     <Arrow />

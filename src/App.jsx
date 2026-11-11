@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { MotionConfig } from 'framer-motion';
 import PageNotFound from './lib/PageNotFound';
 import Home from './pages/Home';
-import { staedte } from './data/staedte';
+import { staedte, townPath } from './data/staedte';
 
 const Impressum = lazy(() => import('./pages/Impressum'));
 const Datenschutz = lazy(() => import('./pages/Datenschutz'));
@@ -23,7 +23,7 @@ function App() {
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/datenschutz" element={<Datenschutz />} />
           {staedte.map((stadt) => (
-            <Route key={stadt.slug} path={`/${stadt.slug}`} element={<TownPage stadt={stadt} />} />
+            <Route key={stadt.slug} path={townPath(stadt)} element={<TownPage stadt={stadt} />} />
           ))}
           <Route path="*" element={<PageNotFound />} />
         </Routes>

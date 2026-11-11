@@ -4,6 +4,7 @@ import { Menu, X } from 'lucide-react';
 import useLang from '@/i18n/useLang';
 import { homePath } from '@/i18n/languages';
 import LanguageSwitcher from './LanguageSwitcher';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const { t, lang, href } = useLang();
@@ -21,26 +22,26 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        initial={{ y: -20 }}
+        animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 transition-all duration-300 ${
           scrolled
-            ? 'py-3 bg-[#070708]/90 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/40'
+            ? 'py-3 bg-void/90 backdrop-blur-xl border-b border-ink/5 shadow-lg shadow-black/40 light:border-ink/10 light:shadow-ink/10'
             : 'py-5 bg-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           <a href={homePath(lang)} className="flex items-center gap-2 group">
-            <img src="/zieltakt-logo.png" alt="ZielTakt" width="1082" height="229" className="h-7 md:h-8 w-auto group-hover:opacity-90 transition-opacity duration-300" />
+            <img src="/zieltakt-logo.png" alt="ZielTakt" width="1082" height="229" className="zt-logo h-7 md:h-8 w-auto group-hover:opacity-90 transition-opacity duration-300" />
           </a>
 
-          <div className="hidden md:flex items-center gap-8 lg:gap-10">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-10">
             {navLinks.map((link) => (
               <a
                 key={link.id}
                 href={href(link.id)}
-                className="text-datagrey text-sm font-medium tracking-wide hover:text-titanium transition-colors duration-300 relative group"
+                className="whitespace-nowrap text-datagrey text-sm font-medium tracking-wide hover:text-titanium transition-colors duration-300 relative group"
               >
                 {link.label}
                 <span className="absolute -bottom-1 start-0 w-0 h-px bg-neon group-hover:w-full transition-all duration-300" />
@@ -50,17 +51,19 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center gap-4">
             <LanguageSwitcher />
+            <ThemeToggle />
             <a
               href={href('contact')}
-              className="glass rounded-full px-6 py-2.5 text-sm font-medium text-neon hover:glow-blue transition-all duration-500 border border-neon/20 hover:border-neon/50"
+              className="whitespace-nowrap glass rounded-full px-6 py-2.5 text-sm font-medium text-neon-ink hover:glow-blue transition-all duration-500 border border-neon/20 hover:border-neon/50 light:bg-neon light:text-on-neon light:border-neon"
             >
               {t('nav.cta')}
             </a>
           </div>
 
           {/* Mobile: language switch stays visible next to the menu button */}
-          <div className="md:hidden flex items-center gap-1">
-            <LanguageSwitcher />
+          {/* The theme toggle sits in the menu on mobile: the bar has no room left. */}
+          <div className="lg:hidden flex items-center gap-1">
+            <LanguageSwitcher className="md:hidden" />
             <button
               onClick={() => setOpen(true)}
               aria-label={t('nav.openMenu')}
@@ -96,7 +99,7 @@ export default function Navbar() {
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
-                  className="font-heading font-bold text-3xl text-titanium hover:text-neon transition-colors"
+                  className="font-heading font-bold text-3xl text-titanium hover:text-neon-ink transition-colors"
                 >
                   {link.label}
                 </motion.a>
@@ -107,10 +110,17 @@ export default function Navbar() {
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
-                className="mt-4 glass rounded-full px-8 py-3 text-neon font-medium glow-blue"
+                className="mt-4 glass rounded-full px-8 py-3 text-neon-ink font-medium glow-blue light:bg-neon light:text-on-neon light:border-neon"
               >
                 {t('nav.cta')}
               </motion.a>
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+              >
+                <ThemeToggle withLabel className="px-5 border border-titanium/10 light:border-titanium/20" />
+              </motion.div>
             </div>
           </motion.div>
         )}

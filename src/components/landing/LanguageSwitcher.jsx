@@ -24,7 +24,7 @@ export default function LanguageSwitcher({ className = '', onNavigate }) {
             }}
             className={`min-w-[44px] min-h-[36px] inline-flex items-center justify-center rounded-full px-3 text-sm font-medium transition-colors duration-300 ${
               active
-                ? 'text-neon bg-neon/10 border border-neon/30'
+                ? 'text-neon-ink bg-neon/10 border border-neon/30'
                 : 'text-datagrey border border-transparent hover:text-titanium'
             }`}
           >

@@ -5,8 +5,9 @@ export default function GlassButton({ children, href, variant = 'primary', class
   const base = "relative inline-flex items-center justify-center rounded-full font-medium transition-all duration-500 overflow-hidden group disabled:opacity-60 disabled:cursor-not-allowed";
 
   const variants = {
-    primary: "glass px-8 py-4 text-neon border border-neon/20 hover:border-neon/60 hover:glow-blue-strong text-base",
-    secondary: "glass px-6 py-3 text-titanium border border-titanium/10 hover:border-neon/30 hover:text-neon text-sm",
+    // Light theme: solid brand cyan with dark text (cyan as text would fail contrast on sand).
+    primary: "glass px-8 py-4 text-neon-ink border border-neon/20 hover:border-neon/60 hover:glow-blue-strong text-base light:bg-neon light:text-on-neon light:border-neon",
+    secondary: "glass px-6 py-3 text-titanium border border-titanium/10 hover:border-neon/30 hover:text-neon-ink text-sm light:border-titanium/20",
   };
 
   const content = (

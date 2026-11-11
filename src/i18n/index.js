@@ -19,6 +19,11 @@ i18n.use(initReactI18next).init({
   supportedLngs: Object.keys(LANGUAGES),
   initAsync: false,
   interpolation: { escapeValue: false }, // React escapes output already
+  // "" in a translation file means "intentionally no text in this language"
+  // (e.g. pricing.vatNoteOriginal and area.remote on the German page); components
+  // hide the element when it's empty. i18next ≥ 22 otherwise treats "" as missing
+  // and prints the raw key.
+  returnEmptyString: true,
   react: { useSuspense: false },
 });
 

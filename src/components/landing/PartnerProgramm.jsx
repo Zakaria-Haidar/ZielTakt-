@@ -22,8 +22,8 @@ export default function PartnerProgramm() {
         <SectionDivider />
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 30 }}
+          whileInView={{ y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="relative glass-strong rounded-3xl p-10 md:p-16 max-w-4xl mx-auto overflow-hidden"
@@ -34,21 +34,21 @@ export default function PartnerProgramm() {
 
           <div className="relative z-10 text-center space-y-6">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ scale: 0.9 }}
+              whileInView={{ scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
               className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5"
             >
-              <Handshake className="w-3.5 h-3.5 text-neon" />
+              <Handshake className="w-3.5 h-3.5 text-neon-ink" />
               <span className="text-datagrey text-xs font-medium tracking-widest uppercase">
                 {t('partner.badge')}
               </span>
             </motion.div>
 
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ y: 20 }}
+              whileInView={{ y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1 }}
               className="font-heading font-bold text-titanium tracking-[-0.03em]"
@@ -58,8 +58,8 @@ export default function PartnerProgramm() {
             </motion.h2>
 
             <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ y: 15 }}
+              whileInView={{ y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
               className="text-datagrey text-lg leading-relaxed max-w-2xl mx-auto"
@@ -72,11 +72,9 @@ export default function PartnerProgramm() {
               onClick={handlePartner}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="glass rounded-full px-8 py-4 text-neon font-medium border border-neon/20 hover:border-neon/60 hover:glow-blue-strong transition-all duration-500"
+              className="glass rounded-full px-8 py-4 text-neon-ink font-medium border border-neon/20 hover:border-neon/60 hover:glow-blue-strong transition-all duration-500"
             >
               {t('partner.cta')}
             </motion.button>

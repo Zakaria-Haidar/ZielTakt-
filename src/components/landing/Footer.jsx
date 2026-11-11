@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { CONTACT_EMAIL, GOOGLE_PROFILE_URL, INSTAGRAM_URL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_DISPLAY, WHATSAPP_HREF } from '@/lib/contact';
-import { staedte } from '@/data/staedte';
+import { staedte, townPath } from '@/data/staedte';
 import useLang from '@/i18n/useLang';
 import { homePath } from '@/i18n/languages';
 
@@ -55,7 +55,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1 space-y-4">
             <div className="flex items-center gap-2">
-              <a href={homePath(lang)}><img src="/zieltakt-logo.png" alt="ZielTakt" width="1082" height="229" className="h-7 w-auto" /></a>
+              <a href={homePath(lang)}><img src="/zieltakt-logo.png" alt="ZielTakt" width="1082" height="229" className="zt-logo h-7 w-auto" /></a>
             </div>
             <p className="text-datagrey text-sm leading-relaxed max-w-xs">
               {t('footer.tagline')}
@@ -70,7 +70,7 @@ export default function Footer() {
                 <a
                   key={link.id}
                   href={href(link.id)}
-                  className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300"
+                  className="text-titanium/70 text-sm hover:text-neon-ink transition-colors duration-300"
                 >
                   {link.label}
                 </a>
@@ -85,9 +85,9 @@ export default function Footer() {
               {staedte.map((stadt) => (
                 <a
                   key={stadt.slug}
-                  href={`/${stadt.slug}`}
+                  href={townPath(stadt)}
                   hrefLang="de"
-                  className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300"
+                  className="text-titanium/70 text-sm hover:text-neon-ink transition-colors duration-300"
                 >
                   {t('footer.townLink', { city: stadt.stadt })}
                 </a>
@@ -99,17 +99,17 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-1 space-y-4">
             <span className="text-datagrey text-xs tracking-widest uppercase">{t('footer.contact')}</span>
             <div className="flex flex-col gap-2">
-              <a href={`mailto:${CONTACT_EMAIL}`} className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300 break-all">
+              <a href={`mailto:${CONTACT_EMAIL}`} className="text-titanium/70 text-sm hover:text-neon-ink transition-colors duration-300 break-all">
                 <bdi dir="ltr">{CONTACT_EMAIL}</bdi>
               </a>
-              <a href={PHONE_HREF} className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300">
+              <a href={PHONE_HREF} className="text-titanium/70 text-sm hover:text-neon-ink transition-colors duration-300">
                 {t('footer.phonePrefix')} <bdi dir="ltr">{PHONE_DISPLAY}</bdi>
               </a>
-              <a href={WHATSAPP_HREF} target="_blank" rel="noopener noreferrer" className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300">
+              <a href={WHATSAPP_HREF} target="_blank" rel="noopener noreferrer" className="text-titanium/70 text-sm hover:text-neon-ink transition-colors duration-300">
                 {t('footer.whatsappPrefix')} <bdi dir="ltr">{WHATSAPP_DISPLAY}</bdi>
               </a>
               <span className="text-titanium/70 text-sm">{t('footer.location')}</span>
-              <a href={GOOGLE_PROFILE_URL} target="_blank" rel="noopener noreferrer" className="text-titanium/70 text-sm hover:text-neon transition-colors duration-300">
+              <a href={GOOGLE_PROFILE_URL} target="_blank" rel="noopener noreferrer" className="text-titanium/70 text-sm hover:text-neon-ink transition-colors duration-300">
                 {t('footer.reviews')}
               </a>
             </div>
@@ -125,14 +125,14 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 title="Instagram"
                 aria-label="Instagram"
-                className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:scale-110 hover:border-white/30 transition-all"
+                className="w-11 h-11 rounded-xl bg-ink/5 border border-ink/10 flex items-center justify-center hover:scale-110 hover:border-ink/30 transition-all"
               >
                 {instagramIcon}
               </a>
             </div>
             <div className="flex items-center gap-2 pt-2">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-titanium/60 text-xs"><bdi dir="ltr" className="font-mono">{time}</bdi> · {t('footer.clockPlace')}</span>
+              <span className="text-titanium/60 light:text-titanium/75 text-xs"><bdi dir="ltr" className="font-mono">{time}</bdi> · {t('footer.clockPlace')}</span>
             </div>
           </div>
         </div>
@@ -143,8 +143,8 @@ export default function Footer() {
             {t('footer.rights', { year: new Date().getFullYear() })}
           </span>
           <div className="flex gap-6">
-            <a href="/impressum" hrefLang="de" className="text-titanium/80 text-sm hover:text-neon transition-colors">{t('footer.imprint')}</a>
-            <a href="/datenschutz" hrefLang="de" className="text-titanium/80 text-sm hover:text-neon transition-colors">{t('footer.privacy')}</a>
+            <a href="/impressum" hrefLang="de" className="text-titanium/80 text-sm hover:text-neon-ink transition-colors">{t('footer.imprint')}</a>
+            <a href="/datenschutz" hrefLang="de" className="text-titanium/80 text-sm hover:text-neon-ink transition-colors">{t('footer.privacy')}</a>
           </div>
         </div>
       </div>

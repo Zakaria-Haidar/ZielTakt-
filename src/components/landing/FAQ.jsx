@@ -7,8 +7,8 @@ import useLang from '@/i18n/useLang';
 function FaqItem({ item, index, open, toggle }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ y: 20 }}
+      whileInView={{ y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.5, delay: index * 0.07 }}
       className="glass-strong rounded-2xl overflow-hidden border border-border hover:border-neon/20 transition-all duration-500"
@@ -23,14 +23,14 @@ function FaqItem({ item, index, open, toggle }) {
         </span>
         <motion.span animate={{ rotate: open ? 45 : 0 }} transition={{ duration: 0.3 }} className="flex-shrink-0">
           <div className="w-9 h-9 rounded-xl bg-neon/5 border border-neon/10 flex items-center justify-center">
-            <Plus className="w-4 h-4 text-neon" />
+            <Plus className="w-4 h-4 text-neon-ink" />
           </div>
         </motion.span>
       </button>
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
+            initial={{ height: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -57,16 +57,14 @@ export default function FAQ() {
 
         <div className="pt-16 pb-20 space-y-4">
           <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-neon text-xs font-medium tracking-[0.3em] uppercase"
+            className="text-neon-ink text-xs font-medium tracking-[0.3em] uppercase"
           >
             {t('faq.eyebrow')}
           </motion.span>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="font-heading font-bold text-titanium tracking-[-0.04em]"

@@ -2,6 +2,7 @@
   "nav": {
     "links": [
       { "label": "Leistungen", "id": "services" },
+      { "label": "Design", "id": "design" },
       { "label": "Über uns", "id": "about" },
       { "label": "Einzugsgebiet", "id": "area" },
       { "label": "Kontakt", "id": "contact" }
@@ -9,9 +10,24 @@
     "cta": "Projekt starten",
     "openMenu": "Menü öffnen",
     "closeMenu": "Menü schließen",
-    "languageLabel": "Sprache"
+    "languageLabel": "Sprache",
+    "themeToLight": "Helles Design aktivieren",
+    "themeToDark": "Dunkles Design aktivieren"
   },
   "hero": {
+    "statCards": [
+      { "value": 7, "prefix": "", "suffix": "", "label": "Tage bis live", "note": "Paket Start", "placeholder": false },
+      {
+        "value": 490,
+        "prefix": "ab ",
+        "suffix": "€",
+        "label": "einmalige Einrichtung",
+        "note": "Paket Start",
+        "placeholder": false
+      },
+      { "value": 3, "prefix": "", "suffix": "", "label": "Sprachen", "note": "DE · EN · AR", "placeholder": false },
+      { "value": 98, "prefix": "", "suffix": "/100", "label": "PageSpeed", "note": "Beispielwert", "placeholder": true }
+    ],
     "badge": "Growth Systems · Konstanz",
     "titleStart": "Professionelle Websites für Unternehmen",
     "titleHighlight": "am Bodensee.",
@@ -36,6 +52,48 @@
         { "v": "Schnell", "l": "auf dem Handy" }
       ]
     }
+  },
+  "design": {
+    "eyebrow": "Weitere Design-Services",
+    "title": "Mehr als Websites.",
+    "text": "Alles, was Ihr Auftritt sonst noch braucht – gestaltet im gleichen Stil wie Ihre Website.",
+    "from": "ab",
+    "cta": "Per WhatsApp anfragen",
+    "waMessage": "Hallo ZielTakt, ich interessiere mich für: {{service}}",
+    "printNote": "Alle Preise für das Design. Druckkosten trägt der Kunde separat – wir empfehlen gern eine passende Druckerei.",
+    "pricingLink": "Logo, Visitenkarten, CV & mehr: Weitere Design-Services ansehen",
+    "items": [
+      {
+        "icon": "logo",
+        "name": "Logo & Branding",
+        "text": "Logo, Farben und Schriften, die zu Ihrem Betrieb passen – mit Dateien für Web und Druck.",
+        "price": "Preis auf Anfrage"
+      },
+      {
+        "icon": "card",
+        "name": "Visitenkarten",
+        "text": "Druckfertige Visitenkarten im Stil Ihrer Marke, ein- oder zweiseitig.",
+        "price": "Preis auf Anfrage"
+      },
+      {
+        "icon": "cv",
+        "name": "CV-Design",
+        "text": "Ein klarer, moderner Lebenslauf, der auffällt – auf Deutsch, Englisch oder Arabisch.",
+        "price": "Preis auf Anfrage"
+      },
+      {
+        "icon": "heart",
+        "name": "Hochzeitskarten",
+        "text": "Einladungen, Save-the-Date und Menükarten, persönlich gestaltet.",
+        "price": "Preis auf Anfrage"
+      },
+      {
+        "icon": "doc",
+        "name": "Dokumenten-Gestaltung",
+        "text": "Flyer, Preislisten, Angebote und Präsentationen im einheitlichen Design.",
+        "price": "Preis auf Anfrage"
+      }
+    ]
   },
   "problems": {
     "eyebrow": "Kennen Sie das?",
@@ -88,7 +146,7 @@
       {
         "title": "Website & Conversion",
         "tagline": "Damit Besucher zu Kunden werden.",
-        "description": "Wir bauen Websites, die nicht nur gut aussehen, sondern Anfragen und Buchungen erzeugen.",
+        "description": "Wir bauen Websites, die nicht nur gut aussehen, sondern Anfragen und Buchungen erzeugen. Auf Wunsch in jeder Sprache – nicht nur Deutsch, Englisch oder Arabisch.",
         "features": [
           "Individuelles, mobile-optimiertes Webdesign",
           "Conversion-optimierte Seitenstruktur",
@@ -147,10 +205,10 @@
     "packages": [
       {
         "name": "Start",
-        "setup": "790 €",
+        "setup": "490 €",
         "monthly": "149 €",
-        "chfSetup": "CHF 990",
-        "chfMonthly": "CHF 179",
+        "chfSetup": "CHF 550",
+        "chfMonthly": "CHF 169",
         "time": "ca. 7 Tage",
         "for": "Für Betriebe, die endlich professionell online sein wollen.",
         "features": [
@@ -165,9 +223,9 @@
       {
         "name": "Pro",
         "setup": "1.490 €",
-        "monthly": "349 €",
-        "chfSetup": "CHF 1.890",
-        "chfMonthly": "CHF 399",
+        "monthly": "299 €",
+        "chfSetup": "CHF 1.690",
+        "chfMonthly": "CHF 339",
         "time": "2–3 Wochen",
         "for": "Für Betriebe, die bei Google gefunden und gebucht werden wollen.",
         "features": [
@@ -184,8 +242,8 @@
         "name": "Partner",
         "setup": "2.900 €",
         "monthly": "590–790 €",
-        "chfSetup": "CHF 3.490",
-        "chfMonthly": "CHF 690–890",
+        "chfSetup": "CHF 3.290",
+        "chfMonthly": "CHF 670–890",
         "extra": "+ Werbebudget",
         "time": "3–4 Wochen",
         "for": "Für Betriebe, die aktiv wachsen und Mitarbeiter finden wollen.",
@@ -206,7 +264,7 @@
       { "name": "Lead-Automatisierung", "price": "ab 250 €", "chf": "ab CHF 290", "note": "Neue Anfrage → sofortige Weiterleitung per WhatsApp/E-Mail" },
       { "name": "Bewertungs-Automatisierung", "price": "ab 300 €", "chf": "ab CHF 340", "note": "Nach Auftragsabschluss automatisch um eine Google-Bewertung bitten" },
       { "name": "Follow-up-Automatisierung", "price": "ab 400 €", "chf": "ab CHF 450", "note": "Keine Antwort? Automatische Erinnerung, damit keine Anfrage verloren geht" },
-      { "name": "AI-Assistent", "price": "ab 750 €", "chf": "ab CHF 850", "note": "Beantwortet häufige Fragen automatisch & erfasst neue Leads" }
+      { "name": "AI-Assistent", "price": "ab 750 €", "chf": "ab CHF 850", "note": "Beantwortet häufige Fragen automatisch & erfasst neue Leads – auf Wunsch in jeder Sprache" }
     ],
     "automationNote": "Laufende Betriebskosten für eingesetzte Tools/Software separat, je nach Umfang. Weitere Automationen (CRM-Anbindung, komplette Workflow-Systeme) auf Anfrage.",
     "cta": "Individuelles Angebot auf Anfrage",
@@ -274,7 +332,7 @@
       },
       {
         "q": "Was kostet es wirklich am Ende?",
-        "a": "ZielTakt Komplett besteht aus einer einmaligen Einrichtung und einem festen Monatsbetrag: Start 790 € + 149 €/Monat, Pro 1.490 € + 349 €/Monat, Partner 2.900 € + 590–790 €/Monat zuzüglich Werbebudget, jeweils mit 12 Monaten Mindestlaufzeit. Nach dem Erstgespräch erhalten Sie ein schriftliches Festangebot, in dem alle Kosten aufgeführt sind, auch eventuelle laufende Kosten für Tools oder Software."
+        "a": "ZielTakt Komplett besteht aus einer einmaligen Einrichtung und einem festen Monatsbetrag: Start 490 € + 149 €/Monat, Pro 1.490 € + 299 €/Monat, Partner 2.900 € + 590–790 €/Monat zuzüglich Werbebudget, jeweils mit 12 Monaten Mindestlaufzeit. Nach dem Erstgespräch erhalten Sie ein schriftliches Festangebot, in dem alle Kosten aufgeführt sind, auch eventuelle laufende Kosten für Tools oder Software."
       },
       {
         "q": "Kann ich meine Website später selbst bearbeiten?",
@@ -352,5 +410,79 @@
     "rights": "© {{year}} ZielTakt. Alle Rechte vorbehalten.",
     "imprint": "Impressum",
     "privacy": "Datenschutz"
+  },
+  "goals": {
+    "eyebrow": "Ihr Ziel",
+    "title": "Was soll Ihre Website für Sie tun?",
+    "text": "Wählen Sie Ihr wichtigstes Ziel – wir zeigen Ihnen das passende Paket mit Preis.",
+    "resultLabel": "Passt am besten",
+    "oneTime": "einmalig",
+    "from": "ab",
+    "seePrices": "Alle Preise ansehen",
+    "cta": "Kostenloses Erstgespräch",
+    "items": [
+      {
+        "icon": "globe",
+        "label": "Endlich professionell online sein",
+        "why": "Moderne Website mit bis zu 3 Seiten, Google-Profil und WhatsApp-Button – in etwa 7 Tagen live.",
+        "pkg": 0
+      },
+      {
+        "icon": "search",
+        "label": "Bei Google gefunden werden",
+        "why": "Local SEO und laufende Pflege Ihres Google-Profils, damit Kunden in der Region Sie zuerst finden.",
+        "pkg": 1
+      },
+      {
+        "icon": "calendar",
+        "label": "Termine online buchen lassen",
+        "why": "Online-Terminbuchung direkt auf der Website – weniger Telefon, mehr feste Termine.",
+        "pkg": 1
+      },
+      {
+        "icon": "star",
+        "label": "Mehr Google-Bewertungen",
+        "why": "Nach jedem Auftrag geht automatisch eine freundliche Bitte um eine Bewertung raus.",
+        "pkg": 1
+      },
+      {
+        "icon": "users",
+        "label": "Mitarbeiter finden",
+        "why": "Karriereseite für Ihre Stellenangebote plus Google- und Meta-Anzeigen, die Bewerber erreichen.",
+        "pkg": 2
+      },
+      {
+        "icon": "bot",
+        "label": "Anfragen automatisch beantworten",
+        "why": "Ein AI-Assistent beantwortet häufige Fragen rund um die Uhr und sammelt neue Anfragen für Sie.",
+        "addon": 3
+      }
+    ]
+  },
+  "why": {
+    "eyebrow": "Warum ZielTakt",
+    "title": "Gemacht für Betriebe am Bodensee.",
+    "items": [
+      {
+        "icon": "languages",
+        "title": "Arabisch und Deutsch",
+        "text": "Beratung und Betreuung in beiden Sprachen – Sie erklären Ihr Geschäft so, wie es Ihnen am leichtesten fällt."
+      },
+      {
+        "icon": "whatsapp",
+        "title": "WhatsApp zuerst",
+        "text": "Fragen, Änderungen, Freigaben: einfach per WhatsApp. Keine Ticketsysteme, keine langen E-Mail-Ketten."
+      },
+      {
+        "icon": "bot",
+        "title": "AI-Chat in 3 Sprachen",
+        "text": "Ihre Website kann Kundenfragen auf Deutsch, Englisch und Arabisch beantworten – auch nach Feierabend. Weitere Sprachen auf Anfrage."
+      },
+      {
+        "icon": "euro",
+        "title": "Ein fester Preis",
+        "text": "Einmal einrichten, dann ein fester Monatsbetrag für alles. Statt jede Leistung einzeln zu bezahlen."
+      }
+    ]
   }
 }

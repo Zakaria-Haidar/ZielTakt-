@@ -2,6 +2,7 @@
   "nav": {
     "links": [
       { "label": "Services", "id": "services" },
+      { "label": "Design", "id": "design" },
       { "label": "About", "id": "about" },
       { "label": "Service area", "id": "area" },
       { "label": "Contact", "id": "contact" }
@@ -9,9 +10,38 @@
     "cta": "Start a project",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "languageLabel": "Language"
+    "languageLabel": "Language",
+    "themeToLight": "Switch to light theme",
+    "themeToDark": "Switch to dark theme"
   },
   "hero": {
+    "statCards": [
+      {
+        "value": 7,
+        "prefix": "",
+        "suffix": "",
+        "label": "days to launch",
+        "note": "Start package",
+        "placeholder": false
+      },
+      {
+        "value": 490,
+        "prefix": "from €",
+        "suffix": "",
+        "label": "one-time setup",
+        "note": "Start package",
+        "placeholder": false
+      },
+      { "value": 3, "prefix": "", "suffix": "", "label": "languages", "note": "DE · EN · AR", "placeholder": false },
+      {
+        "value": 98,
+        "prefix": "",
+        "suffix": "/100",
+        "label": "PageSpeed",
+        "note": "Example value",
+        "placeholder": true
+      }
+    ],
     "badge": "Growth Systems · Konstanz",
     "titleStart": "Professional websites for businesses",
     "titleHighlight": "around Lake Constance.",
@@ -36,6 +66,48 @@
         { "v": "Fast", "l": "on mobile" }
       ]
     }
+  },
+  "design": {
+    "eyebrow": "More design services",
+    "title": "More than websites.",
+    "text": "Everything else your brand needs – designed in the same style as your website.",
+    "from": "from",
+    "cta": "Ask on WhatsApp",
+    "waMessage": "Hello ZielTakt, I am interested in: {{service}}",
+    "printNote": "All prices are for the design. Printing costs are paid separately by the customer – we are happy to recommend a print shop.",
+    "pricingLink": "Logo, business cards, CV & more: see more design services",
+    "items": [
+      {
+        "icon": "logo",
+        "name": "Logo & branding",
+        "text": "Logo, colours and fonts that fit your business – with files for web and print.",
+        "price": "Price on request"
+      },
+      {
+        "icon": "card",
+        "name": "Business cards",
+        "text": "Print-ready business cards in your brand style, single or double-sided.",
+        "price": "Price on request"
+      },
+      {
+        "icon": "cv",
+        "name": "CV design",
+        "text": "A clear, modern CV that stands out – in German, English or Arabic.",
+        "price": "Price on request"
+      },
+      {
+        "icon": "heart",
+        "name": "Wedding cards",
+        "text": "Invitations, save-the-dates and menu cards, designed just for you.",
+        "price": "Price on request"
+      },
+      {
+        "icon": "doc",
+        "name": "Document design",
+        "text": "Flyers, price lists, quotes and presentations in one consistent design.",
+        "price": "Price on request"
+      }
+    ]
   },
   "problems": {
     "eyebrow": "Sound familiar?",
@@ -88,7 +160,7 @@
       {
         "title": "Website & Conversion",
         "tagline": "So visitors become customers.",
-        "description": "We build websites that don't just look good but generate enquiries and bookings.",
+        "description": "We build websites that don't just look good but generate enquiries and bookings. Available in any language on request – not just German, English or Arabic.",
         "features": [
           "Custom, mobile-first web design",
           "Page structure built to convert",
@@ -147,10 +219,10 @@
     "packages": [
       {
         "name": "Start",
-        "setup": "€790",
+        "setup": "€490",
         "monthly": "€149",
-        "chfSetup": "CHF 990",
-        "chfMonthly": "CHF 179",
+        "chfSetup": "CHF 550",
+        "chfMonthly": "CHF 169",
         "time": "approx. 7 days",
         "for": "For businesses that finally want a professional presence online.",
         "features": [
@@ -165,9 +237,9 @@
       {
         "name": "Pro",
         "setup": "€1,490",
-        "monthly": "€349",
-        "chfSetup": "CHF 1,890",
-        "chfMonthly": "CHF 399",
+        "monthly": "€299",
+        "chfSetup": "CHF 1,690",
+        "chfMonthly": "CHF 339",
         "time": "2–3 weeks",
         "for": "For businesses that want to be found and booked on Google.",
         "features": [
@@ -184,8 +256,8 @@
         "name": "Partner",
         "setup": "€2,900",
         "monthly": "€590–790",
-        "chfSetup": "CHF 3,490",
-        "chfMonthly": "CHF 690–890",
+        "chfSetup": "CHF 3,290",
+        "chfMonthly": "CHF 670–890",
         "extra": "+ ad budget",
         "time": "3–4 weeks",
         "for": "For businesses that want to grow actively and find staff.",
@@ -206,7 +278,7 @@
       { "name": "Lead automation", "price": "from €250", "chf": "from CHF 290", "note": "New enquiry → forwarded instantly via WhatsApp/email" },
       { "name": "Review automation", "price": "from €300", "chf": "from CHF 340", "note": "Automatically ask for a Google review after each job" },
       { "name": "Follow-up automation", "price": "from €400", "chf": "from CHF 450", "note": "No reply? An automatic reminder so no enquiry gets lost" },
-      { "name": "AI assistant", "price": "from €750", "chf": "from CHF 850", "note": "Answers common questions automatically & captures new leads" }
+      { "name": "AI assistant", "price": "from €750", "chf": "from CHF 850", "note": "Answers common questions automatically & captures new leads – in any language on request" }
     ],
     "automationNote": "Running costs for the tools/software used are separate, depending on scope. Further automations (CRM integration, complete workflow systems) on request.",
     "cta": "Request a custom quote",
@@ -278,7 +350,7 @@
       },
       {
         "q": "What does it really cost in the end?",
-        "a": "ZielTakt Komplett consists of a one-time setup and a fixed monthly fee: Start €790 + €149/month, Pro €1,490 + €349/month, Partner €2,900 + €590–790/month plus ad budget, each with a 12-month minimum term. After the intro call you receive a fixed written quote listing all costs, including any running costs for tools or software."
+        "a": "ZielTakt Komplett consists of a one-time setup and a fixed monthly fee: Start €490 + €149/month, Pro €1,490 + €299/month, Partner €2,900 + €590–790/month plus ad budget, each with a 12-month minimum term. After the intro call you receive a fixed written quote listing all costs, including any running costs for tools or software."
       },
       {
         "q": "Can I edit my website myself later?",
@@ -356,5 +428,79 @@
     "rights": "© {{year}} ZielTakt. All rights reserved.",
     "imprint": "Imprint (Impressum)",
     "privacy": "Privacy (Datenschutz)"
+  },
+  "goals": {
+    "eyebrow": "Your goal",
+    "title": "What should your website do for you?",
+    "text": "Pick your most important goal – we show you the matching package and price.",
+    "resultLabel": "Best fit",
+    "oneTime": "one-time",
+    "from": "from",
+    "seePrices": "See all prices",
+    "cta": "Free first call",
+    "items": [
+      {
+        "icon": "globe",
+        "label": "Finally look professional online",
+        "why": "A modern website with up to 3 pages, Google profile and WhatsApp button – live in about 7 days.",
+        "pkg": 0
+      },
+      {
+        "icon": "search",
+        "label": "Get found on Google",
+        "why": "Local SEO and ongoing care of your Google profile, so customers in the region find you first.",
+        "pkg": 1
+      },
+      {
+        "icon": "calendar",
+        "label": "Let customers book online",
+        "why": "Online booking right on your website – fewer phone calls, more confirmed appointments.",
+        "pkg": 1
+      },
+      {
+        "icon": "star",
+        "label": "More Google reviews",
+        "why": "After every job, a friendly review request goes out automatically.",
+        "pkg": 1
+      },
+      {
+        "icon": "users",
+        "label": "Find employees",
+        "why": "A careers page for your job openings plus Google and Meta ads that reach applicants.",
+        "pkg": 2
+      },
+      {
+        "icon": "bot",
+        "label": "Answer enquiries automatically",
+        "why": "An AI assistant answers common questions around the clock and collects new leads for you.",
+        "addon": 3
+      }
+    ]
+  },
+  "why": {
+    "eyebrow": "Why ZielTakt",
+    "title": "Made for businesses around Lake Constance.",
+    "items": [
+      {
+        "icon": "languages",
+        "title": "Arabic and German",
+        "text": "Advice and support in both languages – explain your business in whichever is easiest for you."
+      },
+      {
+        "icon": "whatsapp",
+        "title": "WhatsApp first",
+        "text": "Questions, changes, approvals: just send a WhatsApp. No ticket systems, no long email threads."
+      },
+      {
+        "icon": "bot",
+        "title": "AI chat in 3 languages",
+        "text": "Your website can answer customer questions in German, English and Arabic – even after hours. More languages on request."
+      },
+      {
+        "icon": "euro",
+        "title": "One flat price",
+        "text": "One-time setup, then one fixed monthly amount for everything – instead of paying for each service separately."
+      }
+    ]
   }
 }

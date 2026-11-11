@@ -1,7 +1,10 @@
 // Single source of truth for per-route <head> data. Read by usePageMeta (client)
 // and by scripts/prerender.js (build), so both always produce the same tags.
-import { staedte } from '@/data/staedte';
-import { GOOGLE_PROFILE_URL, INSTAGRAM_URL, PHONE_DISPLAY } from '@/lib/contact';
+import { staedte, townPath } from '@/data/staedte';
+import { CONTACT_EMAIL, GOOGLE_PROFILE_URL, INSTAGRAM_URL, PHONE_DISPLAY } from '@/lib/contact';
+import de from '@/locales/de.json';
+import en from '@/locales/en.json';
+import ar from '@/locales/ar.json';
 import { LANGUAGES } from '@/i18n/languages';
 
 export const SITE_URL = 'https://www.zieltakt.de';
@@ -18,39 +21,68 @@ const HOME_ALTERNATES = [
   { hreflang: 'x-default', href: absolute(LANGUAGES.de.path) },
 ];
 
-// Service-area business: Organization without a street address.
+// Service-area business: LocalBusiness with the city only (no street address shown).
 const homeJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
+  '@type': 'LocalBusiness',
+  '@id': `${SITE_URL}/#business`,
   name: 'ZielTakt',
   url: `${SITE_URL}/`,
   logo: OG_IMAGE,
+  image: OG_IMAGE,
   telephone: PHONE_DISPLAY,
+  email: CONTACT_EMAIL,
+  priceRange: '€€',
+  address: { '@type': 'PostalAddress', addressLocality: 'Konstanz', addressRegion: 'Baden-Württemberg', addressCountry: 'DE' },
   areaServed: staedte.map((stadt) => ({ '@type': 'City', name: stadt.stadt })),
+  knowsLanguage: ['de', 'ar', 'en'],
   sameAs: [GOOGLE_PROFILE_URL, INSTAGRAM_URL],
 };
 
+// FAQPage from the same FAQ texts the page shows, per language.
+const faqJsonLd = (locale) => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  inLanguage: locale === de ? 'de' : locale === en ? 'en' : 'ar',
+  mainEntity: locale.faq.items.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+});
+
 function townJsonLd(stadt) {
-  const url = `${SITE_URL}/${stadt.slug}`;
+  const url = `${SITE_URL}${townPath(stadt)}`;
+  const city = {
+    '@type': 'City',
+    name: stadt.stadt,
+    containedInPlace: { '@type': 'Country', name: COUNTRY_NAMES[stadt.land] },
+  };
   return [
+    {
+      // The business, scoped to this town (same @id as the home page entity).
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      '@id': `${SITE_URL}/#business`,
+      name: 'ZielTakt',
+      url: `${SITE_URL}/`,
+      logo: OG_IMAGE,
+      image: OG_IMAGE,
+      telephone: PHONE_DISPLAY,
+      email: CONTACT_EMAIL,
+      priceRange: '€€',
+      address: { '@type': 'PostalAddress', addressLocality: 'Konstanz', addressRegion: 'Baden-Württemberg', addressCountry: 'DE' },
+      areaServed: city,
+    },
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
-      serviceType: 'Webdesign',
+      serviceType: 'Webdesign & Local SEO',
       name: stadt.h1,
       description: stadt.metaDescription,
       url,
-      provider: {
-        '@type': 'Organization',
-        name: 'ZielTakt',
-        url: `${SITE_URL}/`,
-        telephone: PHONE_DISPLAY,
-      },
-      areaServed: {
-        '@type': 'City',
-        name: stadt.stadt,
-        containedInPlace: { '@type': 'Country', name: COUNTRY_NAMES[stadt.land] },
-      },
+      provider: { '@id': `${SITE_URL}/#business` },
+      areaServed: city,
     },
     {
       '@context': 'https://schema.org',
@@ -74,7 +106,7 @@ export const routes = [
     ogDescription:
       'Professionelle Websites für Unternehmen am Bodensee: modernes Design, lokale Google-Sichtbarkeit und Online-Buchung aus einer Hand.',
     alternates: HOME_ALTERNATES,
-    jsonLd: [homeJsonLd],
+    jsonLd: [homeJsonLd, faqJsonLd(de)],
     sitemap: { changefreq: 'monthly', priority: '1.0' },
   },
   {
@@ -88,7 +120,7 @@ export const routes = [
     ogDescription:
       'Websites for businesses around Lake Constance: modern design, local Google visibility and online booking from one source.',
     alternates: HOME_ALTERNATES,
-    jsonLd: [homeJsonLd],
+    jsonLd: [homeJsonLd, faqJsonLd(en)],
     sitemap: { changefreq: 'monthly', priority: '0.9' },
   },
   {
@@ -103,7 +135,7 @@ export const routes = [
     ogDescription:
       'مواقع عصرية، وظهور محلي على Google، وتقييمات، وواتساب وحجز مواعيد، من مصدر واحد. استشارة مجانية بالعربية.',
     alternates: HOME_ALTERNATES,
-    jsonLd: [homeJsonLd],
+    jsonLd: [homeJsonLd, faqJsonLd(ar)],
     sitemap: { changefreq: 'monthly', priority: '0.9' },
   },
   {
@@ -121,7 +153,7 @@ export const routes = [
     sitemap: { changefreq: 'yearly', priority: '0.3' },
   },
   ...staedte.map((stadt) => ({
-    path: `/${stadt.slug}`,
+    path: townPath(stadt),
     lang: stadt.lang,
     title: stadt.title,
     description: stadt.metaDescription,

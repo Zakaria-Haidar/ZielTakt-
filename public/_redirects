@@ -1,0 +1,5 @@
+# Old town URLs (before /standorte/) -> new pages. Permanent, so rankings carry over.
+/webdesign-konstanz    /standorte/konstanz    301
+/webdesign-singen      /standorte/singen      301
+/webdesign-radolfzell  /standorte/radolfzell  301
+/webdesign-kreuzlingen /standorte/kreuzlingen 301

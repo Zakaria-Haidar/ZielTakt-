@@ -2,6 +2,13 @@ import { motion } from 'framer-motion';
 import { MapPin } from 'lucide-react';
 import SectionDivider from './SectionDivider';
 import useLang from '@/i18n/useLang';
+import { staedte, townPath } from '@/data/staedte';
+
+// Town chips link to their /standorte/<town> page (German-language pages).
+const townHref = (name) => {
+  const stadt = staedte.find((s) => s.stadt === name);
+  return stadt ? townPath(stadt) : undefined;
+};
 
 const germanTowns = [
   { name: 'Konstanz', primary: true },
@@ -83,16 +90,14 @@ export default function ServiceArea() {
 
         <div className="pt-16 pb-20 space-y-4">
           <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-neon text-xs font-medium tracking-[0.3em] uppercase"
+            className="text-neon-ink text-xs font-medium tracking-[0.3em] uppercase"
           >
             {t('area.eyebrow')}
           </motion.span>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="font-heading font-bold text-titanium tracking-[-0.04em]"
@@ -105,8 +110,8 @@ export default function ServiceArea() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Regional map */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ x: -30 }}
+            whileInView={{ x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="relative"
@@ -152,14 +157,14 @@ export default function ServiceArea() {
                   ))}
 
                   {/* Lake Constance */}
-                  <path d={lakePath} fill="#0A84B8" opacity="0.22" filter="url(#lake-glow)" />
+                  <path d={lakePath} fill="#0A84B8" opacity="0.22" filter="url(#lake-glow)" className="light:opacity-40" />
                   <path d={lakePath} fill="none" stroke="#38C6EE" strokeWidth="0.7" opacity="0.35" />
 
                   {/* Region labels */}
-                  <text x={PAD + 4} y={PAD + 10} fontSize="8" letterSpacing="1.5" fill="#5B6B7A" className="uppercase font-medium">
+                  <text x={PAD + 4} y={PAD + 10} fontSize="8" letterSpacing="1.5" fill="#5B6B7A" className="uppercase font-medium light:fill-datagrey">
                     {t('area.germany')}
                   </text>
-                  <text x={PAD + 4} y={VB_H - PAD + 2} fontSize="8" letterSpacing="1.5" fill="#5B6B7A" className="uppercase font-medium">
+                  <text x={PAD + 4} y={VB_H - PAD + 2} fontSize="8" letterSpacing="1.5" fill="#5B6B7A" className="uppercase font-medium light:fill-datagrey">
                     {t('area.switzerland')}
                   </text>
 
@@ -195,6 +200,7 @@ export default function ServiceArea() {
                             r="2.6"
                             fill={isCH ? '#7FE8FF' : '#00E0FF'}
                             opacity={isCH ? 0.75 : 0.9}
+                            className="light:fill-neon-ink"
                           />
                         )}
                         <text
@@ -204,6 +210,7 @@ export default function ServiceArea() {
                           fontSize={town.primary ? 11 : 8}
                           fontWeight={town.primary ? 600 : 500}
                           fill={town.primary ? '#00E0FF' : '#C7D2DA'}
+                          className="light:fill-titanium"
                         >
                           {town.name}
                         </text>
@@ -217,8 +224,8 @@ export default function ServiceArea() {
 
           {/* Info */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ x: 30 }}
+            whileInView={{ x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="space-y-8"
@@ -236,16 +243,18 @@ export default function ServiceArea() {
               <span className="text-datagrey text-xs tracking-widest uppercase">{t('area.germany')}</span>
               <div className="flex flex-wrap gap-2">
                 {germanTowns.map((town) => (
-                  <span
+                  <a
                     key={town.name}
-                    className={`px-3 py-1.5 rounded-full text-xs font-medium border ${
+                    href={townHref(town.name)}
+                    hrefLang="de"
+                    className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-colors duration-300 hover:border-neon/50 hover:text-neon-ink ${
                       town.primary
-                        ? 'bg-neon/10 border-neon/30 text-neon'
+                        ? 'bg-neon/10 border-neon/30 text-neon-ink'
                         : 'glass text-titanium/80 border-border'
                     }`}
                   >
                     {town.name}
-                  </span>
+                  </a>
                 ))}
               </div>
             </div>
@@ -254,22 +263,24 @@ export default function ServiceArea() {
               <span className="text-datagrey text-xs tracking-widest uppercase">{t('area.switzerland')}</span>
               <div className="flex flex-wrap gap-2">
                 {swissTowns.map((town) => (
-                  <span
+                  <a
                     key={town.name}
-                    className="px-3 py-1.5 rounded-full text-xs font-medium glass text-titanium/80 border-border inline-flex items-center gap-1.5"
+                    href={townHref(town.name)}
+                    hrefLang="de"
+                    className="px-3 py-1.5 rounded-full text-xs font-medium glass text-titanium/80 border-border inline-flex items-center gap-1.5 transition-colors duration-300 hover:border-neon/50 hover:text-neon-ink"
                   >
-                    <span className="text-[9px] font-bold tracking-wider text-neon bg-neon/10 border border-neon/20 rounded px-1 py-0.5">
+                    <span className="text-[9px] font-bold tracking-wider text-neon-ink bg-neon/10 border border-neon/20 rounded px-1 py-0.5">
                       CH
                     </span>
                     {town.name}
-                  </span>
+                  </a>
                 ))}
               </div>
             </div>
 
             <div className="flex items-start gap-4 pt-2">
               <div className="w-10 h-10 rounded-lg bg-neon/5 border border-neon/10 flex items-center justify-center flex-shrink-0">
-                <MapPin className="w-4 h-4 text-neon" />
+                <MapPin className="w-4 h-4 text-neon-ink" />
               </div>
               <div>
                 <div className="text-datagrey text-xs tracking-widest uppercase">{t('area.studio')}</div>

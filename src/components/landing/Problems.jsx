@@ -19,16 +19,14 @@ export default function Problems() {
 
         <div className="pt-16 pb-20 space-y-4">
           <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-neon text-xs font-medium tracking-[0.3em] uppercase"
+            className="text-neon-ink text-xs font-medium tracking-[0.3em] uppercase"
           >
             {t('problems.eyebrow')}
           </motion.span>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="font-heading font-bold text-titanium tracking-[-0.04em] max-w-3xl"
@@ -44,14 +42,14 @@ export default function Problems() {
             return (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ y: 30 }}
+                whileInView={{ y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 className="glass-strong rounded-2xl p-7 space-y-4 hover:border-neon/20 transition-all duration-500"
               >
                 <div className="w-11 h-11 rounded-xl bg-neon/5 border border-neon/10 flex items-center justify-center">
-                  <Icon className="w-5 h-5 text-neon" />
+                  <Icon className="w-5 h-5 text-neon-ink" />
                 </div>
                 <h3 className="font-heading font-semibold text-titanium text-lg tracking-tight">{item.title}</h3>
                 <p className="text-datagrey text-sm leading-relaxed" style={{ lineHeight: '1.6' }}>{item.text}</p>
@@ -61,14 +59,12 @@ export default function Problems() {
         </div>
 
         <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
           className="mt-12 text-center text-datagrey text-sm"
         >
           {t('problems.footer')}{' '}
-          <a href={href('services')} className="text-neon hover:underline font-medium group inline-flex items-center gap-1">
+          <a href={href('services')} className="text-neon-ink hover:underline font-medium group inline-flex items-center gap-1">
             {t('problems.footerLink')} <Arrow />
           </a>
         </motion.p>

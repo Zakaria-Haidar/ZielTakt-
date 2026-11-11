@@ -72,6 +72,7 @@ async function renderPage(route, outFile) {
   if (page.includes('<!--app-html-->') || page.includes('<!--app-head-->')) {
     throw new Error(`Placeholder left in ${outFile}`);
   }
+  fs.mkdirSync(path.dirname(path.join(distDir, outFile)), { recursive: true }); // /standorte/<town>
   fs.writeFileSync(path.join(distDir, outFile), page);
   console.log(`prerendered ${route.path.padEnd(24)} -> dist/${outFile}`);
 }
