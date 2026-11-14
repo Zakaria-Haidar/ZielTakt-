@@ -45,9 +45,6 @@ const fragmentShader = /* glsl */ `
   }
 `;
 
-// Brand cyan on the void-black theme; the darker text cyan on the light theme so
-// the field stays visible on cream.
-const themeColor = () => (document.documentElement.dataset.theme === 'light' ? '#006570' : '#00E0FF');
 
 function Field() {
   const material = useRef(null);
@@ -68,7 +65,7 @@ function Field() {
     uTime: { value: 0 },
     uMouse: { value: { x: 0, y: 0 } },
     uScroll: { value: 0 },
-    uColor: { value: new Color(themeColor()) },
+    uColor: { value: new Color('#00E0FF') },
   }), []);
 
   useEffect(() => {
@@ -76,12 +73,9 @@ function Field() {
       mouse.current.x = (e.clientX / window.innerWidth - 0.5) * WIDTH * 0.8;
       mouse.current.y = -(e.clientY / window.innerHeight - 0.5) * HEIGHT * 0.8;
     };
-    const theme = new MutationObserver(() => uniforms.uColor.value.set(themeColor()));
-    theme.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     window.addEventListener('pointermove', onMove, { passive: true });
     return () => {
       window.removeEventListener('pointermove', onMove);
-      theme.disconnect();
     };
   }, [uniforms]);
 

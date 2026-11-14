@@ -216,7 +216,7 @@ export default function Preise() {
           </GlassButton>
           <p className="text-datagrey text-xs">{t('pricing.vatNote')}</p>
           {vatOriginal && (
-            <p className="text-datagrey/80 light:text-datagrey text-xs" lang="de" dir="ltr">{vatOriginal}</p>
+            <p className="text-datagrey/80 text-xs" lang="de" dir="ltr">{vatOriginal}</p>
           )}
         </motion.div>
       </div>

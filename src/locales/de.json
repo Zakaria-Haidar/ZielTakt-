@@ -10,9 +10,7 @@
     "cta": "Projekt starten",
     "openMenu": "Menü öffnen",
     "closeMenu": "Menü schließen",
-    "languageLabel": "Sprache",
-    "themeToLight": "Helles Design aktivieren",
-    "themeToDark": "Dunkles Design aktivieren"
+    "languageLabel": "Sprache"
   },
   "hero": {
     "statCards": [

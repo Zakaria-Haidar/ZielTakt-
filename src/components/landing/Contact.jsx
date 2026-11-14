@@ -188,7 +188,7 @@ export default function Contact() {
   };
 
   const inputClass =
-    'w-full bg-transparent border-0 border-b border-border pb-3 text-titanium text-lg placeholder:text-datagrey focus:outline-none focus:border-neon transition-colors duration-500 light:border-datagrey light:focus:border-neon-ink';
+    'w-full bg-transparent border-0 border-b border-border pb-3 text-titanium text-lg placeholder:text-datagrey focus:outline-none focus:border-neon transition-colors duration-500';
 
   return (
     <section id="contact" className="relative bg-void py-16 md:py-24">
@@ -288,7 +288,7 @@ export default function Contact() {
                 <a href="/datenschutz" hrefLang="de" className="text-neon-ink hover:underline">{t('contact.consentLink')}</a>.
               </p>
               {error && (
-                <p role="alert" className="mt-4 text-sm text-red-400 light:text-red-700 leading-relaxed">
+                <p role="alert" className="mt-4 text-sm text-red-400 leading-relaxed">
                   {t('contact.error')}{' '}
                   <a href={`mailto:${CONTACT_EMAIL}`} className="text-neon-ink hover:underline"><bdi dir="ltr">{CONTACT_EMAIL}</bdi></a>.
                 </p>

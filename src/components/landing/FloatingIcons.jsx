@@ -16,7 +16,7 @@ export default function FloatingIcons({ items }) {
           key={i}
           animate={{ y: [0, i % 2 ? 7 : -7, 0], x: [0, i % 2 ? -3 : 3, 0] }}
           transition={{ y: { duration: d, repeat: Infinity, ease: 'easeInOut' }, x: { duration: d * 1.4, repeat: Infinity, ease: 'easeInOut' } }}
-          className={`${i === 0 ? 'flex top-6 end-0' : 'hidden lg:flex'} ${pos} absolute w-10 h-10 lg:w-14 lg:h-14 rounded-2xl glass-strong shadow-lg shadow-black/30 light:shadow-ink/10 items-center justify-center`}
+          className={`${i === 0 ? 'flex top-6 end-0' : 'hidden lg:flex'} ${pos} absolute w-10 h-10 lg:w-14 lg:h-14 rounded-2xl glass-strong shadow-lg shadow-black/30 items-center justify-center`}
         >
           <Icon className="w-5 h-5 lg:w-6 lg:h-6 text-neon-ink" strokeWidth={1.5} />
         </motion.div>

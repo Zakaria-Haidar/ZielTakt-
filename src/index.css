@@ -1,9 +1,7 @@
 html { scroll-padding-top: 90px; }
 
 /* ===== Theme tokens (ZielTakt palette) =====
-   Dark is the default and the original look; [data-theme="light"] is the warm sand
-   variant. The theme attribute is set on <html> by the inline script in index.html
-   before first paint. Colors are RGB channels so Tailwind opacity modifiers work. */
+   Dark is the only theme. Colors are RGB channels so Tailwind opacity modifiers work. */
 :root {
   color-scheme: dark;
   --zt-void: 7 7 8;            /* page background */
@@ -22,43 +20,6 @@ html { scroll-padding-top: 90px; }
   --zt-line-glow: rgba(0, 224, 255, 0.6);
   --zt-glow-text: 0 0 20px rgba(0, 224, 255, 0.5), 0 0 40px rgba(0, 224, 255, 0.3);
   --zt-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 14px 32px -18px rgba(0, 0, 0, 0.65);
-}
-
-/* Light: background #F2E9DC. Brand cyan #00E0FF stays exact for fills, borders and
-   glows; as text it is only 1.33:1 on sand, so text uses the same hue (186°) at 22%
-   lightness, #006570 (5.6:1 on #F2E9DC, 5.0:1 on #E8DCCA). */
-:root[data-theme="light"] {
-  color-scheme: light;
-  --zt-void: 242 233 220;      /* #F2E9DC */
-  --zt-charcoal: 232 220 202;  /* #E8DCCA */
-  --zt-titanium: 28 26 23;     /* #1C1A17 */
-  --zt-datagrey: 99 91 80;     /* #635B50 */
-  --zt-ink: 60 45 25;
-  --zt-neon-ink: 0 101 112;    /* #006570 */
-  --zt-glass: rgba(255, 252, 247, 0.6);
-  --zt-glass-strong: rgba(255, 252, 247, 0.75);
-  --zt-glass-mobile: rgba(250, 246, 240, 0.95);
-  --zt-glass-strong-mobile: rgba(250, 246, 240, 0.97);
-  --zt-glass-border: rgba(0, 224, 255, 0.45);
-  --zt-glass-strong-border: rgba(0, 224, 255, 0.55);
-  --zt-gradient-text: linear-gradient(135deg, #006570, #0050A0);
-  --zt-line-glow: rgba(0, 101, 112, 0.45);
-  --zt-glow-text: none;
-  --zt-card-shadow: 0 1px 2px rgba(60, 45, 25, 0.06), 0 14px 32px -18px rgba(60, 45, 25, 0.22);
-
-  /* shadcn tokens (body background, borders, legal pages) */
-  --background: 35 46% 91%;
-  --foreground: 36 10% 10%;
-  --card: 36 60% 97%;
-  --card-foreground: 36 10% 10%;
-  --popover: 36 60% 97%;
-  --popover-foreground: 36 10% 10%;
-  --secondary: 35 35% 86%;
-  --secondary-foreground: 36 10% 10%;
-  --muted: 35 35% 86%;
-  --muted-foreground: 35 11% 35%;
-  --border: 34 24% 78%;
-  --input: 34 24% 78%;
 }
 
 html, body { overflow-x: clip; }
@@ -202,9 +163,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Logo: the PNG has white lettering; light theme swaps in the dark-lettered copy
-   (only downloaded when the light theme is active). */
-:root[data-theme="light"] .zt-logo { content: url('/zieltakt-logo-light.png'); }
 
 /* ===== Impressum / Datenschutz: typography for plain legal HTML ===== */
 .legal-content { color: hsl(var(--muted-foreground)); font-size: 0.95rem; line-height: 1.7; overflow-wrap: anywhere; }

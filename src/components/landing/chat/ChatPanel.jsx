@@ -369,7 +369,7 @@ export default function ChatPanel({ open, onClose }) {
           <Send className="w-4 h-4 rtl:-scale-x-100" />
         </button>
       </form>
-      <p className="px-4 pb-2 -mt-1 text-[11px] text-datagrey/80 light:text-datagrey bg-void/60">{c.footnote}</p>
+      <p className="px-4 pb-2 -mt-1 text-[11px] text-datagrey/80 bg-void/60">{c.footnote}</p>
     </div>
   );
 }

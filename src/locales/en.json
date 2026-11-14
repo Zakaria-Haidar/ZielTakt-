@@ -10,9 +10,7 @@
     "cta": "Start a project",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "languageLabel": "Language",
-    "themeToLight": "Switch to light theme",
-    "themeToDark": "Switch to dark theme"
+    "languageLabel": "Language"
   },
   "hero": {
     "statCards": [

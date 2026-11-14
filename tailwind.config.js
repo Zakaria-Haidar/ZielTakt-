@@ -114,7 +114,5 @@ module.exports = {
   },
   plugins: [
     require("tailwindcss-animate"),
-    // `light:` variant for the few places the light theme needs its own treatment.
-    ({ addVariant }) => addVariant('light', ':root[data-theme="light"] &'),
   ],
 }

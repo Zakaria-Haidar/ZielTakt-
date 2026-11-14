@@ -40,7 +40,7 @@ function StatCards({ revealed }) {
           key={c.label}
           animate={{ y: [0, i % 2 ? 6 : -6, 0] }}
           transition={{ duration: 5 + i, repeat: Infinity, ease: 'easeInOut' }}
-          className={`glass-strong rounded-2xl px-4 py-3 shadow-lg shadow-black/30 light:shadow-ink/10 lg:absolute lg:z-20 lg:min-w-[150px] ${CARD_POS[i]}`}
+          className={`glass-strong rounded-2xl px-4 py-3 shadow-lg shadow-black/30 lg:absolute lg:z-20 lg:min-w-[150px] ${CARD_POS[i]}`}
         >
           <div className="font-heading font-bold text-titanium text-2xl leading-none tabular-nums" dir="ltr">
             {c.prefix}<CountUp to={c.value} start={start} />{c.suffix}
@@ -55,7 +55,6 @@ function StatCards({ revealed }) {
 
 // Background beams (after Aceternity UI): faint cyan curves with a few light pulses
 // travelling along them. Pure SVG + SMIL — no JS per frame, no filters, no blur.
-// Light theme swaps to the darker brand cyan so the lines stay visible on cream.
 // Pulses are desktop-only and start after load so they never compete with LCP.
 const BEAMS = Array.from({ length: 8 }, (_, i) => {
   const x = i * 50;
@@ -68,14 +67,14 @@ function BackgroundBeams() {
   return (
     <div
       aria-hidden="true"
-      className="absolute inset-0 pointer-events-none opacity-70 light:opacity-100 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]"
+      className="absolute inset-0 pointer-events-none opacity-70 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]"
     >
       <svg className="absolute inset-0 w-full h-full" viewBox="0 0 696 316" preserveAspectRatio="xMinYMid slice" fill="none">
-        <path d={BEAMS.join('')} stroke="#00E0FF" strokeOpacity="0.06" strokeWidth="0.5" className="light:stroke-neon-ink light:[stroke-opacity:0.22]" />
+        <path d={BEAMS.join('')} stroke="#00E0FF" strokeOpacity="0.06" strokeWidth="0.5" className="" />
         {!reduce && (
           <g className="hidden md:inline">
             {BEAMS.filter((_, i) => i % 3 === 1).map((d, i) => (
-              <path key={d} d={d} pathLength="1" stroke="#00E0FF" strokeOpacity="0.55" strokeWidth="0.8" strokeLinecap="round" strokeDasharray="0.06 0.94" className="light:stroke-neon-ink light:[stroke-opacity:0.7]">
+              <path key={d} d={d} pathLength="1" stroke="#00E0FF" strokeOpacity="0.55" strokeWidth="0.8" strokeLinecap="round" strokeDasharray="0.06 0.94" className="">
                 <animate attributeName="stroke-dashoffset" from="1" to="0" dur={`${9 + i * 2.5}s`} begin={`${3 + i * 1.3}s`} repeatCount="indefinite" />
               </path>
             ))}
@@ -169,7 +168,7 @@ function ScreenPreview({ vw }) {
           </div>
           <p className="text-datagrey text-xl max-w-lg" style={{ lineHeight: '1.6' }}>{t('hero.text')}</p>
           <div className="flex gap-4">
-            <span className="rounded-full px-8 py-4 border border-neon/20 text-neon-ink light:bg-neon light:text-on-neon">{t('hero.ctaPrimary')}</span>
+            <span className="rounded-full px-8 py-4 border border-neon/20 text-neon-ink">{t('hero.ctaPrimary')}</span>
             <span className="self-center rounded-full px-6 py-3 border border-titanium/10 text-titanium text-sm">{t('hero.ctaWhatsApp')}</span>
           </div>
         </div>
@@ -189,14 +188,14 @@ function LaptopOverlay({ refs, vw }) {
         <div ref={refs.zoom} style={{ transformOrigin: `50% ${LID_H / 2}px` }} className="will-change-transform">
           {/* tilt layer (page-load entrance) */}
           <div ref={refs.tilt} style={{ transformStyle: 'preserve-3d' }}>
-            <div style={{ width: LID_W, height: LID_H, padding: BEZEL }} className="relative rounded-2xl bg-[#0b0b0d] ring-1 ring-white/10 shadow-2xl shadow-black/50 light:shadow-ink/25">
+            <div style={{ width: LID_W, height: LID_H, padding: BEZEL }} className="relative rounded-2xl bg-[#0b0b0d] ring-1 ring-white/10 shadow-2xl shadow-black/50">
               <div className="relative h-full w-full rounded-md overflow-hidden bg-void">
                 <div className="absolute -top-1/4 end-0 w-2/3 h-2/3 rounded-full bg-neon/10 blur-3xl" />
                 <div ref={refs.preview} className="absolute inset-0">{vw > 0 && <ScreenPreview vw={vw} />}</div>
               </div>
               <span className="absolute top-[5px] left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#1d1d20]" />
             </div>
-            <div ref={refs.base} style={{ height: BASE_H }} className="relative -mx-14 rounded-b-2xl bg-gradient-to-b from-[#3a3b3f] to-[#141416] light:from-[#d6cfc3] light:to-[#a9a195]">
+            <div ref={refs.base} style={{ height: BASE_H }} className="relative -mx-14 rounded-b-2xl bg-gradient-to-b from-[#3a3b3f] to-[#141416]">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-1/2 rounded-b-lg bg-black/30" />
             </div>
           </div>

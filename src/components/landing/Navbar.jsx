@@ -4,7 +4,6 @@ import { Menu, X } from 'lucide-react';
 import useLang from '@/i18n/useLang';
 import { homePath } from '@/i18n/languages';
 import LanguageSwitcher from './LanguageSwitcher';
-import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const { t, lang, href } = useLang();
@@ -27,7 +26,7 @@ export default function Navbar() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 transition-all duration-300 ${
           scrolled
-            ? 'py-3 bg-void/90 backdrop-blur-xl border-b border-ink/5 shadow-lg shadow-black/40 light:border-ink/10 light:shadow-ink/10'
+            ? 'py-3 bg-void/90 backdrop-blur-xl border-b border-ink/5 shadow-lg shadow-black/40'
             : 'py-5 bg-transparent'
         }`}
       >
@@ -51,10 +50,9 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center gap-4">
             <LanguageSwitcher />
-            <ThemeToggle />
             <a
               href={href('contact')}
-              className="whitespace-nowrap glass rounded-full px-6 py-2.5 text-sm font-medium text-neon-ink hover:glow-blue transition-all duration-500 border border-neon/20 hover:border-neon/50 light:bg-neon light:text-on-neon light:border-neon"
+              className="whitespace-nowrap glass rounded-full px-6 py-2.5 text-sm font-medium text-neon-ink hover:glow-blue transition-all duration-500 border border-neon/20 hover:border-neon/50"
             >
               {t('nav.cta')}
             </a>
@@ -110,17 +108,10 @@ export default function Navbar() {
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
-                className="mt-4 glass rounded-full px-8 py-3 text-neon-ink font-medium glow-blue light:bg-neon light:text-on-neon light:border-neon"
+                className="mt-4 glass rounded-full px-8 py-3 text-neon-ink font-medium glow-blue"
               >
                 {t('nav.cta')}
               </motion.a>
-              <motion.div
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-              >
-                <ThemeToggle withLabel className="px-5 border border-titanium/10 light:border-titanium/20" />
-              </motion.div>
             </div>
           </motion.div>
         )}

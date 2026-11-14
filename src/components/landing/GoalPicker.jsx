@@ -54,7 +54,7 @@ export default function GoalPicker() {
                   onClick={() => setActive(i)}
                   className={`flex items-center gap-3 text-start rounded-2xl px-4 py-4 min-h-[64px] border transition-all duration-300 ${
                     on
-                      ? 'glass-strong border-neon/60 glow-blue light:shadow-none'
+                      ? 'glass-strong border-neon/60 glow-blue'
                       : 'glass border-transparent hover:border-neon/30'
                   }`}
                 >

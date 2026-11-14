@@ -132,7 +132,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-2 pt-2">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-titanium/60 light:text-titanium/75 text-xs"><bdi dir="ltr" className="font-mono">{time}</bdi> · {t('footer.clockPlace')}</span>
+              <span className="text-titanium/60 text-xs"><bdi dir="ltr" className="font-mono">{time}</bdi> · {t('footer.clockPlace')}</span>
             </div>
           </div>
         </div>

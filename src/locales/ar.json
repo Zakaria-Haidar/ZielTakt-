@@ -10,9 +10,7 @@
     "cta": "ابدأ مشروعك",
     "openMenu": "فتح القائمة",
     "closeMenu": "إغلاق القائمة",
-    "languageLabel": "اللغة",
-    "themeToLight": "التبديل إلى الوضع الفاتح",
-    "themeToDark": "التبديل إلى الوضع الداكن"
+    "languageLabel": "اللغة"
   },
   "hero": {
     "statCards": [

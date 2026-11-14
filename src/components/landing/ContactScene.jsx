@@ -49,7 +49,6 @@ const fragmentShader = /* glsl */ `
   }
 `;
 
-const themeColor = () => (document.documentElement.dataset.theme === 'light' ? '#006570' : '#00E0FF');
 
 function Aurora({ container }) {
   const material = useRef(null);
@@ -58,7 +57,7 @@ function Aurora({ container }) {
     uTime: { value: 0 },
     uRes: { value: { x: 1, y: 1 } },
     uMouse: { value: { x: 0.5, y: 0.5 } },
-    uColor: { value: new Color(themeColor()) },
+    uColor: { value: new Color('#00E0FF') },
   }), []);
 
   useEffect(() => {
@@ -67,12 +66,9 @@ function Aurora({ container }) {
       mouse.current.x = (e.clientX - r.left) / r.width;
       mouse.current.y = 1 - (e.clientY - r.top) / r.height;
     };
-    const theme = new MutationObserver(() => uniforms.uColor.value.set(themeColor()));
-    theme.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     window.addEventListener('pointermove', onMove, { passive: true });
     return () => {
       window.removeEventListener('pointermove', onMove);
-      theme.disconnect();
     };
   }, [container, uniforms]);
 
