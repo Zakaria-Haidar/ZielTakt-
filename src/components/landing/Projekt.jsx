@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { CircleCheck, MapPin } from 'lucide-react';
 import FloatingIcons from './FloatingIcons';
 import SectionDivider from './SectionDivider';
@@ -36,6 +37,80 @@ const FLOATERS = [
   { Icon: MapPin, pos: 'lg:top-4 lg:end-[22%]', d: 6.8 },
   { Icon: CircleCheck, pos: 'lg:top-16 lg:end-[2%]', d: 8 },
 ];
+
+const MAX_TILT = 6; // degrees
+
+// Logo panel: rotating neon border beam, logo parallax on scroll and a soft 3D tilt
+// on hover. Tilt listeners only exist for a fine pointer; reduced motion gets a
+// static panel (no spin, no parallax, no tilt).
+function ProjectVisual({ project, alt, reverse }) {
+  const ref = useRef(null);
+  const reduce = useReducedMotion();
+  const [fine, setFine] = useState(false);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const logoY = useTransform(scrollYProgress, [0, 1], [28, -28]);
+  const rotateX = useSpring(0, { stiffness: 180, damping: 20 });
+  const rotateY = useSpring(0, { stiffness: 180, damping: 20 });
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const update = () => setFine(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  const tilt = fine && !reduce ? {
+    onMouseMove: (e) => {
+      const r = e.currentTarget.getBoundingClientRect();
+      rotateY.set(((e.clientX - r.left) / r.width - 0.5) * 2 * MAX_TILT);
+      rotateX.set(-((e.clientY - r.top) / r.height - 0.5) * 2 * MAX_TILT);
+    },
+    onMouseLeave: () => { rotateX.set(0); rotateY.set(0); },
+  } : {};
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ x: reverse ? 30 : -30 }}
+      whileInView={{ x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      style={reduce ? undefined : { rotateX, rotateY, transformPerspective: 1100 }}
+      className={`group relative rounded-2xl p-px overflow-hidden ${reverse ? 'lg:order-2' : ''}`}
+      {...tilt}
+    >
+      {/* Border beam: a conic sweep spinning behind the 1px gap */}
+      <div
+        aria-hidden="true"
+        className="absolute -inset-[60%] animate-[spin_9s_linear_infinite] motion-reduce:animate-none bg-[conic-gradient(from_0deg,transparent_0deg,transparent_250deg,rgb(0_224_255/0.85)_320deg,transparent_360deg)]"
+      />
+      <div
+        className={`relative aspect-[4/3] rounded-[15px] overflow-hidden flex items-center justify-center ${
+          project.backdrop === 'dark'
+            ? 'bg-gradient-to-br from-[#1f2227] to-[#0d0e10]'
+            : 'bg-void'
+        }`}
+      >
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-neon/10 blur-3xl pointer-events-none transition-transform duration-700 group-hover:scale-150" />
+        {/* Faint grid for depth */}
+        <svg aria-hidden="true" className="absolute inset-0 w-full h-full opacity-[0.07]">
+          <pattern id={`grid-${project.id}`} width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#00E0FF" strokeWidth="0.6" />
+          </pattern>
+          <rect width="100%" height="100%" fill={`url(#grid-${project.id})`} />
+        </svg>
+        <motion.img
+          src={project.logo}
+          alt={alt}
+          loading="lazy"
+          style={reduce ? undefined : { y: logoY }}
+          className="relative w-2/3 max-w-[220px] h-auto object-contain transition-transform duration-700 group-hover:scale-105"
+        />
+      </div>
+    </motion.div>
+  );
+}
 
 export default function Projekt() {
   const { t } = useLang();
@@ -75,25 +150,7 @@ export default function Projekt() {
                 className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
               >
                 {/* Echtes Kundenlogo statt Screenshot */}
-                <motion.div
-                  initial={{ x: reverse ? 30 : -30 }}
-                  whileInView={{ x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8 }}
-                  className={`relative aspect-[4/3] rounded-2xl overflow-hidden flex items-center justify-center zt-card ${
-                    project.backdrop === 'dark'
-                      ? 'bg-gradient-to-br from-[#1f2227] to-[#0d0e10] border border-white/10'
-                      : 'glass-strong'
-                  } ${reverse ? 'lg:order-2' : ''}`}
-                >
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-neon/10 blur-3xl pointer-events-none" />
-                  <img
-                    src={project.logo}
-                    alt={text.logoAlt}
-                    loading="lazy"
-                    className="relative w-2/3 max-w-[220px] h-auto object-contain"
-                  />
-                </motion.div>
+                <ProjectVisual project={project} alt={text.logoAlt} reverse={reverse} />
 
                 {/* Text */}
                 <motion.div
