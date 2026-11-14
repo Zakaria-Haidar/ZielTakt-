@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Color } from 'three';
 
 // Desktop-only WebGL hero background: a slowly flowing particle field driven by a
@@ -46,20 +46,41 @@ const fragmentShader = /* glsl */ `
 `;
 
 
-function Field() {
+// Phones ("lite"): a narrower portrait field with ~1.8k instead of ~6k particles.
+const LITE = { cols: 36, rows: 50, width: 12, height: 13 };
+const FULL = { cols: COLS, rows: ROWS, width: WIDTH, height: HEIGHT };
+
+// Lite mode renders on demand at a capped frame rate (battery / mobile GPUs).
+function FrameCap({ fps }) {
+  const invalidate = useThree((s) => s.invalidate);
+  useEffect(() => {
+    let id;
+    let last = 0;
+    const tick = (t) => {
+      id = requestAnimationFrame(tick);
+      if (t - last >= 1000 / fps - 2) { last = t; invalidate(); }
+    };
+    id = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(id);
+  }, [fps, invalidate]);
+  return null;
+}
+
+function Field({ grid }) {
+  const { cols, rows, width, height } = grid;
   const material = useRef(null);
   const mouse = useRef({ x: 0, y: 0 });
 
   const { positions, rands } = useMemo(() => {
-    const positions = new Float32Array(COLS * ROWS * 3);
-    const rands = new Float32Array(COLS * ROWS);
-    for (let i = 0; i < COLS * ROWS; i++) {
-      positions[i * 3] = ((i % COLS) / (COLS - 1) - 0.5) * WIDTH;
-      positions[i * 3 + 1] = (Math.floor(i / COLS) / (ROWS - 1) - 0.5) * HEIGHT;
+    const positions = new Float32Array(cols * rows * 3);
+    const rands = new Float32Array(cols * rows);
+    for (let i = 0; i < cols * rows; i++) {
+      positions[i * 3] = ((i % cols) / (cols - 1) - 0.5) * width;
+      positions[i * 3 + 1] = (Math.floor(i / cols) / (rows - 1) - 0.5) * height;
       rands[i] = Math.random();
     }
     return { positions, rands };
-  }, []);
+  }, [cols, rows, width, height]);
 
   const uniforms = useMemo(() => ({
     uTime: { value: 0 },
@@ -70,14 +91,14 @@ function Field() {
 
   useEffect(() => {
     const onMove = (e) => {
-      mouse.current.x = (e.clientX / window.innerWidth - 0.5) * WIDTH * 0.8;
-      mouse.current.y = -(e.clientY / window.innerHeight - 0.5) * HEIGHT * 0.8;
+      mouse.current.x = (e.clientX / window.innerWidth - 0.5) * width * 0.8;
+      mouse.current.y = -(e.clientY / window.innerHeight - 0.5) * height * 0.8;
     };
     window.addEventListener('pointermove', onMove, { passive: true });
     return () => {
       window.removeEventListener('pointermove', onMove);
     };
-  }, [uniforms]);
+  }, [width, height]);
 
   useFrame((_, delta) => {
     const u = material.current.uniforms;
@@ -106,7 +127,7 @@ function Field() {
   );
 }
 
-export default function HeroScene() {
+export default function HeroScene({ lite = false }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(true);
 
@@ -124,12 +145,13 @@ export default function HeroScene() {
       className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_35%,transparent_80%)]"
     >
       <Canvas
-        frameloop={visible ? 'always' : 'never'}
-        dpr={[1, 1.5]}
+        frameloop={!visible ? 'never' : lite ? 'demand' : 'always'}
+        dpr={lite ? 1 : [1, 1.5]}
         camera={{ position: [0, 0, 8], fov: 55 }}
         gl={{ antialias: false, alpha: true, powerPreference: 'low-power' }}
       >
-        <Field />
+        {lite && visible && <FrameCap fps={30} />}
+        <Field grid={lite ? LITE : FULL} />
       </Canvas>
     </div>
   );

@@ -102,7 +102,7 @@ function BackgroundBeams() {
   );
 }
 
-// WebGL particle field (desktop only). If the chunk fails to load we fall back to
+// WebGL particle field (desktop; a lighter version on phones). If the chunk fails to load we fall back to
 // the beams instead of crashing the hero.
 const HeroScene = lazy(() => import('./HeroScene').catch(() => ({ default: BackgroundBeams })));
 const SCENE_MQ = '(min-width: 768px) and (prefers-reduced-motion: no-preference)';
@@ -120,35 +120,51 @@ function hasWebGL() {
 // the WebGL scene replaces them 2s after load once the browser is idle,
 // so the three.js chunk never competes with LCP.
 function HeroBackground() {
-  const [webgl, setWebgl] = useState(false);
+  // null = beams only; 'full' = desktop particle field; 'lite' = phone particle field
+  // layered over the beams/smoke.
+  const [mode, setMode] = useState(null);
 
   useEffect(() => {
     if (!hasWebGL()) return undefined;
-    const mq = window.matchMedia(SCENE_MQ);
+    const desktop = window.matchMedia(SCENE_MQ);
+    const motionOk = window.matchMedia('(prefers-reduced-motion: no-preference)');
+    const pick = () => setMode(!motionOk.matches ? null : desktop.matches ? 'full' : 'lite');
     let delay;
     let idle;
+    // Desktop: 2 s after load; phones: 3 s, so parsing three.js never competes with
+    // first paint or the first interactions.
     const start = () => {
       delay = setTimeout(() => {
-        idle = (window.requestIdleCallback || setTimeout)(() => setWebgl(mq.matches), { timeout: 3000 });
-      }, 2000);
+        idle = (window.requestIdleCallback || setTimeout)(pick, { timeout: 3000 });
+      }, desktop.matches ? 2000 : 3000);
     };
-    const onChange = () => setWebgl(mq.matches);
     if (document.readyState === 'complete') start();
     else window.addEventListener('load', start, { once: true });
-    mq.addEventListener('change', onChange);
+    desktop.addEventListener('change', pick);
     return () => {
       window.removeEventListener('load', start);
-      mq.removeEventListener('change', onChange);
+      desktop.removeEventListener('change', pick);
       clearTimeout(delay);
       (window.cancelIdleCallback || clearTimeout)(idle);
     };
   }, []);
 
-  if (!webgl) return <BackgroundBeams />;
+  if (mode === 'full') {
+    return (
+      <Suspense fallback={<BackgroundBeams />}>
+        <HeroScene />
+      </Suspense>
+    );
+  }
   return (
-    <Suspense fallback={<BackgroundBeams />}>
-      <HeroScene />
-    </Suspense>
+    <>
+      <BackgroundBeams />
+      {mode === 'lite' && (
+        <Suspense fallback={null}>
+          <HeroScene lite />
+        </Suspense>
+      )}
+    </>
   );
 }
 
