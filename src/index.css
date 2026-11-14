@@ -355,3 +355,15 @@ html:lang(ar) .text-xs { font-size: 0.8125rem; line-height: 1.6; }
 @media (prefers-reduced-motion: reduce) {
   .zt-smoke { animation: none; }
 }
+
+/* Border beam (PartnerProgramm): conic sweep spinning behind a ring mask. Spins from
+   768px up only — phones keep a static highlight (page style churn re-samples CSS
+   animations there). */
+.zt-beam { transform: translate(-50%, -50%) rotate(35deg); }
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .zt-beam { animation: zt-beam-spin 8s linear infinite; }
+}
+@keyframes zt-beam-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}

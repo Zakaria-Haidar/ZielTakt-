@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Handshake } from 'lucide-react';
 import SectionDivider from './SectionDivider';
+import GlassButton from './GlassButton';
 import useLang from '@/i18n/useLang';
 
 // Provision in Prozent des Projektwerts.
@@ -28,6 +29,20 @@ export default function PartnerProgramm() {
           transition={{ duration: 0.7 }}
           className="relative glass-strong rounded-3xl p-10 md:p-16 max-w-4xl mx-auto overflow-hidden"
         >
+          {/* Light beam running around the border (ring mask; static on phones and for
+              reduced motion — see .zt-beam in index.css) */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 rounded-3xl pointer-events-none"
+            style={{
+              padding: 1,
+              WebkitMask: 'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
+              WebkitMaskComposite: 'xor',
+              mask: 'linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0)',
+            }}
+          >
+            <div className="zt-beam absolute left-1/2 top-1/2 w-[160%] aspect-square bg-[conic-gradient(from_0deg,transparent_0deg,transparent_250deg,rgb(0_224_255)_320deg,transparent_360deg)]" />
+          </div>
           {/* Ambient glow */}
           <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-neon/10 blur-3xl pointer-events-none" />
           <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-neon-dark/10 blur-3xl pointer-events-none" />
@@ -68,16 +83,9 @@ export default function PartnerProgramm() {
               {t('partner.text', { pct: COMMISSION_PCT })}
             </motion.p>
 
-            <motion.button
-              onClick={handlePartner}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="glass rounded-full px-8 py-4 text-neon-ink font-medium border border-neon/20 hover:border-neon/60 hover:glow-blue-strong transition-all duration-500"
-            >
+            <GlassButton onClick={handlePartner}>
               {t('partner.cta')}
-            </motion.button>
+            </GlassButton>
           </div>
         </motion.div>
       </div>
