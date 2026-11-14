@@ -55,6 +55,7 @@ function StatCards({ revealed }) {
 
 // Background beams (after Aceternity UI): faint cyan curves with a few light pulses
 // travelling along them. Pure SVG + SMIL — no JS per frame, no filters, no blur.
+// Light theme swaps to the darker brand cyan so the lines stay visible on cream.
 // Pulses are desktop-only and start after load so they never compete with LCP.
 const BEAMS = Array.from({ length: 8 }, (_, i) => {
   const x = i * 50;
@@ -67,14 +68,14 @@ function BackgroundBeams() {
   return (
     <div
       aria-hidden="true"
-      className="hidden md:block absolute inset-0 pointer-events-none opacity-70 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]"
+      className="absolute inset-0 pointer-events-none opacity-70 light:opacity-100 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]"
     >
-      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 696 316" preserveAspectRatio="xMidYMid slice" fill="none">
-        <path d={BEAMS.join('')} stroke="#00E0FF" strokeOpacity="0.06" strokeWidth="0.5" />
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 696 316" preserveAspectRatio="xMinYMid slice" fill="none">
+        <path d={BEAMS.join('')} stroke="#00E0FF" strokeOpacity="0.06" strokeWidth="0.5" className="light:stroke-neon-ink light:[stroke-opacity:0.22]" />
         {!reduce && (
-          <g>
+          <g className="hidden md:inline">
             {BEAMS.filter((_, i) => i % 3 === 1).map((d, i) => (
-              <path key={d} d={d} pathLength="1" stroke="#00E0FF" strokeOpacity="0.55" strokeWidth="0.8" strokeLinecap="round" strokeDasharray="0.06 0.94">
+              <path key={d} d={d} pathLength="1" stroke="#00E0FF" strokeOpacity="0.55" strokeWidth="0.8" strokeLinecap="round" strokeDasharray="0.06 0.94" className="light:stroke-neon-ink light:[stroke-opacity:0.7]">
                 <animate attributeName="stroke-dashoffset" from="1" to="0" dur={`${9 + i * 2.5}s`} begin={`${3 + i * 1.3}s`} repeatCount="indefinite" />
               </path>
             ))}
