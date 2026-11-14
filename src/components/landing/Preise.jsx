@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { Check } from 'lucide-react';
 import SectionDivider from './SectionDivider';
 import GlassButton from './GlassButton';
@@ -9,6 +10,39 @@ import useLang from '@/i18n/useLang';
 const Num = ({ children, className = '' }) => (
   <bdi dir="ltr" className={className}>{children}</bdi>
 );
+
+const MAX_TILT = 7; // degrees
+
+// 3D hover tilt (after Aceternity UI). Only wired up for a fine pointer that can hover
+// and when motion is allowed — touch devices get no listeners at all.
+function useTilt() {
+  const [enabled, setEnabled] = useState(false);
+  const rotateX = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 });
+  const rotateY = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 });
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+    const update = () => setEnabled(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  if (!enabled) return {};
+  return {
+    style: { rotateX, rotateY, transformPerspective: 1000 },
+    onMouseMove: (e) => {
+      const r = e.currentTarget.getBoundingClientRect();
+      rotateY.set(((e.clientX - r.left) / r.width - 0.5) * 2 * MAX_TILT);
+      rotateX.set(-((e.clientY - r.top) / r.height - 0.5) * 2 * MAX_TILT);
+    },
+    onMouseLeave: () => { rotateX.set(0); rotateY.set(0); },
+  };
+}
+
+function TiltCard(props) {
+  return <motion.div {...props} {...useTilt()} />;
+}
 
 export default function Preise() {
   const { t, href } = useLang();
@@ -64,13 +98,13 @@ export default function Preise() {
         {/* ZielTakt Komplett: setup + monthly */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {packages.map((pkg, i) => (
-            <motion.div
+            <TiltCard
               key={pkg.name}
               initial={{ y: 30 }}
               whileInView={{ y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`glass-strong rounded-2xl p-6 md:p-8 space-y-6 relative transition-all duration-500 hover:border-neon/30 flex flex-col ${
+              className={`glass-strong rounded-2xl p-6 md:p-8 space-y-6 relative transition-[border-color,box-shadow] duration-500 hover:border-neon/30 flex flex-col ${
                 pkg.popular ? 'border-neon/40 glow-blue' : 'zt-card'
               }`}
             >
@@ -116,7 +150,7 @@ export default function Preise() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </TiltCard>
           ))}
         </div>
 

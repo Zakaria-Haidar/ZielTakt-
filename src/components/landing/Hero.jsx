@@ -53,6 +53,38 @@ function StatCards({ revealed }) {
   );
 }
 
+// Background beams (after Aceternity UI): faint cyan curves with a few light pulses
+// travelling along them. Pure SVG + SMIL — no JS per frame, no filters, no blur.
+// Pulses are desktop-only and start after load so they never compete with LCP.
+const BEAMS = Array.from({ length: 8 }, (_, i) => {
+  const x = i * 50;
+  const y = i * 14;
+  return `M${-380 + x} ${-189 - y}C${-380 + x} ${-189 - y} ${-312 + x} ${216 - y} ${152 + x} ${343 - y}C${616 + x} ${470 - y} ${684 + x} ${875 - y} ${684 + x} ${875 - y}`;
+});
+
+function BackgroundBeams() {
+  const reduce = useReducedMotion();
+  return (
+    <div
+      aria-hidden="true"
+      className="hidden md:block absolute inset-0 pointer-events-none opacity-70 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]"
+    >
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 696 316" preserveAspectRatio="xMidYMid slice" fill="none">
+        <path d={BEAMS.join('')} stroke="#00E0FF" strokeOpacity="0.06" strokeWidth="0.5" />
+        {!reduce && (
+          <g>
+            {BEAMS.filter((_, i) => i % 3 === 1).map((d, i) => (
+              <path key={d} d={d} pathLength="1" stroke="#00E0FF" strokeOpacity="0.55" strokeWidth="0.8" strokeLinecap="round" strokeDasharray="0.06 0.94">
+                <animate attributeName="stroke-dashoffset" from="1" to="0" dur={`${9 + i * 2.5}s`} begin={`${3 + i * 1.3}s`} repeatCount="indefinite" />
+              </path>
+            ))}
+          </g>
+        )}
+      </svg>
+    </div>
+  );
+}
+
 // ── Desktop cinematic intro (GSAP + ScrollTrigger + CSS 3D) ─────────────────────
 // Laptop geometry: lid 640×400 with a 12px bezel → screen 616×376 (≈16:10).
 const LID_W = 640;
@@ -214,6 +246,7 @@ export default function Hero() {
       {/* Ambient background glow — desktop only. A large `filter: blur()`
           radius is expensive on mobile GPUs and, unlike our backdrop-filter
           and gem-spin rules, nothing was turning this off on phones. */}
+      <BackgroundBeams />
       <div className="hidden md:block absolute top-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-neon/3 blur-[200px] pointer-events-none" />
       <div className="hidden md:block absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-neon-dark/5 blur-[150px] pointer-events-none" />
 
