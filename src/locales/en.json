@@ -500,5 +500,8 @@
         "text": "One-time setup, then one fixed monthly amount for everything – instead of paying for each service separately."
       }
     ]
+  },
+  "common": {
+    "showMore": "Show more"
   }
 }

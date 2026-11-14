@@ -8,6 +8,7 @@ import ErrorBoundary from '../components/landing/ErrorBoundary';
 
 // Below-the-fold sections: not needed for first paint, so they load in the
 // background after the hero is already visible instead of blocking it.
+import MobileFold from '../components/landing/MobileFold';
 const GoalPicker = lazy(() => import('../components/landing/GoalPicker'));
 const WhyZielTakt = lazy(() => import('../components/landing/WhyZielTakt'));
 const Problems = lazy(() => import('../components/landing/Problems'));
@@ -37,22 +38,24 @@ export default function Home() {
       <main>
         <Hero />
         <Suspense fallback={null}>
+          {/* Phones: long sections fold to their opening with a "show more" button
+              (MobileFold); hero, goal picker, partner and contact stay open. */}
           {/* Each section gets its own boundary: if one section has a bug on
               some user's device, it disappears quietly instead of taking
               every other section (and the whole page) down with it. */}
           <ErrorBoundary><GoalPicker /></ErrorBoundary>
-          <ErrorBoundary><WhyZielTakt /></ErrorBoundary>
-          <ErrorBoundary><About /></ErrorBoundary>
-          <ErrorBoundary><Problems /></ErrorBoundary>
-          <ErrorBoundary><Services /></ErrorBoundary>
-          <ErrorBoundary><Preise /></ErrorBoundary>
-          <ErrorBoundary><DesignServices /></ErrorBoundary>
-          <ErrorBoundary><Projekt /></ErrorBoundary>
-          <ErrorBoundary><Ablauf /></ErrorBoundary>
+          <MobileFold id="warum"><ErrorBoundary><WhyZielTakt /></ErrorBoundary></MobileFold>
+          <MobileFold id="about"><ErrorBoundary><About /></ErrorBoundary></MobileFold>
+          <MobileFold id="probleme"><ErrorBoundary><Problems /></ErrorBoundary></MobileFold>
+          <MobileFold id="services"><ErrorBoundary><Services /></ErrorBoundary></MobileFold>
+          <MobileFold id="preise"><ErrorBoundary><Preise /></ErrorBoundary></MobileFold>
+          <MobileFold id="design"><ErrorBoundary><DesignServices /></ErrorBoundary></MobileFold>
+          <MobileFold id="projekt"><ErrorBoundary><Projekt /></ErrorBoundary></MobileFold>
+          <MobileFold id="ablauf"><ErrorBoundary><Ablauf /></ErrorBoundary></MobileFold>
           <ErrorBoundary><PartnerProgramm /></ErrorBoundary>
-          <ErrorBoundary><ServiceArea /></ErrorBoundary>
+          <MobileFold id="area"><ErrorBoundary><ServiceArea /></ErrorBoundary></MobileFold>
           <ErrorBoundary><RegionLinks /></ErrorBoundary>
-          <ErrorBoundary><FAQ /></ErrorBoundary>
+          <MobileFold id="faq"><ErrorBoundary><FAQ /></ErrorBoundary></MobileFold>
           <ErrorBoundary><Contact /></ErrorBoundary>
         </Suspense>
       </main>

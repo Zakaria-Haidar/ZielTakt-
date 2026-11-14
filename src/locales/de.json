@@ -482,5 +482,8 @@
         "text": "Einmal einrichten, dann ein fester Monatsbetrag für alles. Statt jede Leistung einzeln zu bezahlen."
       }
     ]
+  },
+  "common": {
+    "showMore": "Mehr anzeigen"
   }
 }

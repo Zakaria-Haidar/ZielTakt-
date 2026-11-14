@@ -367,3 +367,13 @@ html:lang(ar) .text-xs { font-size: 0.8125rem; line-height: 1.6; }
   from { transform: translate(-50%, -50%) rotate(0deg); }
   to   { transform: translate(-50%, -50%) rotate(360deg); }
 }
+
+/* MobileFold: below 768px a folded section shows only its opening and fades out. */
+@media (max-width: 767px) {
+  .zt-fold:not(.is-open) > .zt-fold-body {
+    max-height: 380px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent);
+    mask-image: linear-gradient(to bottom, black 55%, transparent);
+  }
+}
