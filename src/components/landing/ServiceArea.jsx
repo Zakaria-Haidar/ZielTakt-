@@ -157,7 +157,7 @@ export default function ServiceArea() {
                   ))}
 
                   {/* Lake Constance */}
-                  <path d={lakePath} fill="#0A84B8" opacity="0.22" filter="url(#lake-glow)" className="" />
+                  <path d={lakePath} fill="#0A84B8" opacity="0.22" filter="url(#lake-glow)" />
                   <path d={lakePath} fill="none" stroke="#38C6EE" strokeWidth="0.7" opacity="0.35" />
 
                   {/* Region labels */}
@@ -200,7 +200,7 @@ export default function ServiceArea() {
                             r="2.6"
                             fill={isCH ? '#7FE8FF' : '#00E0FF'}
                             opacity={isCH ? 0.75 : 0.9}
-                            className=""
+                           
                           />
                         )}
                         <text
@@ -210,7 +210,7 @@ export default function ServiceArea() {
                           fontSize={town.primary ? 11 : 8}
                           fontWeight={town.primary ? 600 : 500}
                           fill={town.primary ? '#00E0FF' : '#C7D2DA'}
-                          className=""
+                         
                         >
                           {town.name}
                         </text>

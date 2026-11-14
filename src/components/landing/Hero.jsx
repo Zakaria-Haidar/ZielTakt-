@@ -64,23 +64,40 @@ const BEAMS = Array.from({ length: 8 }, (_, i) => {
 
 function BackgroundBeams() {
   const reduce = useReducedMotion();
+  const ref = useRef(null);
+  const [paused, setPaused] = useState(false);
+
+  // Mobile smoke: stop the drift while the hero is scrolled away (battery).
+  useEffect(() => {
+    const io = new IntersectionObserver(([e]) => setPaused(!e.isIntersecting));
+    io.observe(ref.current);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <div
-      aria-hidden="true"
-      className="absolute inset-0 pointer-events-none opacity-70 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]"
-    >
-      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 696 316" preserveAspectRatio="xMinYMid slice" fill="none">
-        <path d={BEAMS.join('')} stroke="#00E0FF" strokeOpacity="0.06" strokeWidth="0.5" className="" />
-        {!reduce && (
-          <g className="hidden md:inline">
-            {BEAMS.filter((_, i) => i % 3 === 1).map((d, i) => (
-              <path key={d} d={d} pathLength="1" stroke="#00E0FF" strokeOpacity="0.55" strokeWidth="0.8" strokeLinecap="round" strokeDasharray="0.06 0.94" className="">
-                <animate attributeName="stroke-dashoffset" from="1" to="0" dur={`${9 + i * 2.5}s`} begin={`${3 + i * 1.3}s`} repeatCount="indefinite" />
-              </path>
-            ))}
-          </g>
-        )}
-      </svg>
+    <div ref={ref} aria-hidden="true" className="absolute inset-0 pointer-events-none">
+      {/* Mobile only: drifting "smoky neon" — large soft radial gradients moved with
+          transform-only CSS animations (compositor thread, no blur filter, no JS per
+          frame). Static under reduced motion. Desktop gets the WebGL field instead. */}
+      <div className="zt-smoke-wrap md:hidden" data-paused={paused || undefined}>
+        <div className="zt-smoke zt-smoke-1" />
+        <div className="zt-smoke zt-smoke-2" />
+        <div className="zt-smoke zt-smoke-3" />
+      </div>
+      <div className="absolute inset-0 opacity-70 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]">
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 696 316" preserveAspectRatio="xMinYMid slice" fill="none">
+          <path d={BEAMS.join('')} stroke="#00E0FF" strokeOpacity="0.06" strokeWidth="0.5" className="max-md:[stroke-opacity:0.16]" />
+          {!reduce && (
+            <g className="hidden md:inline">
+              {BEAMS.filter((_, i) => i % 3 === 1).map((d, i) => (
+                <path key={d} d={d} pathLength="1" stroke="#00E0FF" strokeOpacity="0.55" strokeWidth="0.8" strokeLinecap="round" strokeDasharray="0.06 0.94">
+                  <animate attributeName="stroke-dashoffset" from="1" to="0" dur={`${9 + i * 2.5}s`} begin={`${3 + i * 1.3}s`} repeatCount="indefinite" />
+                </path>
+              ))}
+            </g>
+          )}
+        </svg>
+      </div>
     </div>
   );
 }
