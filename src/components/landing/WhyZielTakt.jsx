@@ -40,9 +40,10 @@ export default function WhyZielTakt() {
                 whileInView={{ y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="glass zt-card rounded-2xl p-6 space-y-3"
+                whileHover={{ y: -6, transition: { type: 'spring', stiffness: 300, damping: 20 } }}
+                className="group glass zt-card rounded-2xl p-6 space-y-3 transition-[border-color,box-shadow] duration-500 hover:border-neon/35 hover:shadow-[0_18px_40px_-18px_rgb(0_224_255/0.45)]"
               >
-                <span className="w-11 h-11 rounded-xl bg-neon/10 border border-neon/20 flex items-center justify-center text-neon-ink">
+                <span className="w-11 h-11 rounded-xl bg-neon/10 border border-neon/20 flex items-center justify-center text-neon-ink transition-[background-color,box-shadow,transform,color] duration-500 group-hover:bg-neon group-hover:text-on-neon group-hover:shadow-[0_0_20px_rgb(0_224_255/0.6)] group-hover:-rotate-6 motion-reduce:group-hover:rotate-0">
                   <Icon className="w-5 h-5" />
                 </span>
                 <h3 className="font-heading font-semibold text-titanium text-lg tracking-tight">{it.title}</h3>
