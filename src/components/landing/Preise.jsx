@@ -33,6 +33,8 @@ function useTilt() {
     style: { rotateX, rotateY, transformPerspective: 1000 },
     onMouseMove: (e) => {
       const r = e.currentTarget.getBoundingClientRect();
+      e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`);
       rotateY.set(((e.clientX - r.left) / r.width - 0.5) * 2 * MAX_TILT);
       rotateX.set(-((e.clientY - r.top) / r.height - 0.5) * 2 * MAX_TILT);
     },
@@ -40,8 +42,36 @@ function useTilt() {
   };
 }
 
-function TiltCard(props) {
-  return <motion.div {...props} {...useTilt()} />;
+// Ring-shaped mask: only the 1px border area of the card shows the beam.
+const RING_MASK = {
+  padding: 1,
+  WebkitMask: 'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
+  WebkitMaskComposite: 'xor',
+  mask: 'linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0)',
+};
+
+function TiltCard({ children, beam = false, ...props }) {
+  const tilt = useTilt();
+  return (
+    <motion.div {...props} {...tilt}>
+      {children}
+      {/* Decorative layers go after the content so space-y never spaces them. */}
+      {/* Recommended package: a neon beam travelling around the border */}
+      {beam && (
+        <div aria-hidden="true" className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none" style={RING_MASK}>
+          <div className="absolute -inset-[60%] animate-[spin_7s_linear_infinite] motion-reduce:animate-none bg-[conic-gradient(from_0deg,transparent_0deg,transparent_260deg,rgb(0_224_255)_330deg,transparent_360deg)]" />
+        </div>
+      )}
+      {/* Cursor spotlight (fine pointers only), painted under the card content */}
+      {tilt.style && (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{ background: 'radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), rgb(0 224 255 / 0.10), transparent 60%)' }}
+        />
+      )}
+    </motion.div>
+  );
 }
 
 export default function Preise() {
@@ -100,11 +130,12 @@ export default function Preise() {
           {packages.map((pkg, i) => (
             <TiltCard
               key={pkg.name}
+              beam={pkg.popular}
               initial={{ y: 30 }}
               whileInView={{ y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`glass-strong rounded-2xl p-6 md:p-8 space-y-6 relative transition-[border-color,box-shadow] duration-500 hover:border-neon/30 flex flex-col ${
+              className={`group isolate glass-strong rounded-2xl p-6 md:p-8 space-y-6 relative transition-[border-color,box-shadow] duration-500 hover:border-neon/30 flex flex-col ${
                 pkg.popular ? 'border-neon/40 glow-blue' : 'zt-card'
               }`}
             >
