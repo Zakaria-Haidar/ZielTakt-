@@ -196,24 +196,42 @@ function ScreenPreview({ vw }) {
 
 // Only shown on md+ without reduced motion (CSS in index.css keys off the `zt-intro`
 // class that index.html sets before first paint). Never receives pointer events.
+// Floor grid geometry (viewBox 1000×300): rows bunch up towards the horizon,
+// columns fan out from the vanishing point.
+const FLOOR_ROWS = [8, 22, 40, 64, 96, 140, 200, 282];
+const FLOOR_COLS = Array.from({ length: 21 }, (_, i) => -1500 + i * 200);
+
 function LaptopOverlay({ refs, vw }) {
   return (
     <div ref={refs.overlay} aria-hidden="true" className="zt-laptop-overlay hidden absolute inset-x-0 top-0 h-screen z-20 pointer-events-none overflow-hidden">
       <div className="absolute inset-0 bg-void" />
+      {/* Neon stage: haze behind the laptop, a perspective grid floor and a light pool
+          under it. Static CSS — only the zoom/tilt layers move. */}
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(42% 46% at 50% 46%, rgb(0 224 255 / 0.16), rgb(0 110 255 / 0.05) 55%, transparent 75%)' }} />
+      <svg className="absolute inset-x-0 bottom-0 w-full h-[46%] [mask-image:linear-gradient(to_top,black_10%,transparent_90%)]" viewBox="0 0 1000 300" preserveAspectRatio="none" fill="none" stroke="rgb(0 224 255 / 0.16)" strokeWidth="1" vectorEffect="non-scaling-stroke">
+        {/* Grid floor drawn flat in perspective (a rotateX'd 3D layer cost main-thread time during the intro) */}
+        {FLOOR_ROWS.map((y) => <line key={`r${y}`} x1="0" x2="1000" y1={y} y2={y} vectorEffect="non-scaling-stroke" />)}
+        {FLOOR_COLS.map((x) => <line key={`c${x}`} x1={500 + (x - 500) * 0.12} y1="0" x2={x} y2="300" vectorEffect="non-scaling-stroke" />)}
+      </svg>
+      <div className="absolute left-1/2 top-[62%] -translate-x-1/2 w-[760px] h-[140px] rounded-full" style={{ background: 'radial-gradient(closest-side, rgb(0 224 255 / 0.22), transparent)' }} />
       <div className="absolute inset-0 flex items-center justify-center" style={{ perspective: '1400px' }}>
         {/* zoom layer (scroll) */}
         <div ref={refs.zoom} style={{ transformOrigin: `50% ${LID_H / 2}px` }} className="will-change-transform">
           {/* tilt layer (page-load entrance) */}
           <div ref={refs.tilt} style={{ transformStyle: 'preserve-3d' }}>
-            <div style={{ width: LID_W, height: LID_H, padding: BEZEL }} className="relative rounded-2xl bg-[#0b0b0d] ring-1 ring-white/10 shadow-2xl shadow-black/50">
-              <div className="relative h-full w-full rounded-md overflow-hidden bg-void">
+            <div style={{ width: LID_W, height: LID_H, padding: BEZEL }} className="relative rounded-2xl bg-gradient-to-b from-[#15171c] to-[#08080a] ring-1 ring-neon/25 shadow-2xl shadow-black/50">
+              <div className="relative h-full w-full rounded-md overflow-hidden bg-void ring-1 ring-neon/10">
                 <div className="absolute -top-1/4 end-0 w-2/3 h-2/3 rounded-full bg-neon/10 blur-3xl" />
                 <div ref={refs.preview} className="absolute inset-0">{vw > 0 && <ScreenPreview vw={vw} />}</div>
+                {/* One light sweep across the glass after the laptop settles */}
+                <div className="zt-screen-sweep absolute inset-y-0 -left-1/2 w-1/3 pointer-events-none" />
               </div>
-              <span className="absolute top-[5px] left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#1d1d20]" />
+              <span className="absolute top-[5px] left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-neon/70 shadow-[0_0_6px_rgb(0_224_255/0.9)]" />
             </div>
-            <div ref={refs.base} style={{ height: BASE_H }} className="relative -mx-14 rounded-b-2xl bg-gradient-to-b from-[#3a3b3f] to-[#141416]">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-1/2 rounded-b-lg bg-black/30" />
+            <div ref={refs.base} style={{ height: BASE_H }} className="relative -mx-14 rounded-b-2xl bg-gradient-to-b from-[#2a2c31] to-[#0c0c0e] ring-1 ring-white/5">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-1/2 rounded-b-lg bg-black/40" />
+              {/* Backlit front lip */}
+              <div className="absolute inset-x-10 -bottom-px h-px bg-gradient-to-r from-transparent via-neon to-transparent shadow-[0_0_14px_rgb(0_224_255/0.9)]" />
             </div>
           </div>
         </div>
