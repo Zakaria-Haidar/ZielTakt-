@@ -24,6 +24,7 @@ const FAQ = lazy(() => import('../components/landing/FAQ'));
 const Contact = lazy(() => import('../components/landing/Contact'));
 const Footer = lazy(() => import('../components/landing/Footer'));
 const FloatingContact = lazy(() => import('../components/landing/FloatingContact'));
+const CursorAura = lazy(() => import('../components/landing/CursorAura'));
 
 // Same page for "/" (German), "/en" (English) and "/ar" (Arabic); all text comes from src/locales/*.json.
 export default function Home() {
@@ -58,6 +59,7 @@ export default function Home() {
       <Suspense fallback={null}>
         <ErrorBoundary><Footer /></ErrorBoundary>
         <ErrorBoundary><FloatingContact /></ErrorBoundary>
+        <ErrorBoundary><CursorAura /></ErrorBoundary>
       </Suspense>
     </div>
   );
