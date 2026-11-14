@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { animate, motion, useInView, useReducedMotion } from 'framer-motion';
 import GlassButton from './GlassButton';
 import { WhatsAppIcon } from './icons';
@@ -83,6 +83,56 @@ function BackgroundBeams() {
         )}
       </svg>
     </div>
+  );
+}
+
+// WebGL particle field (desktop only). If the chunk fails to load we fall back to
+// the beams instead of crashing the hero.
+const HeroScene = lazy(() => import('./HeroScene').catch(() => ({ default: BackgroundBeams })));
+const SCENE_MQ = '(min-width: 768px) and (prefers-reduced-motion: no-preference)';
+
+function hasWebGL() {
+  try {
+    const c = document.createElement('canvas');
+    return Boolean(c.getContext('webgl2') || c.getContext('webgl'));
+  } catch {
+    return false;
+  }
+}
+
+// Beams render first (SSR + mobile + reduced motion + no WebGL); on capable desktops
+// the WebGL scene replaces them 2s after load once the browser is idle,
+// so the three.js chunk never competes with LCP.
+function HeroBackground() {
+  const [webgl, setWebgl] = useState(false);
+
+  useEffect(() => {
+    if (!hasWebGL()) return undefined;
+    const mq = window.matchMedia(SCENE_MQ);
+    let delay;
+    let idle;
+    const start = () => {
+      delay = setTimeout(() => {
+        idle = (window.requestIdleCallback || setTimeout)(() => setWebgl(mq.matches), { timeout: 3000 });
+      }, 2000);
+    };
+    const onChange = () => setWebgl(mq.matches);
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start, { once: true });
+    mq.addEventListener('change', onChange);
+    return () => {
+      window.removeEventListener('load', start);
+      mq.removeEventListener('change', onChange);
+      clearTimeout(delay);
+      (window.cancelIdleCallback || clearTimeout)(idle);
+    };
+  }, []);
+
+  if (!webgl) return <BackgroundBeams />;
+  return (
+    <Suspense fallback={<BackgroundBeams />}>
+      <HeroScene />
+    </Suspense>
   );
 }
 
@@ -247,7 +297,7 @@ export default function Hero() {
       {/* Ambient background glow — desktop only. A large `filter: blur()`
           radius is expensive on mobile GPUs and, unlike our backdrop-filter
           and gem-spin rules, nothing was turning this off on phones. */}
-      <BackgroundBeams />
+      <HeroBackground />
       <div className="hidden md:block absolute top-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-neon/3 blur-[200px] pointer-events-none" />
       <div className="hidden md:block absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-neon-dark/5 blur-[150px] pointer-events-none" />
 
