@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { lazy, Suspense, useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Mail, Phone, MapPin, CalendarCheck } from 'lucide-react';
 import SectionDivider from './SectionDivider';
@@ -15,6 +15,64 @@ import {
   WHATSAPP_DISPLAY,
   whatsappHref,
 } from '@/lib/contact';
+
+// Liquid neon backdrop behind the closing headline. Static CSS glow for everyone
+// (SSR, mobile, reduced motion, no WebGL); capable desktops swap in the WebGL
+// shader once the section is within ~600px of the viewport.
+const ContactScene = lazy(() => import('./ContactScene').catch(() => ({ default: StaticGlow })));
+const SCENE_MQ = '(min-width: 768px) and (prefers-reduced-motion: no-preference)';
+
+function StaticGlow() {
+  return (
+    <div
+      aria-hidden="true"
+      className="absolute inset-0 pointer-events-none"
+      style={{ background: 'radial-gradient(60% 55% at 30% 45%, rgb(0 224 255 / 0.08), transparent 70%)' }}
+    />
+  );
+}
+
+function hasWebGL() {
+  try {
+    const c = document.createElement('canvas');
+    return Boolean(c.getContext('webgl2') || c.getContext('webgl'));
+  } catch {
+    return false;
+  }
+}
+
+function ContactBackdrop() {
+  const ref = useRef(null);
+  const [webgl, setWebgl] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia(SCENE_MQ);
+    if (!hasWebGL()) return undefined;
+    let near = false;
+    const update = () => setWebgl(near && mq.matches);
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { near = true; update(); io.disconnect(); }
+    }, { rootMargin: '600px 0px' });
+    io.observe(ref.current);
+    mq.addEventListener('change', update);
+    return () => {
+      io.disconnect();
+      mq.removeEventListener('change', update);
+    };
+  }, []);
+
+  return (
+    <div ref={ref} className="absolute inset-x-0 top-0 h-[560px] pointer-events-none [mask-image:linear-gradient(to_bottom,black_60%,transparent)]">
+      {webgl ? (
+        <Suspense fallback={<StaticGlow />}>
+          <ContactScene />
+        </Suspense>
+      ) : (
+        <StaticGlow />
+      )}
+    </div>
+  );
+}
 
 // TikTok wird wieder ergänzt, sobald der Account-Link feststeht.
 const socialLinks = [
@@ -134,7 +192,8 @@ export default function Contact() {
 
   return (
     <section id="contact" className="relative bg-void py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <ContactBackdrop />
+      <div className="relative max-w-7xl mx-auto px-6 md:px-12">
         <SectionDivider />
 
         <div className="pt-16 pb-20 space-y-4">
