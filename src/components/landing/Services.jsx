@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Globe, MapPin, CalendarCheck, BarChart3 } from 'lucide-react';
 import SectionDivider from './SectionDivider';
+import SectionParticles from './SectionParticles';
 import { Arrow } from './icons';
 import useLang from '@/i18n/useLang';
 
@@ -48,7 +49,8 @@ export default function Services() {
 
   return (
     <section id="services" className="relative bg-void py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <SectionParticles />
+      <div className="relative max-w-7xl mx-auto px-6 md:px-12">
         <SectionDivider />
 
         <div className="lg:grid lg:grid-cols-12 lg:gap-12">

@@ -84,11 +84,12 @@ function BackgroundBeams() {
         <div className="zt-smoke zt-smoke-2" />
         <div className="zt-smoke zt-smoke-3" />
       </div>
-      <div className="absolute inset-0 opacity-70 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]">
+      {/* Curved lines: desktop fallback only (phones get the particle field). */}
+      <div className="absolute inset-0 opacity-70 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)] max-md:hidden">
         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 696 316" preserveAspectRatio="xMinYMid slice" fill="none">
-          <path d={BEAMS.join('')} stroke="#00E0FF" strokeOpacity="0.06" strokeWidth="0.5" className="max-md:[stroke-opacity:0.16]" />
+          <path d={BEAMS.join('')} stroke="#00E0FF" strokeOpacity="0.06" strokeWidth="0.5" />
           {!reduce && (
-            <g className="hidden md:inline">
+            <g>
               {BEAMS.filter((_, i) => i % 3 === 1).map((d, i) => (
                 <path key={d} d={d} pathLength="1" stroke="#00E0FF" strokeOpacity="0.55" strokeWidth="0.8" strokeLinecap="round" strokeDasharray="0.06 0.94">
                   <animate attributeName="stroke-dashoffset" from="1" to="0" dur={`${9 + i * 2.5}s`} begin={`${3 + i * 1.3}s`} repeatCount="indefinite" />
@@ -116,12 +117,11 @@ function hasWebGL() {
   }
 }
 
-// Beams render first (SSR + mobile + reduced motion + no WebGL); on capable desktops
-// the WebGL scene replaces them 2s after load once the browser is idle,
-// so the three.js chunk never competes with LCP.
+// Beams (desktop) / smoke (phones) render first and stay for reduced motion and
+// no-WebGL; otherwise the particle field replaces them 2-3 s after load once the
+// browser is idle, so the three.js chunk never competes with LCP.
 function HeroBackground() {
-  // null = beams only; 'full' = desktop particle field; 'lite' = phone particle field
-  // layered over the beams/smoke.
+  // null = beams/smoke only; 'full' = desktop particle field; 'lite' = phone particle field.
   const [mode, setMode] = useState(null);
 
   useEffect(() => {
@@ -149,22 +149,13 @@ function HeroBackground() {
     };
   }, []);
 
-  if (mode === 'full') {
-    return (
-      <Suspense fallback={<BackgroundBeams />}>
-        <HeroScene />
-      </Suspense>
-    );
-  }
+  // Phones and desktops alike: beams/smoke until the particle field is ready, then
+  // the particles alone (no lines underneath).
+  if (!mode) return <BackgroundBeams />;
   return (
-    <>
-      <BackgroundBeams />
-      {mode === 'lite' && (
-        <Suspense fallback={null}>
-          <HeroScene lite />
-        </Suspense>
-      )}
-    </>
+    <Suspense fallback={<BackgroundBeams />}>
+      <HeroScene lite={mode === 'lite'} />
+    </Suspense>
   );
 }
 

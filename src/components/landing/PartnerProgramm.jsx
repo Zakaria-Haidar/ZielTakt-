@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Handshake } from 'lucide-react';
 import SectionDivider from './SectionDivider';
+import SectionParticles from './SectionParticles';
 import GlassButton from './GlassButton';
 import useLang from '@/i18n/useLang';
 
@@ -19,7 +20,8 @@ export default function PartnerProgramm() {
 
   return (
     <section id="partner" className="relative bg-void py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <SectionParticles />
+      <div className="relative max-w-7xl mx-auto px-6 md:px-12">
         <SectionDivider />
 
         <motion.div

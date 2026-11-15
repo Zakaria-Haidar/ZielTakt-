@@ -351,6 +351,9 @@ html:lang(ar) .text-xs { font-size: 0.8125rem; line-height: 1.6; }
 @media (max-width: 767px) {
   .zt-faq-glow-1, .zt-faq-glow-2 { animation: none; }
 }
+/* WebGL particle fields fade in instead of popping in. */
+.zt-fade-in { animation: zt-fade-in 1.2s ease-out both; }
+@keyframes zt-fade-in { from { opacity: 0; } }
 .zt-smoke-wrap[data-paused] .zt-smoke { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) {
   .zt-smoke { animation: none; }
