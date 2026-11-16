@@ -15,6 +15,7 @@ import {
   WHATSAPP_DISPLAY,
   whatsappHref,
 } from '@/lib/contact';
+import hasWebGL from '@/lib/webgl';
 
 // Liquid neon backdrop behind the closing headline. Static CSS glow for everyone
 // (SSR, mobile, reduced motion, no WebGL); capable desktops swap in the WebGL
@@ -30,15 +31,6 @@ function StaticGlow() {
       style={{ background: 'radial-gradient(60% 55% at 30% 45%, rgb(0 224 255 / 0.08), transparent 70%)' }}
     />
   );
-}
-
-function hasWebGL() {
-  try {
-    const c = document.createElement('canvas');
-    return Boolean(c.getContext('webgl2') || c.getContext('webgl'));
-  } catch {
-    return false;
-  }
 }
 
 function ContactBackdrop() {

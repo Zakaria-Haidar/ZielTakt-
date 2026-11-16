@@ -1,9 +1,11 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { animate, motion, useInView, useReducedMotion } from 'framer-motion';
 import GlassButton from './GlassButton';
+import ParticleCanvas from './ParticleCanvas';
 import { WhatsAppIcon } from './icons';
 import useLang from '@/i18n/useLang';
 import { CAL_URL, whatsappHref } from '@/lib/contact';
+import hasWebGL from '@/lib/webgl';
 
 // Counts 0 → `to` once `start` is true. Renders the final value until then, so the
 // prerendered HTML (and reduced-motion visitors) always show the real number.
@@ -103,40 +105,31 @@ function BackgroundBeams() {
   );
 }
 
-// WebGL particle field (desktop; a lighter version on phones). If the chunk fails to load we fall back to
-// the beams instead of crashing the hero.
-const HeroScene = lazy(() => import('./HeroScene').catch(() => ({ default: BackgroundBeams })));
+// WebGL particle field (desktop). If the chunk fails to load we fall back to the
+// canvas-2D field instead of crashing the hero.
+const HeroScene = lazy(() => import('./HeroScene').catch(() => ({ default: () => <ParticleCanvas variant="hero" /> })));
 const SCENE_MQ = '(min-width: 768px) and (prefers-reduced-motion: no-preference)';
 
-function hasWebGL() {
-  try {
-    const c = document.createElement('canvas');
-    return Boolean(c.getContext('webgl2') || c.getContext('webgl'));
-  } catch {
-    return false;
-  }
-}
 
-// Beams (desktop) / smoke (phones) render first and stay for reduced motion and
-// no-WebGL; otherwise the particle field replaces them 2-3 s after load once the
-// browser is idle, so the three.js chunk never competes with LCP.
+// Beams (desktop) / smoke (phones) render first (SSR, before JS). Then:
+// - capable desktops: the WebGL particle field, 2 s after load once idle (the three.js
+//   chunk never competes with LCP);
+// - phones, no-WebGL and reduced-motion visitors: the canvas-2D particle field right
+//   after load (a still frame under reduced motion).
 function HeroBackground() {
-  // null = beams/smoke only; 'full' = desktop particle field; 'lite' = phone particle field.
+  // null = beams/smoke; 'webgl' = WebGL field; 'canvas' = canvas-2D field.
   const [mode, setMode] = useState(null);
 
   useEffect(() => {
-    if (!hasWebGL()) return undefined;
     const desktop = window.matchMedia(SCENE_MQ);
-    const motionOk = window.matchMedia('(prefers-reduced-motion: no-preference)');
-    const pick = () => setMode(!motionOk.matches ? null : desktop.matches ? 'full' : 'lite');
+    const pick = () => setMode(desktop.matches && hasWebGL() ? 'webgl' : 'canvas');
     let delay;
     let idle;
-    // Desktop: 2 s after load; phones: 3 s, so parsing three.js never competes with
-    // first paint or the first interactions.
     const start = () => {
+      if (!desktop.matches) { pick(); return; }
       delay = setTimeout(() => {
         idle = (window.requestIdleCallback || setTimeout)(pick, { timeout: 3000 });
-      }, desktop.matches ? 2000 : 3000);
+      }, 2000);
     };
     if (document.readyState === 'complete') start();
     else window.addEventListener('load', start, { once: true });
@@ -149,14 +142,15 @@ function HeroBackground() {
     };
   }, []);
 
-  // Phones and desktops alike: beams/smoke until the particle field is ready, then
-  // the particles alone (no lines underneath).
-  if (!mode) return <BackgroundBeams />;
-  return (
-    <Suspense fallback={<BackgroundBeams />}>
-      <HeroScene lite={mode === 'lite'} />
-    </Suspense>
-  );
+  if (mode === 'canvas') return <ParticleCanvas variant="hero" />;
+  if (mode === 'webgl') {
+    return (
+      <Suspense fallback={<BackgroundBeams />}>
+        <HeroScene />
+      </Suspense>
+    );
+  }
+  return <BackgroundBeams />;
 }
 
 // ── Desktop cinematic intro (GSAP + ScrollTrigger + CSS 3D) ─────────────────────
@@ -187,7 +181,7 @@ function ScreenPreview({ vw }) {
             <span className="w-1.5 h-1.5 rounded-full bg-neon" />
             <span className="text-datagrey text-xs font-medium tracking-widest uppercase">{t('hero.badge')}</span>
           </div>
-          <div className="font-heading font-bold text-titanium leading-[0.95] tracking-[-0.04em]" style={{ fontSize: '5rem' }}>
+          <div className="font-heading font-bold text-titanium leading-[0.95] tracking-[-0.04em]" style={{ fontSize: `clamp(2.5rem, ${vw * 0.06}px, 5rem)` }}>
             {t('hero.titleStart')} <span className="text-gradient-blue">{t('hero.titleHighlight')}</span>
           </div>
           <p className="text-datagrey text-xl max-w-lg" style={{ lineHeight: '1.6' }}>{t('hero.text')}</p>
